@@ -13,8 +13,18 @@
   --ed-faint: #8c96ad;
   --ed-line: #e2e8f0;
   --ed-page: #f3f6fc;
-  --ed-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --ed-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --ed-display: "Space Grotesk", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --ed-mono: "Space Mono", ui-monospace, Menlo, Consolas, monospace;
 }
+
+/* Base type. html+body outranks the Bootstrap body rule that header.js injects later. */
+html body { font-family: var(--ed-sans); font-weight: 400; -webkit-font-smoothing: antialiased; }
+/* Three voices: display for headlines, Inter for reading, mono for labels. */
+h1, h2, .ed-h1, .ed-h2, .case-title, .cases-title, .res-title, .home-pointers h3, .founder-name, .nat-stat-num {
+  font-family: var(--ed-display); font-weight: 500; letter-spacing: -0.025em;
+}
+button, input, select, textarea { font-family: inherit; }
 
 /* Layout */
 .ed-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
@@ -23,7 +33,7 @@
 .ed-kicker {
   font-family: var(--ed-mono);
   font-size: 0.76rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.096em;
   text-transform: uppercase;
   color: var(--ed-muted);
 }
@@ -32,16 +42,16 @@
 
 /* Headlines */
 .ed-h1 {
-  font-size: clamp(2.6rem, 6vw, 5rem);
-  font-weight: 400;
+  font-size: clamp(2.8rem, 6.4vw, 5.4rem);
+  font-weight: 500;
   letter-spacing: -0.025em;
   line-height: 1.02;
   color: var(--ed-ink);
 }
 .ed-h2 {
   font-size: clamp(1.9rem, 3.4vw, 2.8rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-weight: 500;
+  letter-spacing: -0.03em;
   line-height: 1.12;
   color: var(--ed-ink);
 }
@@ -109,7 +119,7 @@
   display: inline-block;
   font-family: var(--ed-mono);
   font-size: 0.8rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ed-primary);
   text-decoration: none !important;
@@ -127,7 +137,7 @@
 .ed-btn {
   display: inline-block;
   padding: 13px 26px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
   text-decoration: none !important;

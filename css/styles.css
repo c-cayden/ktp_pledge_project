@@ -14,7 +14,7 @@ p,
 }
 
 body {
-  font-family: 'Inter', sans-serif; /* You’ll locally load this below */
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif; /* You’ll locally load this below */
   background-color: #ffffff;
   color: #333;
   line-height: 1.6;

@@ -49,21 +49,21 @@ class CacheManager {
         // Load from Google Fonts as fallback
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap';
+        link.href = 'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap';
         document.head.appendChild(link);
     }
 
     loadCachedFonts() {
         // Try to load Roboto from cache
-        const cachedRoboto = localStorage.getItem('font-Roboto');
+        const cachedRoboto = localStorage.getItem('font-Inter');
         if (cachedRoboto) {
-            this.injectFont(cachedRoboto, 'Roboto');
+            this.injectFont(cachedRoboto, 'Inter');
             // This script runs in <head>, so <body> may not exist yet.
             const markLoaded = () => document.body && document.body.classList.add('fonts-loaded');
             if (document.body) markLoaded(); else document.addEventListener('DOMContentLoaded', markLoaded);
         } else {
             // Cache it for next time
-            this.cacheFont('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap', 'Roboto');
+            this.cacheFont('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap', 'Inter');
         }
     }
 

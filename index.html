@@ -26,7 +26,7 @@
   <!-- Component CSS files -->
   <link rel="stylesheet" href="css/header-styles/header.css">
   <link rel="stylesheet" href="css/footer-styles/footer.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Archivo:wdth,wght@125,700&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/editorial.css">
 <meta name="description" content="Kappa Theta Pi is Vanderbilt's premier professional technology fraternity. Learn about computer science, the School of Engineering, and innovation at the Wond’ry.">
 <link rel="canonical" href="https://ktpvandy.org/">
@@ -134,8 +134,8 @@
     html::-webkit-scrollbar { display: none; }
     html body {
       background: var(--ed-page);
-      font-family: 'Roboto', 'Arial', sans-serif;
-      font-weight: 300;
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+      font-weight: 400;
       color: var(--ed-ink);
       line-height: 1.7;
       overflow-x: hidden;
@@ -143,7 +143,30 @@
     a { color: inherit; }
 
     /* Hero: taller than inner pages */
-    .home-hero { min-height: 92vh; }
+    .home-hero { min-height: 100vh; align-items: center; }
+    .home-hero .ed-wrap {
+      max-width: 1440px;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      padding-top: 150px; padding-bottom: 120px;
+    }
+    .home-hero .ed-kicker { text-shadow: 0 1px 12px rgba(0,0,0,0.5); }
+    .home-hero .ed-h1 {
+      font-family: "Archivo", "Inter", sans-serif;
+      font-stretch: 125%;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: clamp(2rem, 4.2vw, 3.9rem);
+      line-height: 1.06;
+      letter-spacing: 0.01em;
+      max-width: 30ch;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+    }
+    .home-hero p { margin-left: auto; margin-right: auto; text-shadow: 0 1px 12px rgba(0,0,0,0.5); }
+    .home-hero .ed-actions { justify-content: center; }
+    /* Heavier dim than inner heros so the headline always reads */
+    .ed-hero.home-hero::after {
+      background: linear-gradient(180deg, rgba(8, 13, 30, 0.62) 0%, rgba(8, 13, 30, 0.5) 50%, rgba(8, 13, 30, 0.78) 100%);
+    }
     .home-hero > img.hero-slide {
       object-position: center 40%;
       opacity: 0;
@@ -158,9 +181,10 @@
       z-index: 1;
       font-family: var(--ed-mono);
       font-size: 0.62rem;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.072em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.7);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.6);
       pointer-events: none;
       transition: opacity 0.6s ease;
     }
@@ -250,10 +274,12 @@
 
   <section class="ed-hero home-hero" id="homeHero">
     <img class="hero-slide is-active" src="images/campus/kirkland-hall.jpg" alt="Kirkland Hall, Vanderbilt University" fetchpriority="high" data-credit="Kirkland Hall · Jaydenwithay, Wikimedia Commons (CC BY 4.0)">
-    <img class="hero-slide" src="images/campus/tower-sunset.jpg" alt="Vanderbilt campus at dusk" data-credit="Campus at dusk">
-    <img class="hero-slide" src="images/campus/central-library.jpg" alt="Central Library, Vanderbilt University" data-credit="Central Library · Jbaker08, Wikimedia Commons (public domain)">
-    <img class="hero-slide" src="images/campus/alumni-lawn.jpg" alt="Alumni Lawn, Vanderbilt University" data-credit="Alumni Lawn · Stablenode, Wikimedia Commons (CC BY-SA 4.0)">
-    <img class="hero-slide" src="images/campus/peabody-library.jpg" alt="Peabody Library, Vanderbilt University" data-credit="Peabody Library · Dansan4444, Wikimedia Commons (CC BY-SA 3.0)">
+    <img class="hero-slide" data-src="images/campus/stadium-aerial.jpg" alt="FirstBank Stadium from above" data-credit="FirstBank Stadium · Quintin Soloviev, Wikimedia Commons (CC BY 4.0)">
+    <img class="hero-slide" data-src="images/campus/tower-sunset.jpg" alt="Vanderbilt campus at dusk" data-credit="Campus at dusk">
+    <img class="hero-slide" data-src="images/campus/firstbank-night.jpg" alt="Vanderbilt football under the lights at FirstBank Stadium" data-credit="Vanderbilt vs. Hawaii · PCN02WPS, Wikimedia Commons (CC BY-SA 4.0)">
+    <img class="hero-slide" data-src="images/campus/wyatt-center.jpg" alt="Wyatt Center and the Peabody lawn" data-credit="Wyatt Center · Wikimedia Commons (public domain)">
+    <img class="hero-slide" data-src="images/campus/nashville-skyline.jpg" alt="Nashville skyline" data-credit="Nashville skyline · Bsutto04, Wikimedia Commons (CC BY-SA 4.0)">
+    <img class="hero-slide" data-src="images/campus/alumni-lawn.jpg" alt="Alumni Lawn, Vanderbilt University" data-credit="Alumni Lawn · Stablenode, Wikimedia Commons (CC BY-SA 4.0)">
     <span class="hero-credit" id="heroCredit" aria-hidden="true"></span>
     <div class="ed-wrap">
       <span class="ed-kicker">ΚΘΠ · Rho Chapter · Vanderbilt University</span>
@@ -302,7 +328,7 @@
 
     <!-- 02 / RECRUITMENT band -->
     <section class="ed-band home-band">
-      <img src="images/signature.png" alt="KTP brothers at a chapter event">
+      <img src="images/in_action_imgs/20260223_125934_B021BC.jpeg" alt="Chapter meeting in Featheringill Hall" style="object-position: center 40%;">
       <div class="ed-wrap">
         <div>
           <span class="ed-kicker"><b>02</b>Recruitment</span>
@@ -317,7 +343,7 @@
 
     <!-- 03 / BROTHERS band -->
     <section class="ed-band ed-band--right home-band">
-      <img src="images/learnAboutOurBrothersBackGround.png" alt="Nashville at sunset">
+      <img src="images/in_action_imgs/20250417_225103_BC8AE1.jpeg" alt="KTP brothers in suits after a chapter event" style="object-position: center 35%;">
       <div class="ed-wrap">
         <div>
           <span class="ed-kicker"><b>03</b>Brothers &amp; alumni</span>
@@ -391,12 +417,17 @@
       var i = 0;
       var setCredit = function () { if (credit) credit.textContent = slides[i].dataset.credit || ''; };
       setCredit();
+      var load = function (img) { if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; } };
+      load(slides[1]);
       var next = function () {
         if (document.hidden) return;
+        var n = (i + 1) % slides.length;
+        if (!slides[n].complete || !slides[n].naturalWidth) { load(slides[n]); return; }
         slides[i].classList.remove('is-active');
-        i = (i + 1) % slides.length;
+        i = n;
         slides[i].classList.add('is-active');
         setCredit();
+        load(slides[(i + 1) % slides.length]);
       };
       setInterval(next, 6000);
     })();

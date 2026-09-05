@@ -1,25 +1,8 @@
-// Ensure Bootstrap CSS/JS exist (for offcanvas)
-// Prevent overlay flash before JS activates
-(function guard() {
-  if (document.getElementById('header-critical-guard')) return;
-  const s = document.createElement('style');
-  s.id = 'header-critical-guard';
-  s.textContent = `
-    .mobile-menu-overlay {
-      opacity: 0; 
-      visibility: hidden; 
-      pointer-events: none;
-    }
-    .mobile-menu-overlay.active {
-      opacity: 1; 
-      visibility: visible; 
-      pointer-events: auto;
-    }
-  `;
-  document.head.appendChild(s);
-})();
+// Site chrome: floating top bar + full-screen menu (injected on every page).
+// Bar: logo left, "Rush KTP" + menu button right. Menu: three columns
+// (navigation with sub-links, KTP in Action photos, recruitment), like palantir.com.
 
-// Load Bootstrap CSS quickly (JS optional)
+// Bootstrap CSS is still used for a few grid/utility classes on inner pages.
 function ensureBootstrap() {
   if (!document.querySelector('#bootstrap-css-link')) {
     const css = document.createElement('link');
@@ -30,105 +13,29 @@ function ensureBootstrap() {
     css.crossOrigin = 'anonymous';
     document.head.appendChild(css);
   }
-  // JS bundle usually not needed for your header; comment if unused
-  // if (!document.querySelector('#bootstrap-js-bundle')) {
-  //   const js = document.createElement('script');
-  //   js.id = 'bootstrap-js-bundle';
-  //   js.src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js';
-  //   js.defer = true;
-  //   document.head.appendChild(js);
-  // }
 }
 
-
-// Header component for KTP website
-function createHeader() {
-  return `
-    <header>
-      <!-- Desktop / Tablet header (unchanged for ≥768px) -->
-      <div class="header-left d-none d-md-flex" data-animation-role="header-element">
-        <a href="/" data-animation-role="header-element" class="logo-text">
-          <div class="greek-letters">ΚΘΠ</div>
-          <div class="chapter-text">RHO CHAPTER</div>
-        </a>
-      </div>
-
-      <nav class="nav-links d-none d-md-flex">
-        <a href="/about">About</a>
-        <a href="/recruitment">Recruitment</a>
-        <a href="/professional-development">Professional Development</a>
-        <a href="/brothers">Brothers</a>
-        <a href="/ktp-in-action">KTP in Action</a>
-        <a href="/nationals">Nationals</a>
-        <a href="/contact">Contact</a>
-      </nav>
-
-      <!-- Mobile header (phones only) -->
-      <div class="mobile-header d-md-none">
-        <!-- Logo: top-left (unchanged) -->
-        <a href="/" class="logo-text">
-          <div class="greek-letters">ΚΘΠ</div>
-          <div class="chapter-text">RHO CHAPTER</div>
-        </a>
-
-        <!-- Hamburger: top-right — triggers full-screen overlay -->
-        <button
-          class="mobile-menu-toggle"
-          type="button"
-          id="mobileMenuToggle"
-          aria-label="Toggle navigation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <!-- Full-screen mobile menu overlay -->
-        <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-          <div class="mobile-menu-content">
-            <!-- Logo in top-left -->
-            <div class="mobile-menu-logo">
-              <div class="greek-letters">ΚΘΠ</div>
-              <div class="chapter-text">RHO CHAPTER</div>
-            </div>
-            
-            <!-- Close button in top-right -->
-            <button class="mobile-menu-close" id="mobileMenuClose">
-              <span>×</span>
-            </button>
-            
-            <!-- Navigation links centered -->
-            <nav class="mobile-menu-nav">
-              <a href="/about">About</a>
-              <a href="/recruitment">Recruitment</a>
-              <a href="/professional-development">Professional Development</a>
-              <a href="/brothers">Brothers</a>
-              <a href="/ktp-in-action">KTP in Action</a>
-              <a href="/nationals">Nationals</a>
-              <a href="/contact">Contact</a>
-            </nav>
-            
-            <!-- Social media icon at bottom -->
-            <div class="mobile-menu-social">
-              <a href="https://www.linkedin.com/company/kappa-theta-pi-vanderbilt" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-linkedin"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-  `;
-}
-
-// Compact sticky bar: appears once the big header scrolls away
-const NAV_ITEMS = [
-  ['/about', 'About'],
-  ['/recruitment', 'Recruitment'],
-  ['/professional-development', 'Professional Development'],
-  ['/brothers', 'Brothers'],
-  ['/ktp-in-action', 'KTP in Action'],
-  ['/nationals', 'Nationals'],
-  ['/contact', 'Contact'],
+// Navigation tree. Sub-links point at section ids on each page.
+const NAV = [
+  { href: '/about', label: 'About' },
+  { href: '/recruitment', label: 'Recruitment', sub: [
+    ['/recruitment#rush-schedule', 'Rush schedule'],
+    ['/recruitment#network', 'Our network'],
+    ['/recruitment#faq', 'FAQ'],
+  ]},
+  { href: '/professional-development', label: 'Professional Development', sub: [
+    ['/professional-development#hackathons', 'Hackathons'],
+    ['/professional-development#workshops', 'Workshops'],
+    ['/professional-development#resources', 'Resources'],
+  ]},
+  { href: '/brothers', label: 'Brothers', sub: [
+    ['/brothers#actives', 'Actives'],
+    ['/brothers#eboard', 'Executive Board'],
+    ['/brothers#alumni', 'Alumni'],
+  ]},
+  { href: '/ktp-in-action', label: 'KTP in Action' },
+  { href: '/nationals', label: 'Nationals' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 function currentPath() {
@@ -137,94 +44,121 @@ function currentPath() {
   return p;
 }
 
-function createTopbar() {
+function createChrome() {
   const here = currentPath();
-  const links = NAV_ITEMS.map(([href, label]) =>
-    `<a href="${href}"${href === here ? ' class="is-current" aria-current="page"' : ''}>${label}</a>`
-  ).join('');
+  const navHtml = NAV.map((item) => {
+    const cur = item.href === here ? ' is-current' : '';
+    const subs = (item.sub || []).map(([href, label]) =>
+      `<li><a class="menu-sub" href="${href}"><span class="menu-arrow" aria-hidden="true">&#8627;</span>${label}</a></li>`).join('');
+    return `<li><a class="menu-top${cur}" href="${item.href}"${cur ? ' aria-current="page"' : ''}>${item.label}</a>${subs ? `<ul class="menu-subs">${subs}</ul>` : ''}</li>`;
+  }).join('');
+
   return `
-    <div class="topbar" id="siteTopbar" aria-label="Site navigation">
-      <a href="/" class="topbar-logo" aria-label="Kappa Theta Pi home">
-        <span class="topbar-letters">ΚΘΠ</span>
-        <span class="topbar-chapter">Rho Chapter</span>
+    <div class="site-bar" id="siteBar">
+      <a href="/" class="site-logo" aria-label="Kappa Theta Pi, Rho Chapter home">
+        <span class="site-letters">ΚΘΠ</span>
+        <span class="site-chapter">Rho Chapter</span>
       </a>
-      <nav class="topbar-nav">${links}</nav>
-      <div class="topbar-right">
-        <a href="/recruitment" class="topbar-cta">Rush KTP</a>
-        <button type="button" class="topbar-menu" id="topbarMenuToggle" aria-label="Open menu">
-          <span></span><span></span>
+      <div class="site-bar-right">
+        <a href="/recruitment" class="site-cta">Rush KTP</a>
+        <button type="button" class="site-menu-btn" id="siteMenuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="siteMenu">
+          <span class="site-menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
         </button>
+      </div>
+    </div>
+
+    <div class="site-menu" id="siteMenu" aria-hidden="true">
+      <div class="site-menu-inner">
+        <div class="menu-col menu-col--nav">
+          <div class="menu-head"><span>Navigation</span></div>
+          <ul class="menu-nav">${navHtml}</ul>
+        </div>
+
+        <div class="menu-col menu-col--photos">
+          <div class="menu-head"><span>KTP in Action</span><a href="/ktp-in-action">View gallery <span aria-hidden="true">&#8599;</span></a></div>
+          <div class="menu-photos">
+            <a class="menu-photo" href="/ktp-in-action">
+              <span class="menu-photo-label">Spring Formal &middot; April 2026</span>
+              <img src="images/menu/formal.jpg" alt="Brothers at spring formal" loading="lazy">
+              <span class="menu-photo-title">The chapter, off the clock.</span>
+              <span class="menu-link"><span class="menu-arrow" aria-hidden="true">&#8627;</span>See the photos</span>
+            </a>
+            <a class="menu-photo" href="/professional-development#hackathons">
+              <span class="menu-photo-label">Dry Dock Hackathon &middot; May 2026</span>
+              <img src="images/menu/hackathon.jpg" alt="KTP team on stage at the Dry Dock Venture Studio Hackathon" loading="lazy">
+              <span class="menu-photo-title">First place, $50K, and a trip to NYC Tech Week.</span>
+              <span class="menu-link"><span class="menu-arrow" aria-hidden="true">&#8627;</span>Hackathon results</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="menu-col menu-col--rush">
+          <div class="menu-head"><span>Recruitment</span><a href="/recruitment#rush-schedule">Rush schedule <span aria-hidden="true">&#8599;</span></a></div>
+          <p class="menu-blurb">We recruit at the start of every fall and spring semester. Any major, any year with three semesters left. Come to an info session, meet the brothers, and apply.</p>
+          <a class="menu-link menu-link--lg" href="/recruitment"><span class="menu-arrow" aria-hidden="true">&#8627;</span>Learn more about rush</a>
+          <a class="menu-link menu-link--lg" href="/recruitment#faq"><span class="menu-arrow" aria-hidden="true">&#8627;</span>Read the FAQ</a>
+          <div class="menu-foot">
+            <a href="/about">About KTP</a>
+            <div class="menu-social">
+              <a href="https://www.instagram.com/ktpvandy" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">&#8599;</span></a>
+              <a href="https://www.linkedin.com/company/kappa-theta-pi-vanderbilt" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">&#8599;</span></a>
+              <a href="mailto:ktp@vanderbilt.edu">ktp@vanderbilt.edu</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   `;
 }
 
-function enableTopbar() {
-  const bar = document.getElementById('siteTopbar');
-  const header = document.querySelector('header');
-  if (!bar || !header) return;
+function enableMenu() {
+  const btn = document.getElementById('siteMenuBtn');
+  const menu = document.getElementById('siteMenu');
+  const bar = document.getElementById('siteBar');
+  if (!btn || !menu || !bar) return;
 
-  let threshold = 0;
-  const measure = () => { threshold = Math.max(120, header.offsetHeight - 40); };
-  const update = () => {
-    bar.classList.toggle('topbar--visible', window.scrollY > threshold);
+  let scrollY = 0;
+  const open = () => {
+    scrollY = window.scrollY;
+    document.documentElement.classList.add('menu-open');
+    menu.setAttribute('aria-hidden', 'false');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'Close menu');
+    document.body.style.top = `-${scrollY}px`;
   };
-  measure();
-  update();
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', () => { measure(); update(); });
-
-  // Phones: the bar's hamburger opens the existing full-screen menu
-  const toggle = document.getElementById('topbarMenuToggle');
-  const overlay = document.getElementById('mobileMenuOverlay');
-  if (toggle && overlay) {
-    toggle.addEventListener('click', () => {
-      overlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-  }
-}
-
-// Mobile menu functionality
-function enableMobileMenu() {
-  const overlay = document.getElementById('mobileMenuOverlay');
-  const toggle = document.getElementById('mobileMenuToggle');
-  const close = document.getElementById('mobileMenuClose');
-  
-  if (!overlay || !toggle || !close) return;
-  
-  // Open menu
-  toggle.addEventListener('click', () => {
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
+  const close = () => {
+    document.documentElement.classList.remove('menu-open');
+    menu.setAttribute('aria-hidden', 'true');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Open menu');
+    document.body.style.top = '';
+    window.scrollTo(0, scrollY);
+  };
+  btn.addEventListener('click', () => {
+    document.documentElement.classList.contains('menu-open') ? close() : open();
   });
-  
-  // Close menu
-  close.addEventListener('click', () => {
-    overlay.classList.remove('active');
-    document.body.style.overflow = ''; // Restore scroll
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.documentElement.classList.contains('menu-open')) close();
   });
-  
-  // Close when clicking overlay background
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) {
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
-  
-  // Close when clicking navigation links
-  overlay.querySelectorAll('a').forEach(a => {
+  // Same-page anchor links should close the menu and jump
+  menu.querySelectorAll('a[href]').forEach((a) => {
     a.addEventListener('click', () => {
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
+      const url = new URL(a.getAttribute('href'), location.href);
+      if (url.pathname === location.pathname && url.hash) {
+        close();
+        // let the hash navigation happen after the scroll lock is released
+        setTimeout(() => { location.hash = url.hash; }, 0);
+      }
     });
   });
+
+  // Bar picks up a solid ground once the page is scrolled a bit
+  const onScroll = () => bar.classList.toggle('is-scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 }
 
-// Function to inject header into page
 function injectHeader() {
-  // Add header CSS link if not already present
   if (!document.querySelector('#header-css-link')) {
     const linkTag = document.createElement('link');
     linkTag.id = 'header-css-link';
@@ -232,32 +166,13 @@ function injectHeader() {
     linkTag.href = 'css/header-styles/header.css';
     document.head.appendChild(linkTag);
   }
-
-  // Add Bootstrap for offcanvas
   ensureBootstrap();
-
-  // Add header HTML at the beginning of body
-  const headerHtml = createHeader();
-  document.body.insertAdjacentHTML('afterbegin', headerHtml);
-  document.body.insertAdjacentHTML('afterbegin', createTopbar());
-
-  // Enable mobile menu functionality
-  enableMobileMenu();
-  enableTopbar();
+  document.body.insertAdjacentHTML('afterbegin', createChrome());
+  enableMenu();
 }
 
-// Auto-inject header when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', injectHeader);
 } else {
   injectHeader();
 }
-const y = window.scrollY;
-document.body.classList.add('menu-locked');
-document.body.style.top = `-${y}px`;
-// ...
-const restore = parseInt(document.body.style.top || '0') * -1;
-document.body.classList.remove('menu-locked');
-document.body.style.top = '';
-window.scrollTo(0, restore);
-

@@ -16,7 +16,7 @@ function createFooter() {
           background: var(--ktp-blue);
           color: var(--text);
           padding: 28px 0 22px;
-          font-family: "Roboto", Arial, sans-serif;
+          font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
           font-size: 16px;
         }
         .footer-wrap { max-width: 1200px; margin: 0 auto; padding: 0 22px; }

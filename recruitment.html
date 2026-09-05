@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://tile.openstreetmap.org https://cdnjs.cloudflare.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Recruitment | Kappa Theta Pi Vanderbilt</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
       
 <!-- Default favicon (root, ICO format for widest support) -->
 <link rel="icon" href="/faviconktp.ico" sizes="any">
@@ -108,8 +108,8 @@
     }
 
     body {
-      font-family: 'Roboto', 'Arial', sans-serif;
-      font-weight: 300;
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+      font-weight: 400;
       background-color: var(--white);
       color: var(--black);
       line-height: 1.6;
@@ -410,107 +410,34 @@
       }
     }
 
-    /* RESUME TEMPLATE — editorial block in KTP navy */
-    #resume-template {
-      background: #1b2a52;
-      color: #e9edf7;
-      padding: 90px 20px;
-    }
-
-    .rt-wrap {
-      max-width: 1180px;
-      margin: 0 auto;
+    /* RESOURCES POINTER: single row that hands off to Professional Development */
+    .res-pointer { padding: 8px 0 0; }
+    .res-pointer-link {
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 72px;
-      align-items: start;
-    }
-
-    .rt-label {
-      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 0.76rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #9fb0da;
-      margin-bottom: 18px;
-    }
-
-    .rt-title {
-      font-size: clamp(2rem, 4vw, 3.1rem);
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.08;
-      color: #ffffff;
-      margin-bottom: 20px;
-    }
-
-    .rt-desc {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: #c3cce4;
-      max-width: 48ch;
-      margin-bottom: 28px;
-    }
-
-    .rt-spec {
-      display: grid;
-      grid-template-columns: repeat(3, auto);
-      gap: 0 32px;
-      border-top: 1px solid rgba(255, 255, 255, 0.16);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-      padding: 14px 0;
-      margin-bottom: 30px;
-      width: fit-content;
-    }
-    .rt-spec dt {
-      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #8c9dcb;
-      margin-bottom: 4px;
-    }
-    .rt-spec dd { font-size: 0.95rem; color: #ffffff; }
-
-    .rt-btn {
-      display: inline-block;
-      background: #ffffff;
-      color: #1b2a52;
-      padding: 13px 26px;
-      font-weight: 500;
-      font-size: 0.95rem;
-      letter-spacing: 0.02em;
+      grid-template-columns: 260px 1fr auto;
+      gap: 48px;
+      align-items: baseline;
+      padding: 28px 0;
+      border-top: 1px solid var(--ed-line);
+      border-bottom: 1px solid var(--ed-line);
       text-decoration: none !important;
-      border: 1px solid #ffffff;
-      transition: background 0.2s ease, color 0.2s ease;
+      color: inherit;
     }
-    .rt-btn:hover { background: transparent; color: #ffffff; }
-
-    .rt-rules {
-      list-style: none;
-      border-top: 1px solid rgba(255, 255, 255, 0.16);
-      margin-top: 8px;
+    .res-pointer-title { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; color: var(--ed-ink); transition: color 0.2s ease; }
+    .res-pointer-cta {
+      font-family: var(--ed-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ed-ink);
+      white-space: nowrap;
+      border-bottom: 1px solid var(--ed-ink);
+      padding-bottom: 4px;
+      transition: color 0.2s ease, border-color 0.2s ease;
     }
-    .rt-rules li {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 16px;
-      padding: 22px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-    }
-    .rt-n {
-      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 0.8rem;
-      color: #c8a951;
-      padding-top: 4px;
-    }
-    .rt-rules strong { display: block; font-weight: 500; font-size: 1.1rem; color: #ffffff; margin-bottom: 6px; }
-    .rt-rules p { color: #c3cce4; line-height: 1.6; font-size: 0.97rem; }
-
+    .res-pointer-link:hover .res-pointer-title, .res-pointer-link:hover .res-pointer-cta { color: var(--ed-primary); border-color: var(--ed-primary); }
     @media (max-width: 900px) {
-      #resume-template { padding: 64px 20px; }
-      .rt-wrap { grid-template-columns: 1fr; gap: 36px; }
-      .rt-spec { grid-template-columns: 1fr; gap: 12px 0; width: 100%; }
+      .res-pointer-link { grid-template-columns: 1fr; gap: 10px; }
     }
 
     /* SECTION SPACING */
@@ -533,7 +460,7 @@
       font-size: 1.1rem;
       max-width: 900px;
       margin: auto;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     /* FLYER */
@@ -568,7 +495,7 @@
     }
 
     /* FAQ */
-    #faq { padding-top: 90px; padding-bottom: 100px; }
+    #faq { padding-top: 48px; padding-bottom: 100px; }
     .accordion-container { max-width: 1132px; margin: 0 auto; border-top: 1px solid var(--ed-line); }
 
     /* Ensure FAQ section has no animations */
@@ -598,7 +525,7 @@
       border: none;
       width: 100%;
       text-align: left;
-      font-family: "Roboto", "Arial", sans-serif;
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
       font-size: 1.2rem;
       padding: 20px 48px 20px 0;
       cursor: pointer;
@@ -615,7 +542,7 @@
       right: 4px;
       top: 50%;
       transform: translateY(-50%);
-      font-family: "IBM Plex Mono", monospace;
+      font-family: "Space Mono", ui-monospace, Menlo, Consolas, monospace;
       font-weight: 400;
       color: var(--ed-faint);
       transition: transform 0.2s ease;
@@ -823,25 +750,14 @@
   </div>
 </section>
 
-<!-- RESUME TEMPLATE: assets/KTP_Resume_Template.docx (downloads so each visitor edits their own copy). -->
-<section id="resume-template">
-  <div class="rt-wrap">
-    <div class="rt-left">
-      <div class="rt-label">Resume Template</div>
-      <h2 class="rt-title">One Page.<br>Built for Success</h2>
-      <p class="rt-desc">The same Word template our brothers use for internship and full-time applications. Download it, open it in Word or Google Docs, and make it yours.</p>
-      <dl class="rt-spec">
-        <div><dt>Format</dt><dd>Word (.docx)</dd></div>
-        <div><dt>Length</dt><dd>One page</dd></div>
-        <div><dt>Used for</dt><dd>Internship &amp; full-time recruiting</dd></div>
-      </dl>
-      <a class="rt-btn" href="assets/KTP_Resume_Template.docx" download="KTP_Resume_Template.docx">Download template <span aria-hidden="true">&rarr;</span></a>
-    </div>
-    <ol class="rt-rules">
-      <li><span class="rt-n">01</span><div><strong>Keep it to one page.</strong><p>Recruiters spend seconds on a first pass. Clear section headers, no filler.</p></div></li>
-      <li><span class="rt-n">02</span><div><strong>Lead with the verb.</strong><p>Every bullet starts with what you did, then quantifies the result where you can.</p></div></li>
-      <li><span class="rt-n">03</span><div><strong>No experience yet? Show projects.</strong><p>Coursework, hackathons, and personal projects count. Treat them like jobs.</p></div></li>
-    </ol>
+<!-- RESOURCES POINTER: the full list lives on professional-development.html#resources -->
+<section id="resources" class="res-pointer">
+  <div class="ed-wrap">
+    <a class="res-pointer-link" href="/professional-development#resources">
+      <span class="ed-kicker">Resources</span>
+      <span class="res-pointer-title">Resume template, action verbs, and the hackathon calendar</span>
+      <span class="res-pointer-cta">Professional Development <span aria-hidden="true">&rarr;</span></span>
+    </a>
   </div>
 </section>
 
