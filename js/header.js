@@ -84,9 +84,9 @@ function createChrome() {
               <span class="menu-link"><span class="menu-arrow" aria-hidden="true">&#8627;</span>See the photos</span>
             </a>
             <a class="menu-photo" href="/professional-development#hackathons">
-              <span class="menu-photo-label">Hackathons &middot; Spring 2026</span>
-              <img src="images/menu/brothers.jpg" alt="KTP brothers together on campus" loading="lazy">
-              <span class="menu-photo-title">Built under pressure.</span>
+              <span class="menu-photo-label">Dry Dock Hackathon &middot; May 2026</span>
+              <img src="images/menu/hackathon.jpg" alt="KTP team on stage at the Dry Dock Venture Studio Hackathon" loading="lazy">
+              <span class="menu-photo-title">First place, $50K, and a trip to NYC Tech Week.</span>
               <span class="menu-link"><span class="menu-arrow" aria-hidden="true">&#8627;</span>Hackathon results</span>
             </a>
           </div>

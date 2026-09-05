@@ -98,6 +98,7 @@ body { overflow-x: hidden; }
 
 /* ---------- Full-screen menu ---------- */
 .site-menu {
+  font-family: "Instrument Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
   position: fixed;
   inset: 0;
   z-index: 5500;
@@ -150,9 +151,8 @@ body { overflow-x: hidden; }
 .menu-nav > li { margin-bottom: 14px; }
 .menu-nav a { color: #ffffff; text-decoration: none; display: inline-block; transition: color 0.2s ease, transform 0.2s ease; }
 .menu-nav a.menu-top {
-  font-family: "Bricolage Grotesque", "Inter", "Helvetica Neue", Arial, sans-serif;
-  font-optical-sizing: auto;
-  font-size: clamp(1.9rem, 3vw, 3rem);
+  font-family: "Instrument Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.8rem, 2.8vw, 2.7rem);
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.1;
@@ -162,7 +162,7 @@ body { overflow-x: hidden; }
 .menu-subs { margin: 8px 0 6px; }
 .menu-subs li { margin: 6px 0; }
 .menu-sub {
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Instrument Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.15rem, 1.6vw, 1.55rem);
   font-weight: 400;
   color: rgba(255, 255, 255, 0.86) !important;
