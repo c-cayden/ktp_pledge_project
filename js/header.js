@@ -118,6 +118,71 @@ function createHeader() {
   `;
 }
 
+// Compact sticky bar: appears once the big header scrolls away
+const NAV_ITEMS = [
+  ['/about', 'About'],
+  ['/recruitment', 'Recruitment'],
+  ['/professional-development', 'Professional Development'],
+  ['/brothers', 'Brothers'],
+  ['/ktp-in-action', 'KTP in Action'],
+  ['/nationals', 'Nationals'],
+  ['/contact', 'Contact'],
+];
+
+function currentPath() {
+  let p = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/');
+  if (p.length > 1) p = p.replace(/\/$/, '');
+  return p;
+}
+
+function createTopbar() {
+  const here = currentPath();
+  const links = NAV_ITEMS.map(([href, label]) =>
+    `<a href="${href}"${href === here ? ' class="is-current" aria-current="page"' : ''}>${label}</a>`
+  ).join('');
+  return `
+    <div class="topbar" id="siteTopbar" aria-label="Site navigation">
+      <a href="/" class="topbar-logo" aria-label="Kappa Theta Pi home">
+        <span class="topbar-letters">ΚΘΠ</span>
+        <span class="topbar-chapter">Rho Chapter</span>
+      </a>
+      <nav class="topbar-nav">${links}</nav>
+      <div class="topbar-right">
+        <a href="/recruitment" class="topbar-cta">Rush KTP</a>
+        <button type="button" class="topbar-menu" id="topbarMenuToggle" aria-label="Open menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function enableTopbar() {
+  const bar = document.getElementById('siteTopbar');
+  const header = document.querySelector('header');
+  if (!bar || !header) return;
+
+  let threshold = 0;
+  const measure = () => { threshold = Math.max(120, header.offsetHeight - 40); };
+  const update = () => {
+    bar.classList.toggle('topbar--visible', window.scrollY > threshold);
+  };
+  measure();
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', () => { measure(); update(); });
+
+  // Phones: the bar's hamburger opens the existing full-screen menu
+  const toggle = document.getElementById('topbarMenuToggle');
+  const overlay = document.getElementById('mobileMenuOverlay');
+  if (toggle && overlay) {
+    toggle.addEventListener('click', () => {
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+}
+
 // Mobile menu functionality
 function enableMobileMenu() {
   const overlay = document.getElementById('mobileMenuOverlay');
@@ -172,9 +237,11 @@ function injectHeader() {
   // Add header HTML at the beginning of body
   const headerHtml = createHeader();
   document.body.insertAdjacentHTML('afterbegin', headerHtml);
+  document.body.insertAdjacentHTML('afterbegin', createTopbar());
 
   // Enable mobile menu functionality
   enableMobileMenu();
+  enableTopbar();
 }
 
 // Auto-inject header when DOM is ready

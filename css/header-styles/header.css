@@ -429,3 +429,97 @@ header {
 
 /* (Cleanup) You had this rule duplicated—keep only ONE copy */
 body.menu-locked { position: fixed; width: 100%; }
+
+/* ======== COMPACT STICKY TOP BAR (appears after the header scrolls away) ======== */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 5000;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 32px;
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+.topbar--visible { transform: translateY(0); opacity: 1; }
+
+.topbar-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--black);
+  flex: 0 0 auto;
+}
+.topbar-letters { font-size: 1.5rem; line-height: 1; color: var(--primary); font-weight: 400; }
+.topbar-chapter {
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #4a5568;
+}
+
+.topbar-nav { display: flex; align-items: center; gap: 26px; flex: 1 1 auto; justify-content: center; }
+.topbar-nav a {
+  position: relative;
+  text-decoration: none;
+  color: #0f172a;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 60px;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+.topbar-nav a:hover { color: var(--primary); }
+.topbar-nav a.is-current::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: #c8a951;
+}
+
+.topbar-right { display: flex; align-items: center; gap: 14px; flex: 0 0 auto; }
+.topbar-cta {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: var(--white);
+  font-size: 0.84rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.topbar-cta:hover { background: transparent; color: var(--primary); }
+
+.topbar-menu {
+  display: none;
+  width: 40px; height: 40px;
+  border: 0; background: none; padding: 0;
+  cursor: pointer;
+  flex-direction: column; justify-content: center; align-items: center; gap: 6px;
+}
+.topbar-menu span { display: block; width: 22px; height: 2px; background: #0f172a; }
+
+@media (max-width: 1100px) {
+  .topbar-nav { gap: 18px; }
+  .topbar-nav a { font-size: 0.84rem; }
+}
+@media (max-width: 900px) {
+  .topbar { padding: 0 16px; height: 56px; }
+  .topbar-nav { display: none; }
+  .topbar-cta { display: none; }
+  .topbar-menu { display: flex; }
+}
