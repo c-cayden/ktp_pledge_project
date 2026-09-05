@@ -26,7 +26,7 @@
   <!-- Component CSS files -->
   <link rel="stylesheet" href="css/header-styles/header.css">
   <link rel="stylesheet" href="css/footer-styles/footer.css">
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Unbounded:wght@500;600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/editorial.css">
 <meta name="description" content="Kappa Theta Pi is Vanderbilt's premier professional technology fraternity. Learn about computer science, the School of Engineering, and innovation at the Wond’ry.">
 <link rel="canonical" href="https://ktpvandy.org/">
@@ -149,7 +149,16 @@
       padding-top: 150px; padding-bottom: 120px;
     }
     .home-hero .ed-kicker { text-shadow: 0 1px 12px rgba(0,0,0,0.5); }
-    .home-hero .ed-h1 { max-width: 20ch; text-shadow: 0 2px 24px rgba(0,0,0,0.35); }
+    .home-hero .ed-h1 {
+      font-family: "Unbounded", "Bricolage Grotesque", "Inter", sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: clamp(2rem, 4.6vw, 4.1rem);
+      line-height: 1.04;
+      letter-spacing: 0.005em;
+      max-width: 22ch;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+    }
     .home-hero p { margin-left: auto; margin-right: auto; text-shadow: 0 1px 12px rgba(0,0,0,0.5); }
     .home-hero .ed-actions { justify-content: center; }
     /* Heavier dim than inner heros so the headline always reads */
