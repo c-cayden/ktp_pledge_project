@@ -143,7 +143,27 @@
 
     /* Hero: taller than inner pages */
     .home-hero { min-height: 92vh; }
-    .home-hero > img { object-position: center 40%; }
+    .home-hero > img.hero-slide {
+      object-position: center 40%;
+      opacity: 0;
+      transition: opacity 1.6s ease;
+      will-change: opacity;
+    }
+    .home-hero > img.hero-slide.is-active { opacity: 1; }
+    .hero-credit {
+      position: absolute;
+      right: 24px;
+      bottom: 18px;
+      z-index: 1;
+      font-family: var(--ed-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+    }
+    @media (max-width: 700px) { .hero-credit { display: none; } }
 
     /* Intro rows */
     .home-intro { padding: 110px 0 64px; }
@@ -227,8 +247,13 @@
 <body>
   <!-- Header will be injected by component -->
 
-  <section class="ed-hero home-hero">
-    <img src="images/campus.jpg" alt="Vanderbilt campus and the Nashville skyline" fetchpriority="high">
+  <section class="ed-hero home-hero" id="homeHero">
+    <img class="hero-slide is-active" src="images/campus/kirkland-hall.jpg" alt="Kirkland Hall, Vanderbilt University" fetchpriority="high" data-credit="Kirkland Hall · Jaydenwithay, Wikimedia Commons (CC BY 4.0)">
+    <img class="hero-slide" src="images/campus/tower-sunset.jpg" alt="Vanderbilt campus at dusk" data-credit="Campus at dusk">
+    <img class="hero-slide" src="images/campus/central-library.jpg" alt="Central Library, Vanderbilt University" data-credit="Central Library · Jbaker08, Wikimedia Commons (public domain)">
+    <img class="hero-slide" src="images/campus/alumni-lawn.jpg" alt="Alumni Lawn, Vanderbilt University" data-credit="Alumni Lawn · Stablenode, Wikimedia Commons (CC BY-SA 4.0)">
+    <img class="hero-slide" src="images/campus/peabody-library.jpg" alt="Peabody Library, Vanderbilt University" data-credit="Peabody Library · Dansan4444, Wikimedia Commons (CC BY-SA 3.0)">
+    <span class="hero-credit" id="heroCredit" aria-hidden="true"></span>
     <div class="ed-wrap">
       <span class="ed-kicker">ΚΘΠ · Rho Chapter · Vanderbilt University</span>
       <h1 class="ed-h1">Vanderbilt's Professional Technology Fraternity</h1>
@@ -356,5 +381,24 @@
   <!-- Component Scripts -->
   <script src="js/header.js"></script>
   <script src="js/footer.js"></script>
+  <script>
+    // Hero photo rotation: crossfade every 6s, paused when the tab is hidden
+    (function () {
+      var slides = Array.prototype.slice.call(document.querySelectorAll('#homeHero .hero-slide'));
+      var credit = document.getElementById('heroCredit');
+      if (slides.length < 2) { if (credit && slides[0]) credit.textContent = slides[0].dataset.credit || ''; return; }
+      var i = 0;
+      var setCredit = function () { if (credit) credit.textContent = slides[i].dataset.credit || ''; };
+      setCredit();
+      var next = function () {
+        if (document.hidden) return;
+        slides[i].classList.remove('is-active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('is-active');
+        setCredit();
+      };
+      setInterval(next, 6000);
+    })();
+  </script>
 </body>
 </html>
