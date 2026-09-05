@@ -310,14 +310,11 @@
   .founder-photo { aspect-ratio: 4 / 5; position: relative; overflow: hidden; background: #eef1f7; margin-bottom: 14px; }
   .founder-overlay { position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center; background: rgba(47, 74, 138, 0.9); opacity: 0; transition: opacity 0.3s ease; }
   .founder-overlay span { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 600; padding: 10px 16px; border-radius: 25px; background: rgba(255, 255, 255, 0.2); }
-  .founder-overlay img { width: 22px; height: 22px; filter: brightness(0) invert(1); }
+  .founder-photo .founder-overlay img { width: 22px; height: 22px; filter: brightness(0) invert(1); transform: none; }
   @media (hover: hover) and (min-width: 1025px) { .founder-card:hover .founder-overlay { opacity: 1; } }
   @media (max-width: 1024px) { .founder-overlay { display: none; } }
   .founder-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
-  .founder-photo img.rot-cw  { transform: rotate(90deg); }
-  .founder-photo img.rot-ccw { transform: rotate(-90deg); }
   .founder-card:hover .founder-photo img { transform: scale(1.03); }
-  .founder-card:hover .founder-photo img.rot-cw  { transform: rotate(90deg) scale(1.03); }
   .founder-name { font-size: 1.05rem; font-weight: 500; color: var(--ink); }
   .founder-role { font-family: "IBM Plex Mono", monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin: 4px 0 6px; }
   .founder-meta { font-size: 0.88rem; color: var(--muted); line-height: 1.4; }
@@ -456,7 +453,7 @@
           </div>
           <div class="founders-grid">
               <a class="founder-card" href="https://www.linkedin.com/in/haley-kahn/" target="_blank" rel="noopener noreferrer">
-                  <div class="founder-photo"><img src="assets/founders-images-compressed/HaleyHS.JPG" alt="Haley Kahn" class="rot-cw" loading="lazy"><div class="founder-overlay"><span><img src="assets/brother-images-compressed/linkedin.png" alt="">View Profile</span></div></div>
+                  <div class="founder-photo"><img src="assets/founders-images-compressed/HaleyHS.JPG" alt="Haley Kahn" loading="lazy"><div class="founder-overlay"><span><img src="assets/brother-images-compressed/linkedin.png" alt="">View Profile</span></div></div>
                   <div class="founder-name">Haley Kahn</div>
                   <div class="founder-role">Founder</div>
                   <div class="founder-meta">Ocean City, NJ<br>Computer Science &amp; Applied Math</div>
@@ -480,7 +477,7 @@
                   <div class="founder-meta">Boca Raton, FL<br>Computer Science &amp; Applied Math</div>
               </a>
               <a class="founder-card" href="https://www.linkedin.com/in/brodyjghaar/" target="_blank" rel="noopener noreferrer">
-                  <div class="founder-photo"><img src="assets/founders-images-compressed/BrodyHaarHS.JPG" alt="Brody Haar" class="rot-cw" loading="lazy"><div class="founder-overlay"><span><img src="assets/brother-images-compressed/linkedin.png" alt="">View Profile</span></div></div>
+                  <div class="founder-photo"><img src="assets/founders-images-compressed/BrodyHaarHS.JPG" alt="Brody Haar" loading="lazy"><div class="founder-overlay"><span><img src="assets/brother-images-compressed/linkedin.png" alt="">View Profile</span></div></div>
                   <div class="founder-name">Brody Haar</div>
                   <div class="founder-role">Founder</div>
                   <div class="founder-meta">Peoria, AZ<br>Computer Science, Applied Math &amp; German Studies</div>

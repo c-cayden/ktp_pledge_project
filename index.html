@@ -23,7 +23,6 @@
 <link rel="manifest" href="/manifest.json">
   
   <!-- Component CSS files -->
-  <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/header-styles/header.css">
   <link rel="stylesheet" href="css/footer-styles/footer.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -132,8 +131,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
-    html body { background: #ffffff; }
-    body {
+    html body {
+      background: var(--ed-page);
       font-family: 'Roboto', 'Arial', sans-serif;
       font-weight: 300;
       color: var(--ed-ink);
@@ -147,19 +146,44 @@
     .home-hero > img { object-position: center 40%; }
 
     /* Intro rows */
-    .home-intro { padding: 110px 0 90px; }
+    .home-intro { padding: 110px 0 64px; }
     .home-intro .ed-row + .ed-row { margin-top: 70px; }
     .home-intro .ed-h2 { max-width: 22ch; margin-bottom: 22px; }
     .home-intro .ed-lede { margin-bottom: 1rem; }
     .home-intro .ed-lede:last-of-type { margin-bottom: 0; }
 
-    /* Three-up pointers */
-    .home-pointers { padding: 0 0 100px; }
+    /* Photo + card (Palantir-style split) */
+    .home-split { padding: 0 0 110px; }
+    .home-split .grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+    .home-split figure { margin: 0; min-height: 520px; overflow: hidden; position: relative; }
+    .home-split figure img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; display: block; }
+    .home-split .card {
+      background: #ffffff;
+      border: 1px solid var(--ed-line);
+      padding: 56px 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .home-split .card .ed-kicker { margin-bottom: 22px; }
+    .home-split .card .ed-h2 { margin-bottom: 20px; }
+    .home-split .card p { color: var(--ed-muted); font-size: 1.05rem; line-height: 1.7; max-width: 44ch; }
+
+    /* Three-up pointers, on navy */
+    .home-pointers { padding: 100px 0 100px; }
+    .home-pointers .ed-row { border-top: 0; padding-top: 0; padding-bottom: 40px; }
+    .home-pointers .ed-row .ed-kicker { color: rgba(255,255,255,0.7); }
+    .home-pointers .ed-row .ed-h2 { color: #ffffff; }
     .home-pointers .grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 0 32px;
-      border-top: 1px solid var(--ed-line);
+      border-top: 1px solid rgba(255,255,255,0.16);
     }
     .home-pointers a {
       display: block;
@@ -167,17 +191,17 @@
       padding: 28px 0 32px;
       color: inherit;
     }
-    .home-pointers .ed-kicker { margin-bottom: 14px; }
+    .home-pointers a .ed-kicker { margin-bottom: 14px; color: rgba(255,255,255,0.7); }
     .home-pointers h3 {
       font-size: 1.45rem;
       font-weight: 400;
       letter-spacing: -0.01em;
       line-height: 1.2;
-      color: var(--ed-ink);
+      color: #ffffff;
       margin-bottom: 10px;
     }
-    .home-pointers p { color: var(--ed-muted); font-size: 0.98rem; line-height: 1.6; margin-bottom: 16px; }
-    .home-pointers a:hover h3 { color: var(--ed-primary); }
+    .home-pointers p { color: rgba(255,255,255,0.72); font-size: 0.98rem; line-height: 1.6; margin-bottom: 16px; }
+    .home-pointers a:hover h3 { color: var(--ed-gold); }
 
     /* Band spacing */
     .home-band + .home-band { border-top: 1px solid rgba(255,255,255,0.12); }
@@ -188,8 +212,13 @@
 
     @media (max-width: 900px) {
       .home-intro { padding: 70px 0 60px; }
+      .home-split { padding-bottom: 70px; }
+      .home-split .grid { grid-template-columns: 1fr; }
+      .home-split figure { min-height: 0; aspect-ratio: 4 / 3; }
+      .home-split .card { padding: 36px 28px; }
+      .home-pointers { padding: 70px 0; }
       .home-pointers .grid { grid-template-columns: 1fr; }
-      .home-pointers a { border-bottom: 1px solid var(--ed-line); }
+      .home-pointers a { border-bottom: 1px solid rgba(255,255,255,0.16); }
       .home-close { padding: 70px 0; }
     }
   </style>
@@ -226,6 +255,25 @@
       </div>
     </section>
 
+    <!-- Photo + card -->
+    <section class="home-split">
+      <div class="ed-wrap">
+        <div class="grid">
+          <figure>
+            <img src="images/in_action_imgs/20260403_192654_B14B1B.jpeg" alt="KTP brothers at spring formal" loading="lazy">
+          </figure>
+          <div class="card">
+            <span class="ed-kicker">Brotherhood</span>
+            <h2 class="ed-h2">A Chapter That Shows Up</h2>
+            <p>Brothers show up for each other: at hackathons, in recruiting season, and at every formal and retreat in between.</p>
+            <div class="ed-actions">
+              <a href="/ktp-in-action" class="ed-link">See the chapter in action <span aria-hidden="true">&rarr;</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 02 / RECRUITMENT band -->
     <section class="ed-band home-band">
       <img src="images/signature.png" alt="KTP brothers at a chapter event">
@@ -257,9 +305,9 @@
     </section>
 
     <!-- 04 / POINTERS -->
-    <section class="home-pointers">
+    <section class="home-pointers ed-on-dark">
       <div class="ed-wrap">
-        <div class="ed-row" style="border-top:0; padding-top:100px; padding-bottom:36px;">
+        <div class="ed-row">
           <div class="ed-kicker"><b>04</b>Explore</div>
           <h2 class="ed-h2">Everything Else, in Three Places</h2>
         </div>
