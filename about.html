@@ -307,7 +307,12 @@
 
   .founders-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; }
   .founder-card { display: block; text-decoration: none; color: inherit; }
-  .founder-photo { aspect-ratio: 4 / 5; overflow: hidden; background: #eef1f7; margin-bottom: 14px; }
+  .founder-photo { aspect-ratio: 4 / 5; position: relative; overflow: hidden; background: #eef1f7; margin-bottom: 14px; }
+  .founder-overlay { position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center; background: rgba(47, 74, 138, 0.9); opacity: 0; transition: opacity 0.3s ease; }
+  .founder-overlay span { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 600; padding: 10px 16px; border-radius: 25px; background: rgba(255, 255, 255, 0.2); }
+  .founder-overlay img { width: 22px; height: 22px; filter: brightness(0) invert(1); }
+  @media (hover: hover) and (min-width: 1025px) { .founder-card:hover .founder-overlay { opacity: 1; } }
+  @media (max-width: 1024px) { .founder-overlay { display: none; } }
   .founder-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
   .founder-photo img.rot-cw  { transform: rotate(90deg); }
   .founder-photo img.rot-ccw { transform: rotate(-90deg); }
@@ -451,31 +456,31 @@
           </div>
           <div class="founders-grid">
               <a class="founder-card" href="https://www.linkedin.com/in/haley-kahn/" target="_blank" rel="noopener noreferrer">
-                  <div class="founder-photo"><img src="assets/founders-images-compressed/HaleyHS.JPG" alt="Haley Kahn" class="rot-cw" loading="lazy"></div>
+                  <div class="founder-photo"><img src="assets/founders-images-compressed/HaleyHS.JPG" alt="Haley Kahn" class="rot-cw" loading="lazy"><div class="founder-overlay"><span><img src="assets/brother-images-compressed/linkedin.png" alt="">View Profile</span></div></div>
                   <div class="founder-name">Haley Kahn</div>
                   <div class="founder-role">Founder</div>
                   <div class="founder-meta">Ocean City, NJ<br>Computer Science &amp; Applied Math</div>
               </a>
               <a class="founder-card" href="https://www.linkedin.com/in/ludvig-denker/" target="_blank" rel="noopener noreferrer">
-                  <div class="founder-photo"><img src="assets/founders-images-compressed/LudvigDenkerHS.jpeg" alt="Ludvig Denker" loading="lazy"></div>
+                  <div class="founder-photo"><img src="assets/founders-images-compressed/LudvigDenkerHS.jpeg" alt="Ludvig Denker" loading="lazy"><div class="founder-overlay"><span><img src="assets/brother-images-compressed/linkedin.png" alt="">View Profile</span></div></div>
                   <div class="founder-name">Ludvig Denker</div>
                   <div class="founder-role">Founder</div>
                   <div class="founder-meta">Stockholm, Sweden &amp; Nashville, TN<br>Math &amp; Computer Science</div>
               </a>
               <a class="founder-card" href="https://www.linkedin.com/in/elizabethtuckerr/" target="_blank" rel="noopener noreferrer">
-                  <div class="founder-photo"><img src="assets/founders-images-compressed/LizzieHS.jpg" alt="Lizzie Tucker" loading="lazy"></div>
+                  <div class="founder-photo"><img src="assets/founders-images-compressed/LizzieHS.jpg" alt="Lizzie Tucker" loading="lazy"><div class="founder-overlay"><span><img src="assets/brother-images-compressed/linkedin.png" alt="">View Profile</span></div></div>
                   <div class="founder-name">Lizzie Tucker</div>
                   <div class="founder-role">Founder</div>
                   <div class="founder-meta">St. Louis, MO<br>Computer Science &amp; Political Science</div>
               </a>
               <a class="founder-card" href="https://www.linkedin.com/in/parker-palermo/" target="_blank" rel="noopener noreferrer">
-                  <div class="founder-photo"><img src="assets/founders-images-compressed/ParkerHS.jpg" alt="Parker Palermo" loading="lazy"></div>
+                  <div class="founder-photo"><img src="assets/founders-images-compressed/ParkerHS.jpg" alt="Parker Palermo" loading="lazy"><div class="founder-overlay"><span><img src="assets/brother-images-compressed/linkedin.png" alt="">View Profile</span></div></div>
                   <div class="founder-name">Parker Palermo</div>
                   <div class="founder-role">Founder</div>
                   <div class="founder-meta">Boca Raton, FL<br>Computer Science &amp; Applied Math</div>
               </a>
               <a class="founder-card" href="https://www.linkedin.com/in/brodyjghaar/" target="_blank" rel="noopener noreferrer">
-                  <div class="founder-photo"><img src="assets/founders-images-compressed/BrodyHaarHS.JPG" alt="Brody Haar" class="rot-cw" loading="lazy"></div>
+                  <div class="founder-photo"><img src="assets/founders-images-compressed/BrodyHaarHS.JPG" alt="Brody Haar" class="rot-cw" loading="lazy"><div class="founder-overlay"><span><img src="assets/brother-images-compressed/linkedin.png" alt="">View Profile</span></div></div>
                   <div class="founder-name">Brody Haar</div>
                   <div class="founder-role">Founder</div>
                   <div class="founder-meta">Peoria, AZ<br>Computer Science, Applied Math &amp; German Studies</div>
