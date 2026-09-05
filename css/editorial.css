@@ -14,7 +14,7 @@
   --ed-line: #e2e8f0;
   --ed-page: #f3f6fc;
   --ed-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
-  --ed-display: "Bricolage Grotesque", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --ed-display: "Space Grotesk", "Inter", "Helvetica Neue", Arial, sans-serif;
   --ed-mono: "Space Mono", ui-monospace, Menlo, Consolas, monospace;
 }
 
@@ -22,7 +22,7 @@
 html body { font-family: var(--ed-sans); font-weight: 400; -webkit-font-smoothing: antialiased; }
 /* Three voices: display for headlines, Inter for reading, mono for labels. */
 h1, h2, .ed-h1, .ed-h2, .case-title, .cases-title, .res-title, .home-pointers h3, .founder-name, .nat-stat-num {
-  font-family: var(--ed-display); font-optical-sizing: auto; font-weight: 500; letter-spacing: -0.02em;
+  font-family: var(--ed-display); font-weight: 500; letter-spacing: -0.025em;
 }
 button, input, select, textarea { font-family: inherit; }
 
