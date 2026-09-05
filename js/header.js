@@ -26,6 +26,8 @@ function ensureBootstrap() {
     css.id = 'bootstrap-css-link';
     css.rel = 'stylesheet';
     css.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css';
+    css.integrity = 'sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN';
+    css.crossOrigin = 'anonymous';
     document.head.appendChild(css);
   }
   // JS bundle usually not needed for your header; comment if unused
@@ -107,7 +109,7 @@ function createHeader() {
             
             <!-- Social media icon at bottom -->
             <div class="mobile-menu-social">
-              <a href="https://www.linkedin.com/company/kappa-theta-pi-vanderbilt" target="_blank">
+              <a href="https://www.linkedin.com/company/kappa-theta-pi-vanderbilt" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-linkedin"></i>
               </a>
             </div>
