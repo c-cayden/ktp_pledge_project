@@ -99,6 +99,72 @@
       .tab-button:hover { color: var(--ed-ink); }
       .tab-button.active { color: var(--ed-ink); border-bottom-color: var(--ed-gold); }
 
+      /* Search: quiet magnifier on the right of the tab row, expands into a field */
+      .roster-search {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding-bottom: 8px;
+      }
+      .roster-search-btn {
+        width: 34px; height: 34px;
+        border: 0; background: none; padding: 0;
+        color: var(--ed-muted);
+        cursor: pointer;
+        display: inline-flex; align-items: center; justify-content: center;
+        transition: color 0.2s ease;
+      }
+      .roster-search-btn:hover, .roster-search.is-open .roster-search-btn { color: var(--ed-ink); }
+      .roster-search-input {
+        width: 0;
+        opacity: 0;
+        padding: 6px 0;
+        border: 0;
+        border-bottom: 1px solid var(--ed-line);
+        background: transparent;
+        color: var(--ed-ink);
+        font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.04em;
+        outline: none;
+        transition: width 0.25s ease, opacity 0.2s ease, border-color 0.2s ease;
+      }
+      .roster-search-input::placeholder { color: var(--ed-faint); }
+      .roster-search-input::-webkit-search-cancel-button { -webkit-appearance: none; }
+      .roster-search.is-open .roster-search-input { width: 220px; opacity: 1; }
+      .roster-search-input:focus { border-bottom-color: var(--ed-ink); }
+      .roster-search-status {
+        font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ed-muted);
+        min-height: 1.2em;
+        margin-top: 14px;
+      }
+      .roster-search-status:empty { display: none; }
+      .search-label {
+        display: none;
+        font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ed-gold);
+        margin: 8px 0 16px;
+      }
+      body.is-searching .tab-button { color: var(--ed-faint); border-bottom-color: transparent; }
+      body.is-searching .brothers-section { display: none; }
+      body.is-searching #actives, body.is-searching #alumni { display: block; }
+      body.is-searching #actives.is-empty, body.is-searching #alumni.is-empty { display: none; }
+      body.is-searching .search-label { display: block; }
+      body.is-searching #alumni .search-label { margin-top: 40px; }
+      .profile-card.is-hidden { display: none !important; }
+      @media (max-width: 600px) {
+        .roster-search { width: 100%; margin-left: 0; padding-top: 4px; }
+        .roster-search.is-open .roster-search-input { width: 100%; }
+      }
+
       /* Sections */
       .brothers-section {
         display: none;
@@ -243,11 +309,19 @@
           <button class="tab-button active" onclick="showSection('actives')">Actives</button>
           <button class="tab-button" onclick="showSection('eboard')">Executive Board</button>
           <button class="tab-button" onclick="showSection('alumni')">Alumni</button>
+          <div class="roster-search" id="rosterSearch">
+            <input type="search" id="rosterSearchInput" class="roster-search-input" placeholder="Search brothers" maxlength="60" aria-label="Search brothers and alumni by name" autocomplete="off" spellcheck="false">
+            <button type="button" class="roster-search-btn" id="rosterSearchBtn" aria-label="Search brothers" aria-expanded="false">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="15.5" y1="15.5" x2="21" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+          </div>
         </div>
+        <div class="roster-search-status" id="rosterSearchStatus" aria-live="polite"></div>
       </div>
 
       <!-- Active Members -->
       <div id="actives" class="brothers-section active">
+        <div class="search-label" data-count-label>Actives</div>
         <div class="brothers-grid">
           <!-- Aaliya Salzberg -->
           <div class="profile-card">
@@ -3111,6 +3185,7 @@
 
       <!-- Alumni -->
       <div id="alumni" class="brothers-section">
+        <div class="search-label" data-count-label>Alumni</div>
         <div class="brothers-grid">
           <!-- Ben Schiff -->
           <div class="profile-card">
@@ -4081,7 +4156,61 @@
 
     <!-- Tabs -->
     <script>
+      // Roster search: filters Actives + Alumni by name (E-Board duplicates Actives, so it's skipped)
+      (function () {
+        const wrap = document.getElementById("rosterSearch");
+        const input = document.getElementById("rosterSearchInput");
+        const btn = document.getElementById("rosterSearchBtn");
+        const status = document.getElementById("rosterSearchStatus");
+        if (!wrap || !input || !btn) return;
+        const sections = ["actives", "alumni"].map((id) => document.getElementById(id)).filter(Boolean);
+        const norm = (s) => (s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\s+/g, " ").trim();
+        const cards = [];
+        sections.forEach((sec) => {
+          sec.querySelectorAll(".profile-card").forEach((card) => {
+            const nameEl = card.querySelector(".profile-name");
+            cards.push({ card, sec, name: norm(nameEl ? nameEl.textContent : "") });
+          });
+        });
+        function apply() {
+          const q = norm(input.value);
+          if (!q) { clear(false); return; }
+          document.body.classList.add("is-searching");
+          const words = q.split(" ");
+          let total = 0;
+          sections.forEach((sec) => {
+            let n = 0;
+            cards.filter((c) => c.sec === sec).forEach((c) => {
+              const hit = words.every((w) => c.name.includes(w));
+              c.card.classList.toggle("is-hidden", !hit);
+              if (hit) n++;
+            });
+            sec.classList.toggle("is-empty", n === 0);
+            const label = sec.querySelector("[data-count-label]");
+            if (label) label.textContent = (sec.id === "actives" ? "Actives" : "Alumni") + " \u00b7 " + n;
+            total += n;
+          });
+          status.textContent = total ? total + (total === 1 ? " brother" : " brothers") + " matching \u201c" + input.value.trim() + "\u201d" : "No brothers match \u201c" + input.value.trim() + "\u201d";
+        }
+        function clear(close) {
+          document.body.classList.remove("is-searching");
+          cards.forEach((c) => c.card.classList.remove("is-hidden"));
+          sections.forEach((sec) => sec.classList.remove("is-empty"));
+          status.textContent = "";
+          if (close) { input.value = ""; wrap.classList.remove("is-open"); btn.setAttribute("aria-expanded", "false"); }
+        }
+        window.rosterSearchClear = function () { clear(true); };
+        btn.addEventListener("click", () => {
+          const open = wrap.classList.toggle("is-open");
+          btn.setAttribute("aria-expanded", String(open));
+          if (open) input.focus(); else clear(true);
+        });
+        input.addEventListener("input", apply);
+        input.addEventListener("keydown", (e) => { if (e.key === "Escape") { clear(true); btn.focus(); } });
+      })();
+
       function showSection(id) {
+        if (window.rosterSearchClear) window.rosterSearchClear();
         document
           .querySelectorAll(".brothers-section")
           .forEach((s) => s.classList.remove("active"));
