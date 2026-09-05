@@ -28,6 +28,7 @@
   <!-- Header / Footer Styles -->
   <link rel="stylesheet" type="text/css" href="css/header-styles/header.css">
   <link rel="stylesheet" type="text/css" href="css/footer-styles/footer.css">
+  <link rel="stylesheet" href="css/editorial.css">
 
   <!-- Leaflet (map) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
@@ -93,11 +94,12 @@
       flex-wrap: wrap;
       margin: 32px auto 0;
     }
-    .nat-stat { text-align: center; }
+    .nat-stat { text-align: left; }
     .nat-stat-num {
       display: block;
       font-size: 2.4rem;
-      font-weight: 500;
+      font-weight: 400;
+      letter-spacing: -0.02em;
       color: var(--primary);
       line-height: 1.1;
     }
@@ -243,13 +245,16 @@
 </head>
 <body>
 
-<section class="hero">
-  <h1>KTP Nationals</h1>
-  <p>Kappa Theta Pi is the nation's first professional technology fraternity. Founded at the University of Michigan in 2012, KTP now spans chapters from coast to coast — Vanderbilt is home to the Rho Chapter.</p>
-  <div class="nat-stats">
+<section class="ed-head">
+  <div class="ed-wrap">
+    <div class="ed-kicker">Nationals / Kappa Theta Pi</div>
+    <h1 class="ed-h1">One fraternity. Thirty-one chapters.</h1>
+    <p>Kappa Theta Pi is the nation's first professional technology fraternity. Founded at the University of Michigan in 2012, it now spans the country. Vanderbilt is home to the Rho Chapter.</p>
+  <div class="nat-stats" style="justify-content:flex-start; margin-top: 36px;">
     <div class="nat-stat"><span class="nat-stat-num" id="stat-chapters">—</span><span class="nat-stat-label">Chapters</span></div>
     <div class="nat-stat"><span class="nat-stat-num" id="stat-states">—</span><span class="nat-stat-label">States</span></div>
     <div class="nat-stat"><span class="nat-stat-num">2012</span><span class="nat-stat-label">Founded</span></div>
+  </div>
   </div>
 </section>
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kappa Theta Pi – Vanderbilt</title>
+  <title>Recruitment | Kappa Theta Pi Vanderbilt</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
       
 <!-- Default favicon (root, ICO format for widest support) -->
@@ -60,7 +60,7 @@
   
   <!-- Footer Styles -->
   <link rel="stylesheet" type="text/css" href="css/footer-styles/footer.css">
-  <title>Join Kappa Theta Pi | Vanderbilt Technology Fraternity Recruitment</title>
+  <link rel="stylesheet" href="css/editorial.css">
 <meta name="description" content="Apply to join Kappa Theta Pi at Vanderbilt. Recruitment for students in computer science, engineering, technology, and innovation at the Wond’ry.">
 <link rel="canonical" href="https://ktpvandy.org/recruitment">
 <meta name="keywords" content="Vanderbilt akpsi,Alpha Chi Omega, Alpha Delta Pi, Chi Omega, Delta Delta Delta, Kappa Alpha Theta, Kappa Delta, Kappa Kappa Gamma, Pi Beta Phi, Zeta Tau Alpha, Alpha Epsilon Pi, Alpha Tau Omega, Beta Theta Pi, Beta Upsilon Chi, Kappa Alpha Order, Kappa Sigma, Lambda Chi Alpha, Phi Delta Theta, Phi Kappa Psi, Pi Kappa Alpha, Sigma Alpha Epsilon, Sigma Nu, Zeta Beta Tau, Alpha Kappa Alpha, Alpha Phi Alpha, Delta Sigma Theta, Kappa Alpha Psi, Omega Psi Phi, Phi Beta Sigma, Sigma Gamma Rho, Zeta Phi Beta, Alpha Psi Lambda, Kappa Delta Chi, Lambda Phi Epsilon
@@ -68,13 +68,10 @@
 ,Vanderbilt Fraternities and Sororities,Vanderbilt Greek life How to join a fraternity at Vanderbilt, best fraternities at Vanderbilt, Vanderbilt ECE,Vanderbilt Technology,Fraternities Vanderbilt, Vanderbilt computer science ranking, Vanderbilt School of Engineering, Vanderbilt Frats, Vanderbilt School of Engineering reviews, Vanderbilt technology, Vanderbilt Wond'ry, Vanderbilt engineering majors, Vanderbilt mechanical engineering, Vanderbilt aerospace engineering, Vanderbilt electrical engineering, VUIT Vanderbilt, Vanderbilt IT Help Desk, Vanderbilt IT email, Vanderbilt IT ticket, Vanderbilt IT help">
 
 <meta name="keywords" content="Vanderbilt fraternity recruitment, Vanderbilt computer science, Vanderbilt technology fraternity, Vanderbilt School of Engineering, Vanderbilt School of Engineering reviews, Vanderbilt Wond'ry, Vanderbilt engineering acceptance rate, Vanderbilt engineering majors, Vanderbilt computer science ranking, Vanderbilt engineering curriculum, Vanderbilt engineering minors">
-  <!-- 🔑 SEO & social tags -->
-  <title>Vanderbilt Greek Life & Engineering | Fraternities, Sororities, and Student Life</title>
-  <meta name="description" content="Explore Vanderbilt University Greek Life, including fraternities and sororities like AXO, ADPi, TriDelt, Pike, and more. Learn about Vanderbilt Computer Science, Engineering programs, and campus life.">
   
   <!-- Social share preview -->
-  <meta property="og:title" content="Vanderbilt Greek Life & Engineering" />
-  <meta property="og:description" content="Discover fraternities, sororities, and top-ranked engineering programs at Vanderbilt University." />
+  <meta property="og:title" content="Recruitment | Kappa Theta Pi Vanderbilt" />
+  <meta property="og:description" content="Apply to join Kappa Theta Pi at Vanderbilt. Recruitment for students in computer science, engineering, technology, and innovation at the Wond’ry." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ktpvandy.org/" />
   <meta property="og:image" content="https://ktpvandy.org/images/preview.jpg" />
@@ -177,11 +174,16 @@
       font-size: 1.1rem;
     }
 
+    html body { background: #ffffff; }
+    .ed-head { border-bottom: 0; }
+
     /* NETWORK / PLACEMENT LOGO WALL */
     .network {
       text-align: center;
-      padding-top: 20px;
+      padding-top: 40px;
     }
+    .network .ed-row { text-align: left; margin-bottom: 44px; }
+    .network .ed-h2 { margin-bottom: 14px; }
 
     .network h2 {
       font-size: 2rem;
@@ -565,11 +567,8 @@
     }
 
     /* FAQ */
-    #faq h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 1.8rem;
-    }
+    #faq { padding-top: 90px; padding-bottom: 100px; }
+    .accordion-container { max-width: 1132px; margin: 0 auto; border-top: 1px solid var(--ed-line); }
 
     /* Ensure FAQ section has no animations */
     #faq,
@@ -591,33 +590,36 @@
       margin: auto;
     }
 
-    .accordion-item {
-      border-bottom: 1px solid #ddd;
-    }
+    .accordion-item { border-bottom: 1px solid var(--ed-line); }
 
     .accordion-header {
       background: none;
       border: none;
       width: 100%;
       text-align: left;
+      font-family: "Roboto", "Arial", sans-serif;
       font-size: 1.2rem;
-      padding: 16px;
+      padding: 20px 48px 20px 0;
       cursor: pointer;
       font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--ed-ink);
       position: relative;
     }
+    .accordion-header:hover { color: var(--ed-primary); }
 
     .accordion-header::after {
-      content: "▼";
+      content: "+";
       position: absolute;
-      right: 20px;
+      right: 4px;
       top: 50%;
       transform: translateY(-50%);
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 400;
+      color: var(--ed-faint);
+      transition: transform 0.2s ease;
     }
-
-    .accordion-header.active::after {
-      transform: translateY(-50%) rotate(180deg);
-    }
+    .accordion-header.active::after { transform: translateY(-50%) rotate(45deg); }
 
     .accordion-content {
       max-height: 0;
@@ -625,9 +627,8 @@
       padding: 0 16px;
     }
 
-    .accordion-content p {
-      padding: 10px 0;
-    }
+    .accordion-content { padding: 0; }
+    .accordion-content p { padding: 0 0 22px; color: #2d3748; max-width: 62ch; line-height: 1.7; }
 
 
 
@@ -648,18 +649,29 @@
 
 
 
-<section class="hero">
-  <h1>Why rush Kappa Theta Pi?</h1>
-  <h2>Academic & Professional Development</h2>
-  <p> <span style="color: black;"> Coming from a variety of fields and backgrounds, our brothers’ work experience and connections last a lifetime.
-    Below is a preview of a few of the places where our members make an impact:
-  </p>
+<section class="ed-head">
+  <div class="ed-wrap">
+    <div class="ed-kicker">Recruitment / Fall 2026</div>
+    <h1 class="ed-h1">Rush Kappa Theta Pi.</h1>
+    <p>Come to an info session, meet the brothers, and apply. Anyone interested in technology is welcome, whatever you study.</p>
+    <div class="ed-actions">
+      <a class="ed-btn" target="_blank" rel="noopener noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSf_0eARXFbkw1p_AEsu750HNfUg7SaVlgFC3XJYEnEHXxr1Tw/closedform">Apply</a>
+      <a class="ed-link" href="#rush-schedule">Rush schedule <span aria-hidden="true">&darr;</span></a>
+    </div>
+  </div>
 </section>
 
 <!-- Placement / network logo wall. To add a company: drop its logo in images-compressed/companies and add one <img> below. -->
 <section class="network" id="network">
-  <h2>Our Network</h2>
-  <p class="network-sub">Brothers and alumni have interned and worked at companies across tech, finance, and consulting.</p>
+  <div class="ed-wrap">
+    <div class="ed-row">
+      <div class="ed-kicker"><b>01</b>Our network</div>
+      <div>
+        <h2 class="ed-h2">Where brothers and alumni have worked.</h2>
+        <p class="ed-lede">Internships and full-time roles across tech, finance, and consulting, plus the graduate programs brothers have gone on to.</p>
+      </div>
+    </div>
+  </div>
   <!-- Ordered roughly by selectivity, most competitive first. To add a company: drop its logo in images-compressed/companies and add one <img>. -->
   <div class="logo-wall">
     <img src="images-compressed/companies/openai-full.svg" alt="OpenAI" loading="lazy">
@@ -708,21 +720,31 @@
   </div>
 </section>
 
-<section class="brotherhood">
-  <h2 style="margin-bottom: 20px;">Brotherhood</h2>
-  <p>
-    Our brotherhood is centered around five pillars: professional development, alumni connections, social growth, technological advancement, and academic support. From project teams and study groups to professional development workshops and hackathons / design jams, we celebrate a culture of growth where brothers are supported and encouraged to pursue opportunities related to their passions for tech.
-  </p>
+<section class="ed-band">
+  <img src="images/in_action_imgs/20260329_150041_BC8F52.jpeg" alt="KTP brothers at a spring social">
+  <div class="ed-wrap">
+    <div>
+      <span class="ed-kicker"><b>02</b>Brotherhood</span>
+      <h2 class="ed-h2">Five pillars. One chapter.</h2>
+      <p>Professional development, alumni connections, social growth, technical advancement, and academic support. Project teams, study groups, workshops, hackathons, and the people who make all of it worth showing up for.</p>
+      <div class="ed-actions"><a class="ed-link" href="/about">More about the chapter <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+  </div>
 </section>
 
 <!-- Rush schedule. Each .timeline-item is one event; update the title, date, location, and blurb. -->
 <section id="rush-schedule">
-  <div class="schedule-header">
-    <h2>Fall 2026 Rush Schedule</h2>
-    <p>Here's how to get to know us this semester. All open rush events are open to everyone — come to as many as you'd like!</p>
-    <div class="schedule-actions">
-      <a class="pill-btn" target="_blank" rel="noopener noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSf_0eARXFbkw1p_AEsu750HNfUg7SaVlgFC3XJYEnEHXxr1Tw/closedform">Application</a>
-      <a class="pill-btn outline" href="/contact">Questions? Contact Us</a>
+  <div class="ed-wrap" style="margin-bottom: 44px;">
+    <div class="ed-row">
+      <div class="ed-kicker"><b>03</b>Rush schedule</div>
+      <div>
+        <h2 class="ed-h2">Fall 2026.</h2>
+        <p class="ed-lede">Open rush events are open to everyone. Come to as many as you like.</p>
+        <div class="ed-actions">
+          <a class="ed-btn" target="_blank" rel="noopener noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSf_0eARXFbkw1p_AEsu750HNfUg7SaVlgFC3XJYEnEHXxr1Tw/closedform">Apply</a>
+          <a class="ed-link" href="/contact">Questions? Contact us <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -823,7 +845,12 @@
 </section>
 
 <section id="faq">
-  <h2>Rush FAQ</h2>
+  <div class="ed-wrap" style="margin-bottom: 36px;">
+    <div class="ed-row">
+      <div class="ed-kicker"><b>04</b>FAQ</div>
+      <h2 class="ed-h2">Quick answers.</h2>
+    </div>
+  </div>
   <div class="accordion-container">
     <div class="accordion-item">
       <button class="accordion-header">Who can rush KTP?</button>
@@ -871,66 +898,6 @@
 <script src="js/footer.js"></script>
 
 <script>
-// Enhanced scroll animations
-document.addEventListener("DOMContentLoaded", function () {
-    // Enhanced scroll animation observer with bi-directional animations
-    const observerOptions = {
-        threshold: 0.2,
-        rootMargin: "0px 0px -100px 0px"
-    };
-
-    const animationObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            // Skip FAQ section and footer elements completely
-            if (entry.target.closest('#faq') || entry.target.matches('#faq *') ||
-                entry.target.closest('footer') || entry.target.matches('footer *')) {
-                return;
-            }
-            
-            if (entry.isIntersecting) {
-                // Animate in
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0) scale(1)";
-                entry.target.classList.add('in-view');
-            } else {
-                // Animate out when scrolling away
-                entry.target.style.opacity = "0.4";
-                entry.target.style.transform = "translateY(20px) scale(0.98)";
-                entry.target.classList.remove('in-view');
-            }
-        });
-    }, observerOptions);
-
-         // Removed parallax effects to prevent image shifting issues
-
-         // Observe elements for animation with staggered effects (excluding slideshow, FAQ, and footer to prevent shifting/unwanted animations)
-     const animatedElements = document.querySelectorAll('.main-content, .content-section, h1, h2, p');
-     const filteredElements = Array.from(animatedElements).filter(el => {
-         // Exclude FAQ section elements and footer elements
-         return !el.closest('#faq') && !el.matches('#faq *') && 
-                !el.closest('footer') && !el.matches('footer *');
-     });
-     
-     filteredElements.forEach((el, index) => {
-         el.style.opacity = "0";
-         el.style.transform = "translateY(50px) scale(0.95)";
-         el.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
-         el.style.transitionDelay = `${index * 0.05}s`;
-         animationObserver.observe(el);
-     });
-
-    // Add loading state animations
-    window.addEventListener("load", () => {
-        document.body.classList.add("loaded");
-        
-        // Animate page elements
-        const pageTitle = document.querySelector("h1");
-        if (pageTitle) {
-            pageTitle.style.animation = "slideInUp 0.8s ease-out";
-        }
-    });
-});
-
   document.addEventListener('DOMContentLoaded', () => {
     // Accordion
     const headers = document.querySelectorAll('.accordion-header');

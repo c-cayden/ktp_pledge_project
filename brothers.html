@@ -6,7 +6,8 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
-    <title>Brothers - Kappa Theta Pi Vanderbilt</title>
+    <title>Brothers | Kappa Theta Pi Vanderbilt</title>
+    <meta name="description" content="Meet the brothers, Executive Board, and alumni of Kappa Theta Pi at Vanderbilt University.">
     <meta
       name="description"
       content="Meet the brothers of Kappa Theta Pi - Vanderbilt's premier professional technology fraternity"
@@ -39,6 +40,8 @@
     <!-- Optional: Cache manager + footer styles (kept as external) -->
     <script src="js/cache-manager.js"></script>
     <link rel="stylesheet" href="css/footer-styles/footer.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/editorial.css">
 
     <style>
       :root {
@@ -64,48 +67,34 @@
         margin: 0;
       }
 
-      .main-content {
-        padding-top: 0;
-      }
+      .main-content { padding-top: 0; max-width: 1180px; }
 
-      /* Title */
-      .page-title {
-        text-align: center;
-        font-size: 2.5rem;
-        font-weight: 400;
-        color: var(--primary);
-        margin: 20px 0 15px 0;
-      }
-
-      /* Tabs */
-      .tab-container {
-        text-align: center;
-        margin: 20px 0;
-      }
+      /* Page head + tabs */
+      .brothers-head { padding: 130px 0 0; border-bottom: 0; margin-bottom: 36px; }
+      .brothers-head .ed-kicker { margin-bottom: 16px; }
       .tab-buttons {
         display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin-bottom: 20px;
+        gap: 34px;
+        margin-top: 34px;
+        border-bottom: 1px solid var(--ed-line);
         flex-wrap: wrap;
       }
       .tab-button {
-        padding: 12px 24px;
-        border: 2px solid var(--primary);
-        background-color: var(--white);
-        color: var(--primary);
+        padding: 0 0 14px;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+        background: none;
+        color: var(--ed-muted);
         cursor: pointer;
-        border-radius: 25px;
-        font-size: 1rem;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        min-width: 120px;
+        font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        transition: color 0.2s ease, border-color 0.2s ease;
       }
-      .tab-button.active,
-      .tab-button:hover {
-        background-color: var(--primary);
-        color: var(--white);
-      }
+      .tab-button:hover { color: var(--ed-ink); }
+      .tab-button.active { color: var(--ed-ink); border-bottom-color: var(--ed-gold); }
 
       /* Sections */
       .brothers-section {
@@ -244,19 +233,13 @@
 
   <body>
     <main class="main-content container">
-      <div class="page-title text-center">Our Brothers</div>
-
-      <div class="tab-container">
-        <div class="tab-buttons d-flex flex-wrap justify-content-center gap-2">
-          <button class="tab-button active" onclick="showSection('actives')">
-            Active Members
-          </button>
-          <button class="tab-button" onclick="showSection('eboard')">
-            Executive Board
-          </button>
-          <button class="tab-button" onclick="showSection('alumni')">
-            Alumni
-          </button>
+      <div class="ed-head brothers-head">
+        <div class="ed-kicker">Brothers / Rho Chapter</div>
+        <h1 class="ed-h1">The people.</h1>
+        <div class="tab-buttons" role="tablist">
+          <button class="tab-button active" onclick="showSection('actives')">Actives</button>
+          <button class="tab-button" onclick="showSection('eboard')">Executive Board</button>
+          <button class="tab-button" onclick="showSection('alumni')">Alumni</button>
         </div>
       </div>
 

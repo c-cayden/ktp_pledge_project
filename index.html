@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kappa Theta Pi - Vanderbilt University | Technology Fraternity</title>
+  <title>Kappa Theta Pi | Vanderbilt University</title>
   
 
   <!-- Default favicon (root, ICO format for widest support) -->
@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/header-styles/header.css">
   <link rel="stylesheet" href="css/footer-styles/footer.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/editorial.css">
 <meta name="description" content="Kappa Theta Pi is Vanderbilt's premier professional technology fraternity. Learn about computer science, the School of Engineering, and innovation at the Wond’ry.">
 <link rel="canonical" href="https://ktpvandy.org/">
 <meta name="keywords" content="Kappa Theta Pi Vanderbilt, KTP Vanderbilt, technology fraternity Vanderbilt, professional fraternity Vanderbilt, Vanderbilt computer science, Vanderbilt engineering, Vanderbilt Greek life, Vanderbilt technology, KTP recruitment, Vanderbilt professional development">
@@ -34,8 +36,8 @@
 ,Vanderbilt Fraternities and Sororities,Vanderbilt Greek life How to join a fraternity at Vanderbilt, best fraternities at Vanderbilt, Vanderbilt ECE,Vanderbilt Technology,Fraternities Vanderbilt, Vanderbilt computer science ranking, Vanderbilt School of Engineering, Vanderbilt Frats, Vanderbilt School of Engineering reviews, Vanderbilt technology, Vanderbilt Wond'ry, Vanderbilt engineering majors, Vanderbilt mechanical engineering, Vanderbilt aerospace engineering, Vanderbilt electrical engineering, VUIT Vanderbilt, Vanderbilt IT Help Desk, Vanderbilt IT email, Vanderbilt IT ticket, Vanderbilt IT help">
 
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Kappa Theta Pi - Vanderbilt University" />
-  <meta property="og:description" content="Kappa Theta Pi is Vanderbilt's premier professional technology fraternity. Join us for professional development, networking, and innovation in computer science and engineering." />
+  <meta property="og:title" content="Kappa Theta Pi | Vanderbilt University" />
+  <meta property="og:description" content="Kappa Theta Pi is Vanderbilt's premier professional technology fraternity. Learn about computer science, the School of Engineering, and innovation at the Wond’ry." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ktpvandy.org/" />
   <meta property="og:image" content="https://ktpvandy.org/images/logo.png" />
@@ -127,506 +129,176 @@
 
   
   <style>
-    body,
-    p,
-    .content-wrapper,
-    .header,
-    .header a,
-    .header-nav-list a {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    }   
-    /* Global Reset and Base Styles */ 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    
-      
-    
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+    html body { background: #ffffff; }
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #ffffff;
-      color: #333;
-      line-height: 1.6;
+      font-family: 'Roboto', 'Arial', sans-serif;
+      font-weight: 300;
+      color: var(--ed-ink);
+      line-height: 1.7;
+      overflow-x: hidden;
     }
-    
+    a { color: inherit; }
 
-    /* Button */
-    .btn {
-      display: inline-block;
-      background-color: #2F4A8A;
-      color: white;
-      padding: 14px 28px;
+    /* Hero: taller than inner pages */
+    .home-hero { min-height: 92vh; }
+    .home-hero > img { object-position: center 40%; }
+
+    /* Intro rows */
+    .home-intro { padding: 110px 0 90px; }
+    .home-intro .ed-row + .ed-row { margin-top: 70px; }
+    .home-intro .ed-h2 { max-width: 22ch; margin-bottom: 22px; }
+    .home-intro .ed-lede { margin-bottom: 1rem; }
+    .home-intro .ed-lede:last-of-type { margin-bottom: 0; }
+
+    /* Three-up pointers */
+    .home-pointers { padding: 0 0 100px; }
+    .home-pointers .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0 32px;
+      border-top: 1px solid var(--ed-line);
+    }
+    .home-pointers a {
+      display: block;
       text-decoration: none;
-      border-radius: 4px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: background-color 0.3s;
+      padding: 28px 0 32px;
+      color: inherit;
     }
-
-    .btn:hover {
-      background-color: #22366c;
-    }
-
-    /* Hero section - standard layout without header overrides */
-    .hero {
-      position: relative;
-      height: 100vh;
-      background-color: black;
-      overflow: hidden;
-      margin-top: 0;
-    }
-
-    .hero-bg {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.40);
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: absolute;
-      top: 45%;
-      left: 8%;
-      transform: translateY(-50%);
-      text-align: left;
-      z-index: 2;
-      color: white;
-      max-width: 600px;
-    }
-
-    .hero-content h1 {
-      font-size: 3.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-content p {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-content .btn {
-      background-color: #2F4A8A;
-      color: white;
-      padding: 14px 28px;
-      font-weight: 600;
-      border-radius: 4px;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 1.1rem;
-      transition: background-color 0.3s;
-    }
-
-    .hero-content .btn:hover {
-      background-color: #22366c;
-    }
-
-    /* WELCOME TO KTP */
-    .intro {
-      background-color: #fff;
-      padding: 6rem 1rem;
-      text-align: center;
-    }
-
-    .intro-container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .intro h2 {
-      font-size: 2.8rem;
-      margin-bottom: 2rem;
-      font-weight: 700;
-    }
-
-    .intro p {
-      font-size: 1.25rem;
-      line-height: 1.8;
-      color: #222;
-    }
-
-    /* Get Involved Section */
-    .involvement-hero {
-      position: relative;
-      height: 75vh;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    .involvement-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-
-    .involvement-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 1;
-    }
-
-    .involvement-content {
-      position: absolute;
-      top: 50%;
-      left: 5%;
-      transform: translateY(-50%);
-      padding: 2rem;
-      z-index: 2;
-      max-width: 600px;
-      color: white;
-      text-align: left;
-    }
-
-    .involvement-content h2 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-    }
-
-    .involvement-content p {
-      font-size: 1.4rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-    }
-
-    .involvement-content .btn {
-      background-color: #2F4A8A;
-      color: white;
-      padding: 14px 28px;
-      font-weight: 600;
-      border-radius: 4px;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 1.1rem;
-      transition: background-color 0.3s;
-    }
-
-    .involvement-content .btn:hover {
-      background-color: #22366c;
-    }
-
-    /* Learn About Brothers Section */
-    .brothers-fullscreen {
-      position: relative;
-      height: 60vh;
-      width: 100%;
-      overflow: hidden;
-      margin-top: -100px;
-      z-index: 5;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      text-align: right; 
-    }
-
-    .brothers-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      object-position: center center;
-      z-index: 0;
-    }
-
-    .brothers-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1;
-    }
-
-    .brothers-content {
-      position: absolute;
-      top: 50%;
-      right: 5%;
-      transform: translateY(-50%);
-      padding: 2rem;
-      z-index: 2;
-      max-width: 600px;
-      color: white;
-      text-align: right;
-    }
-
-    .brothers-content h2 {
-      font-size: 3.3rem;
-      margin-bottom: 1rem;
-    }
-
-    .brothers-content p {
-      font-size: 1.6rem;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
-
-    .brothers-content .btn {
-      background-color: #2F4A8A;
-      color: white;
-      padding: 14px 28px;
-      font-weight: 600;
-      border-radius: 4px;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 1.1rem;
-      transition: background-color 0.3s;
-    }
-
-    .brothers-content .btn:hover {
-      background-color: #22366c;
-    }
-
-    /* Get Comfortable Section */
-    .comfortable-section {
-      background-color: white;
-      padding: 4rem 2rem;
-    }
-
-    .comfortable-container {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto;
-      gap: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .comfortable-text {
-      flex: 1;
-      min-width: 280px;
-    }
-
-    .comfortable-text h5 {
-      font-size: 1.2rem;
+    .home-pointers .ed-kicker { margin-bottom: 14px; }
+    .home-pointers h3 {
+      font-size: 1.45rem;
       font-weight: 400;
-      margin-bottom: 1rem;
-    }
-
-    .comfortable-text h2 {
-      font-size: 3.1rem;
-      font-weight: 700;
+      letter-spacing: -0.01em;
       line-height: 1.2;
-      margin: 0 0 1.5rem 0;
+      color: var(--ed-ink);
+      margin-bottom: 10px;
     }
+    .home-pointers p { color: var(--ed-muted); font-size: 0.98rem; line-height: 1.6; margin-bottom: 16px; }
+    .home-pointers a:hover h3 { color: var(--ed-primary); }
 
-    .comfortable-image {
-      flex: 1;
-      min-width: 300px;
-      display: flex;
-      justify-content: center;
-    }
+    /* Band spacing */
+    .home-band + .home-band { border-top: 1px solid rgba(255,255,255,0.12); }
 
-    .comfortable-image img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
+    /* Closing statement */
+    .home-close { padding: 110px 0; }
+    .home-close .ed-h2 { max-width: 20ch; margin-bottom: 26px; }
 
-    .comfortable-text .btn {
-      background-color: #2F4A8A;
-      color: white;
-      padding: 14px 28px;
-      font-weight: 600;
-      border-radius: 4px;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 1.1rem;
-      transition: background-color 0.3s;
-    }
-
-    .comfortable-text .btn:hover {
-      background-color: #22366c;
-    }
-
-    /* Sections */
-    .section {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-around;
-      padding: 4rem 1rem;
-      border-bottom: 1px solid #eee;
-    }
-
-    .section img {
-      max-width: 100%;
-      height: auto;
-      flex: 1;
-    }
-
-    .section div {
-      flex: 1;
-      padding: 1rem;
-    }
-
-    .section h4 {
-      color: #2F4A8A;
-      font-size: 1rem;
-    }
-
-    .section h2 {
-      font-size: 2rem;
-      margin: 1rem 0;
-    }
-
-    /* Learn More Section */
-    .learn-more-hero {
-      position: relative;
-      height: 90vh;
-      width: 100%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .learn-more-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center; 
-      z-index: 0;
-    }
-
-    .learn-more-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background: rgba(82, 0, 88, 0.4);
-      z-index: 1;
-    }
-
-    .learn-more-content {
-      position: absolute;
-      top: 37%;
-      right: 11%;
-      transform: translateY(-50%);
-      z-index: 2;
-      color: white;
-      max-width: 600px;
-      text-align: left;
-    }
-
-    .learn-more-content h2 {
-      font-size: 2.8rem;
-      margin-bottom: 1.5rem;
-      font-weight: 700;
-    }
-
-    .learn-more-content .btn {
-      background-color: #2F4A8A;
-      color: white;
-      padding: 14px 28px;
-      font-weight: bold;
-      border-radius: 6px;
-      font-size: 1.1rem;
-    }
-
-    .learn-more-content .btn:hover {
-      background-color: #22366c;
+    @media (max-width: 900px) {
+      .home-intro { padding: 70px 0 60px; }
+      .home-pointers .grid { grid-template-columns: 1fr; }
+      .home-pointers a { border-bottom: 1px solid var(--ed-line); }
+      .home-close { padding: 70px 0; }
     }
   </style>
 </head>
 
 <body>
   <!-- Header will be injected by component -->
-  
-  <section class="hero">
-                    <img src="images/campus.jpg" alt="CAMPUS" class="hero-bg" />
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Kappa Theta Pi</h1>
-      <p>Vanderbilt's only Professional Technology Fraternity.</p>
-      <a href="/about" class="btn">Learn about us</a>
+
+  <section class="ed-hero home-hero">
+    <img src="images/campus.jpg" alt="Vanderbilt campus and the Nashville skyline" fetchpriority="high">
+    <div class="ed-wrap">
+      <span class="ed-kicker">ΚΘΠ · Rho Chapter · Vanderbilt University</span>
+      <h1 class="ed-h1">Vanderbilt's professional technology fraternity.</h1>
+      <p>A brotherhood for students who build with technology, whatever they study.</p>
+      <div class="ed-actions">
+        <a href="/recruitment" class="ed-btn">Rush KTP</a>
+        <a href="/about" class="ed-link">About the chapter <span aria-hidden="true">&rarr;</span></a>
+      </div>
     </div>
   </section>
 
   <main>
-    <section class="intro">
-      <div class="intro-container">
-        <h2>Welcome to KTP</h2>
-        <p>
-          Kappa Theta Pi is Vanderbilt's only professional technology fraternity, dedicated to developing leaders in the fields of engineering and technology. As the nation's foremost fraternity for technologists, Kappa Theta Pi fosters professional growth, community service, and a commitment to advancing the tech industry. This mission is exemplified by our members—a diverse and accomplished group of scholars, innovators, athletes, founders, and leaders in various fields. We believe our strength lies in our members' dedication and the support of those who value our vision.
-          <br><br>
-          On behalf of the entire Kappa Theta Pi community, welcome to our website! Here, you can learn more about our mission, our members, and how to get involved.
-        </p>
-      </div>
-    </section>
-
-    <section class="involvement-hero">
-                      <img src="images/signature.png" alt="Get Involved" class="involvement-bg" />
-      <div class="involvement-overlay"></div>
-      <div class="involvement-content">
-        <h2>Get involved.</h2>
-        <p>See what makes KTP stand out and learn more about our recruitment process.</p>
-        <a href="/recruitment" class="btn">Recruitment</a>
-      </div>
-    </section>
-
-    <section class="section brothers-fullscreen">
-                      <img src="images/learnAboutOurBrothersBackGround.png" alt="Vanderbilt Logo" class="brothers-bg" />
-      <div class="brothers-overlay"></div>
-      <div class="brothers-content">
-        <h2>Get ahead.</h2>
-        <p>Learn about our accomplished brothers and alumni, and how we can help you.</p>
-        <a href="/brothers" class="btn">Brothers</a>
-      </div>
-    </section>
-
-    <section class="comfortable-section">
-      <div class="comfortable-container">
-        <div class="comfortable-text">
-          <h5>Get comfortable.</h5>
-          <h2>Explore our home and what makes it special.</h2>
-          <a href="/ktp-in-action" class="btn">KTP in Action</a>
-        </div>
-        <div class="comfortable-image">
-                          <img src="images/ktp10.png" alt="KTP Members in Action" />
+    <!-- 01 / WHO WE ARE -->
+    <section class="home-intro">
+      <div class="ed-wrap">
+        <div class="ed-row">
+          <div class="ed-kicker"><b>01</b>Who we are</div>
+          <div>
+            <h2 class="ed-h2">The first professional technology fraternity in the country, at Vanderbilt since 2023.</h2>
+            <p class="ed-lede">Kappa Theta Pi is a co-ed, pre-professional fraternity for students who are passionate about technology, regardless of major. The Rho Chapter brings that to Vanderbilt: recruiting prep, technical workshops, project teams, an alumni network, and a brotherhood that shows up for each other.</p>
+            <p class="ed-lede">Our brothers are computer scientists, engineers, data scientists, economists, and designers. What they share is an interest in building things and helping each other get where they want to go.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="learn-more-hero">
-                      <img src="images/ktp4.jpg" alt="KTP Event" class="learn-more-bg" />
-      <div class="learn-more-overlay"></div>
-      <div class="learn-more-content">
-        <h2>Want to learn more about KTP Vanderbilt?</h2>
-        <a href="/contact" class="btn">Contact</a>
+    <!-- 02 / RECRUITMENT band -->
+    <section class="ed-band home-band">
+      <img src="images/signature.png" alt="KTP brothers at a chapter event">
+      <div class="ed-wrap">
+        <div>
+          <span class="ed-kicker"><b>02</b>Recruitment</span>
+          <h2 class="ed-h2">Get involved.</h2>
+          <p>We recruit at the start of every fall and spring semester. Come to an info session, meet the brothers, and apply.</p>
+          <div class="ed-actions">
+            <a href="/recruitment" class="ed-btn">See the rush schedule</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 / BROTHERS band -->
+    <section class="ed-band ed-band--right home-band">
+      <img src="images/learnAboutOurBrothersBackGround.png" alt="Nashville at sunset">
+      <div class="ed-wrap">
+        <div>
+          <span class="ed-kicker"><b>03</b>Brothers &amp; alumni</span>
+          <h2 class="ed-h2">Get ahead.</h2>
+          <p>Brothers and alumni have worked at OpenAI, Google, Goldman Sachs, Palantir, BCG, and more. Meet them.</p>
+          <div class="ed-actions" style="justify-content:flex-end;">
+            <a href="/brothers" class="ed-btn">Meet the brothers</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 / POINTERS -->
+    <section class="home-pointers">
+      <div class="ed-wrap">
+        <div class="ed-row" style="border-top:0; padding-top:100px; padding-bottom:36px;">
+          <div class="ed-kicker"><b>04</b>Explore</div>
+          <h2 class="ed-h2">Everything else, in three places.</h2>
+        </div>
+        <div class="grid">
+          <a href="/professional-development">
+            <div class="ed-kicker">Professional Development</div>
+            <h3>Hackathons, workshops, and the resume template.</h3>
+            <p>How the chapter gets brothers from application to offer.</p>
+            <span class="ed-link">Open <span aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a href="/ktp-in-action">
+            <div class="ed-kicker">KTP in Action</div>
+            <h3>Life in the chapter.</h3>
+            <p>Formals, retreats, socials, and the in-between.</p>
+            <span class="ed-link">Photos <span aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a href="/nationals">
+            <div class="ed-kicker">Nationals</div>
+            <h3>31 chapters, coast to coast.</h3>
+            <p>Where Kappa Theta Pi is, and where the Rho Chapter fits in.</p>
+            <span class="ed-link">The map <span aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 / CONTACT band -->
+    <section class="ed-band home-band">
+      <img src="images/ktp4.jpg" alt="KTP brothers at formal">
+      <div class="ed-wrap">
+        <div>
+          <span class="ed-kicker"><b>05</b>Contact</span>
+          <h2 class="ed-h2">Want to learn more?</h2>
+          <p>Questions about rush, the chapter, or partnering with us. We read everything.</p>
+          <div class="ed-actions">
+            <a href="/contact" class="ed-btn">Get in touch</a>
+            <a href="mailto:ktp@vanderbilt.edu" class="ed-link">ktp@vanderbilt.edu</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>

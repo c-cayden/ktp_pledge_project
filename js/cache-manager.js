@@ -58,7 +58,9 @@ class CacheManager {
         const cachedRoboto = localStorage.getItem('font-Roboto');
         if (cachedRoboto) {
             this.injectFont(cachedRoboto, 'Roboto');
-            document.body.classList.add('fonts-loaded');
+            // This script runs in <head>, so <body> may not exist yet.
+            const markLoaded = () => document.body && document.body.classList.add('fonts-loaded');
+            if (document.body) markLoaded(); else document.addEventListener('DOMContentLoaded', markLoaded);
         } else {
             // Cache it for next time
             this.cacheFont('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap', 'Roboto');

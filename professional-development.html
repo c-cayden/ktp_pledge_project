@@ -28,6 +28,7 @@
   <!-- Header / Footer Styles -->
   <link rel="stylesheet" type="text/css" href="css/header-styles/header.css">
   <link rel="stylesheet" type="text/css" href="css/footer-styles/footer.css">
+  <link rel="stylesheet" href="css/editorial.css">
 
   <style>
     :root {
@@ -297,6 +298,7 @@
     }
 
     /* WORKSHOPS */
+    #workshops { background: #ffffff; }
     .ws-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -305,19 +307,16 @@
       margin: 0 auto;
     }
 
-    .ws-col {
-      background: var(--white);
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      padding: 26px 28px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    }
+    .ws-col { padding: 0 0 8px; border-top: 1px solid var(--ed-line); }
 
     .ws-col h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 12px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--ed-gold);
+      padding: 18px 0 10px;
     }
 
     .ws-col ul { list-style: none; }
@@ -329,9 +328,7 @@
     }
     .ws-col li:last-child { border-bottom: 0; }
 
-    .ws-col--note { background: var(--primary); border-color: var(--primary); }
-    .ws-col--note h3 { color: var(--white); }
-    .ws-col--note p { color: rgba(255, 255, 255, 0.92); line-height: 1.6; }
+    .ws-col--note p { color: #2d3748; line-height: 1.7; padding-top: 4px; }
 
     /* RESUME TEMPLATE — editorial block in KTP navy */
     #resume-template {
@@ -440,9 +437,12 @@
 </head>
 <body>
 
-<section class="hero">
-  <h1>Professional Development</h1>
-  <p>How KTP helps brothers get ready for careers in tech — hackathon teams, recruiting prep, and the tools that get you from application to offer.</p>
+<section class="ed-head">
+  <div class="ed-wrap">
+    <div class="ed-kicker">Professional Development</div>
+    <h1 class="ed-h1">From application to offer.</h1>
+    <p>How KTP helps brothers get ready for careers in tech: hackathon teams, recruiting prep, and a resume template built for it.</p>
+  </div>
 </section>
 
 <!-- HACKATHONS: editorial case-study rows. Each .case is one result; photos in images/hackathons/. -->
@@ -523,9 +523,13 @@
 
 <!-- WORKSHOPS: update each semester. -->
 <section id="workshops">
-  <div class="section-header">
-    <h2>Workshops</h2>
-    <p>Chapter-run sessions every semester, led by brothers and alumni who have been through the process.</p>
+  <div class="ed-wrap" style="margin-bottom: 40px;">
+    <div class="ed-row">
+      <div class="ed-kicker"><b>02</b>Workshops</div>
+      <div>
+        <h2 class="ed-h2">Every semester, run by brothers who have been through it.</h2>
+      </div>
+    </div>
   </div>
   <div class="ws-grid">
     <div class="ws-col">
