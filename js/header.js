@@ -54,8 +54,10 @@ function createHeader() {
       <nav class="nav-links d-none d-md-flex">
         <a href="/about">About</a>
         <a href="/recruitment">Recruitment</a>
+        <a href="/professional-development">Professional Development</a>
         <a href="/brothers">Brothers</a>
         <a href="/ktp-in-action">KTP in Action</a>
+        <a href="/nationals">Nationals</a>
         <a href="/contact">Contact</a>
       </nav>
 
@@ -96,8 +98,10 @@ function createHeader() {
             <nav class="mobile-menu-nav">
               <a href="/about">About</a>
               <a href="/recruitment">Recruitment</a>
+              <a href="/professional-development">Professional Development</a>
               <a href="/brothers">Brothers</a>
               <a href="/ktp-in-action">KTP in Action</a>
+              <a href="/nationals">Nationals</a>
               <a href="/contact">Contact</a>
             </nav>
             

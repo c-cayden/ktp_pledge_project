@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Professional Development | Kappa Theta Pi Vanderbilt</title>
+  <meta name="description" content="Professional development at Kappa Theta Pi Vanderbilt: hackathons, resume resources, and career preparation for students in technology.">
+  <link rel="canonical" href="https://ktpvandy.org/professional-development">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Default favicon (root, ICO format for widest support) -->
+<link rel="icon" href="/faviconktp.ico" sizes="any">
+
+<!-- PNG favicons for modern browsers and Google Search -->
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/images/favicon-48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96.png">
+<link rel="icon" type="image/png" sizes="180x180" href="/images/favicon-180.png">
+
+<meta name="msapplication-TileColor" content="#2a2a2a">
+<meta name="theme-color" content="#2a2a2a">
+<link rel="manifest" href="/manifest.json">
+
+  <!-- Cache Manager for instant loading -->
+  <script src="js/cache-manager.js"></script>
+
+  <!-- Header / Footer Styles -->
+  <link rel="stylesheet" type="text/css" href="css/header-styles/header.css">
+  <link rel="stylesheet" type="text/css" href="css/footer-styles/footer.css">
+
+  <style>
+    :root {
+      --primary: #2F4A8A;
+      --white: #ffffff;
+      --black: #000000;
+      --gray: #f4f4f4;
+    }
+
+    html {
+      overflow-y: scroll;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    html::-webkit-scrollbar { display: none; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto', 'Arial', sans-serif;
+      font-weight: 300;
+      background-color: #f3f6fc;
+      color: var(--black);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Beats Bootstrap's body background, which loads after this sheet */
+    html body { background-color: #f3f6fc; }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; }
+
+    section { padding: 60px 20px; }
+
+    /* HERO */
+    .hero {
+      padding: 80px 20px 20px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.7rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+    .hero p {
+      max-width: 800px;
+      margin: auto;
+      color: #444;
+      font-size: 1.1rem;
+    }
+
+    /* Shared section header */
+    .section-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .section-header p {
+      color: #555;
+      font-size: 1.05rem;
+    }
+
+    /* Buttons */
+    .pill-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--white);
+      padding: 11px 28px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none !important;
+      border: 2px solid var(--primary);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .pill-btn.outline {
+      background: var(--white);
+      color: var(--primary);
+    }
+    .pill-btn:hover {
+      background: #22366c;
+      border-color: #22366c;
+      color: var(--white);
+    }
+
+    /* HACKATHONS — editorial case studies */
+    #hackathons {
+      background: #1b2a52;
+      color: #e8eaf0;
+      padding: 90px 20px 70px;
+    }
+
+    .cases-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .cases-head {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+      align-items: end;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .cases-label {
+      grid-column: 1 / -1;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9aa6c4;
+      margin-bottom: 18px;
+    }
+
+    .cases-title {
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: #ffffff;
+    }
+
+    .cases-sub {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: #b6bdd0;
+      max-width: 520px;
+    }
+
+    .case {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: 56px;
+      align-items: center;
+      padding: 56px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .case:nth-child(even) .case-media { order: -1; }
+
+    .case-kicker {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      flex-wrap: wrap;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9aa6c4;
+      margin-bottom: 18px;
+    }
+
+    .case-n { color: #c8a951; }
+    .case-where { color: #6f7a97; }
+    .case-where::before { content: "/"; margin-right: 14px; color: #3a4360; }
+
+    .case-title {
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+      color: #ffffff;
+      margin-bottom: 22px;
+    }
+
+    .case-award {
+      display: block;
+      font-size: 0.55em;
+      font-weight: 400;
+      letter-spacing: 0;
+      color: #c8a951;
+      margin-top: 8px;
+    }
+
+    .case-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 20px;
+    }
+
+    .case-meta > div {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .case-meta dt {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #6f7a97;
+      margin-bottom: 4px;
+    }
+
+    .case-meta dd {
+      font-size: 0.98rem;
+      font-weight: 400;
+      color: #e8eaf0;
+    }
+
+    .case-desc {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #b6bdd0;
+      max-width: 52ch;
+    }
+
+    .case-media {
+      margin: 0;
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: #243766;
+    }
+
+    .case-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .case:hover .case-media img { transform: scale(1.03); }
+
+    .cases-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 30px;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      color: #9aa6c4;
+    }
+
+    .cases-foot a {
+      color: #ffffff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      padding-bottom: 2px;
+      transition: border-color 0.2s ease;
+    }
+    .cases-foot a:hover { border-color: #ffffff; }
+
+    @media (max-width: 900px) {
+      #hackathons { padding: 64px 20px 50px; }
+      .cases-head { grid-template-columns: 1fr; gap: 16px; }
+      .case { grid-template-columns: 1fr; gap: 26px; padding: 40px 0; }
+      .case:nth-child(even) .case-media { order: 0; }
+      .case-media { aspect-ratio: 16 / 10; }
+    }
+
+    /* WORKSHOPS */
+    .ws-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .ws-col {
+      background: var(--white);
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 26px 28px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .ws-col h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .ws-col ul { list-style: none; }
+    .ws-col li {
+      padding: 7px 0;
+      border-bottom: 1px solid #f0f0f0;
+      color: #333;
+      font-weight: 400;
+    }
+    .ws-col li:last-child { border-bottom: 0; }
+
+    .ws-col--note { background: var(--primary); border-color: var(--primary); }
+    .ws-col--note h3 { color: var(--white); }
+    .ws-col--note p { color: rgba(255, 255, 255, 0.92); line-height: 1.6; }
+
+    /* RESUME TEMPLATE — editorial block in KTP navy */
+    #resume-template {
+      background: #1b2a52;
+      color: #e9edf7;
+      padding: 90px 20px;
+    }
+
+    .rt-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .rt-label {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9fb0da;
+      margin-bottom: 18px;
+    }
+
+    .rt-title {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    .rt-desc {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #c3cce4;
+      max-width: 48ch;
+      margin-bottom: 28px;
+    }
+
+    .rt-spec {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 0 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 14px 0;
+      margin-bottom: 30px;
+      width: fit-content;
+    }
+    .rt-spec dt {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #8c9dcb;
+      margin-bottom: 4px;
+    }
+    .rt-spec dd { font-size: 0.95rem; color: #ffffff; }
+
+    .rt-btn {
+      display: inline-block;
+      background: #ffffff;
+      color: #1b2a52;
+      padding: 13px 26px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      text-decoration: none !important;
+      border: 1px solid #ffffff;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .rt-btn:hover { background: transparent; color: #ffffff; }
+
+    .rt-rules {
+      list-style: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      margin-top: 8px;
+    }
+    .rt-rules li {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 16px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    }
+    .rt-n {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.8rem;
+      color: #c8a951;
+      padding-top: 4px;
+    }
+    .rt-rules strong { display: block; font-weight: 500; font-size: 1.1rem; color: #ffffff; margin-bottom: 6px; }
+    .rt-rules p { color: #c3cce4; line-height: 1.6; font-size: 0.97rem; }
+
+    @media (max-width: 900px) {
+      #resume-template { padding: 64px 20px; }
+      .rt-wrap { grid-template-columns: 1fr; gap: 36px; }
+      .rt-spec { grid-template-columns: 1fr; gap: 12px 0; width: 100%; }
+    }
+
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <h1>Professional Development</h1>
+  <p>How KTP helps brothers get ready for careers in tech — hackathon teams, recruiting prep, and the tools that get you from application to offer.</p>
+</section>
+
+<!-- HACKATHONS: editorial case-study rows. Each .case is one result; photos in images/hackathons/. -->
+<section id="hackathons">
+  <div class="cases-wrap">
+    <div class="cases-head">
+      <div class="cases-label">Hackathons</div>
+      <h2 class="cases-title">Built under pressure.</h2>
+      <p class="cases-sub">Brothers team up and ship at hackathons on campus and around the country. Selected results from KTP teams.</p>
+    </div>
+
+    <article class="case">
+      <div class="case-text">
+        <div class="case-kicker"><span class="case-n">01</span><span>Dry Dock Venture Studio Hackathon</span><span class="case-where">Vanderbilt · Spring 2026</span></div>
+        <h3 class="case-title">1st Place Overall<span class="case-award">Xtremis.AI Challenge Winner</span></h3>
+        <dl class="case-meta">
+          <div><dt>Team</dt><dd>David Balin, Sam McFarland</dd></div>
+          <div><dt>Project</dt><dd>Spectrum pricing &amp; liquidity model</dd></div>
+        </dl>
+        <p class="case-desc">A week with Xtremis building a market for underutilized wireless spectrum: a standard spectrum unit, short-term localized pricing, and a mechanism to bring liquidity and price discovery to a space that barely has either. The win sent the team to NYC Tech Week to pitch alongside Lorimer Ventures, with support from Cooley, Rho, HubSpot, and Microsoft Azure.</p>
+      </div>
+      <figure class="case-media">
+        <img src="images/hackathons/drydock-team.jpg" alt="The winning team on stage at the Dry Dock Venture Studio Hackathon" style="object-position: center 30%;" loading="lazy">
+      </figure>
+    </article>
+
+    <article class="case">
+      <div class="case-text">
+        <div class="case-kicker"><span class="case-n">02</span><span>VandyHacks</span><span class="case-where">Vanderbilt · Fall 2025</span></div>
+        <h3 class="case-title">Startup Launchpad Winner<span class="case-award">Best Use of MongoDB</span></h3>
+        <dl class="case-meta">
+          <div><dt>Team</dt><dd>David Balin, Sam McFarland</dd></div>
+          <div><dt>Project</dt><dd>OneTap</dd></div>
+        </dl>
+        <p class="case-desc">A digital wallet that recognizes checkout pages across 500+ retailers, runs vector search over your cards through MongoDB Atlas and Gemini, and surfaces the highest-reward card in under a second. Confirm and pay with one tap.</p>
+      </div>
+      <figure class="case-media">
+        <img src="images/hackathons/vandyhacks-onetap.jpg" alt="OneTap digital wallet interface" style="object-position: center top;" loading="lazy">
+      </figure>
+    </article>
+
+    <article class="case">
+      <div class="case-text">
+        <div class="case-kicker"><span class="case-n">03</span><span>Global Good Hackathon</span><span class="case-where">Vanderbilt · Spring 2026</span></div>
+        <h3 class="case-title">Technical Innovation Award</h3>
+        <dl class="case-meta">
+          <div><dt>Team</dt><dd>Kyuhyun Kim</dd></div>
+          <div><dt>Project</dt><dd>FlowBreakr</dd></div>
+        </dl>
+        <p class="case-desc">An app that applies graph theory, linear algebra, and behavioral psychology to model addictive, pattern-like screen-time behavior and help users break it. Faculty are now working with the team on the underlying algorithm.</p>
+      </div>
+      <figure class="case-media">
+        <img src="images/hackathons/globalgood-flowbreakr.jpg" alt="FlowBreakr team at Vanderbilt's Global Good Hackathon" style="object-position: center 35%;" loading="lazy">
+      </figure>
+    </article>
+
+    <article class="case">
+      <div class="case-text">
+        <div class="case-kicker"><span class="case-n">04</span><span>HooHacks</span><span class="case-where">University of Virginia · Spring 2026</span></div>
+        <h3 class="case-title">Education Track</h3>
+        <dl class="case-meta">
+          <div><dt>Team</dt><dd>Sarah Yang, Anais Brown, Ryan Bauroth</dd></div>
+          <div><dt>Project</dt><dd>Put Your Anchor Down</dd></div>
+        </dl>
+        <p class="case-desc">A first hackathon for part of the team. Twenty-four hours at UVA's flagship hackathon, one shipped Education-track project, and a lot learned about building fast with people you trust.</p>
+      </div>
+      <figure class="case-media">
+        <img src="images/hackathons/hoohacks-team.jpg" alt="KTP team at HooHacks, University of Virginia" style="object-position: center 15%;" loading="lazy">
+      </figure>
+    </article>
+
+    <div class="cases-foot">
+      <span>Looking for your next one?</span>
+      <a href="https://mlh.io/events" target="_blank" rel="noopener noreferrer">Browse Major League Hacking events <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- WORKSHOPS: update each semester. -->
+<section id="workshops">
+  <div class="section-header">
+    <h2>Workshops</h2>
+    <p>Chapter-run sessions every semester, led by brothers and alumni who have been through the process.</p>
+  </div>
+  <div class="ws-grid">
+    <div class="ws-col">
+      <h3>Fall 2026</h3>
+      <ul>
+        <li>Resume</li>
+        <li>LinkedIn</li>
+        <li>Networking</li>
+        <li>Summer Internship Panel</li>
+        <li>Overview of the Recruiting Process</li>
+        <li>Career Fair Prep</li>
+        <li>Practice Interviews</li>
+        <li>LeetCode &amp; GitHub</li>
+      </ul>
+    </div>
+    <div class="ws-col">
+      <h3>Spring 2026</h3>
+      <ul>
+        <li>Resume</li>
+        <li>LinkedIn</li>
+        <li>Networking</li>
+        <li>Recruitment Prep</li>
+        <li>Study Abroad</li>
+        <li>Undergraduate Research</li>
+        <li>Internship Panel</li>
+        <li>Nashville Global Shapers Panel</li>
+      </ul>
+    </div>
+    <div class="ws-col ws-col--note">
+      <h3>Beyond workshops</h3>
+      <p>Brothers also run committees, tech workshops, and weekly LeetCode practice, and every member gets recruiting help, mock interviews, and connections to alumni in the industry.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME TEMPLATE: assets/KTP_Resume_Template.docx (downloads so each visitor edits their own copy). -->
+<section id="resume-template">
+  <div class="rt-wrap">
+    <div class="rt-left">
+      <div class="rt-label">Resume Template</div>
+      <h2 class="rt-title">One page.<br>Built for tech recruiting.</h2>
+      <p class="rt-desc">The same Word template our brothers use for internship and full-time applications. Download it, open it in Word or Google Docs, and make it yours.</p>
+      <dl class="rt-spec">
+        <div><dt>Format</dt><dd>Word (.docx)</dd></div>
+        <div><dt>Length</dt><dd>One page</dd></div>
+        <div><dt>Used for</dt><dd>Internship &amp; full-time recruiting</dd></div>
+      </dl>
+      <a class="rt-btn" href="assets/KTP_Resume_Template.docx" download="KTP_Resume_Template.docx">Download template <span aria-hidden="true">&rarr;</span></a>
+    </div>
+    <ol class="rt-rules">
+      <li><span class="rt-n">01</span><div><strong>Keep it to one page.</strong><p>Recruiters spend seconds on a first pass. Clear section headers, no filler.</p></div></li>
+      <li><span class="rt-n">02</span><div><strong>Lead with the verb.</strong><p>Every bullet starts with what you did, then quantifies the result where you can.</p></div></li>
+      <li><span class="rt-n">03</span><div><strong>No experience yet? Show projects.</strong><p>Coursework, hackathons, and personal projects count. Treat them like jobs.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!--
+  Future sections (add here as they're ready):
+  - Interview prep (technical + behavioral)
+  - Alumni mentorship program
+  - Workshops & speaker series
+  - Internship / job board
+-->
+
+<!-- Header Component -->
+<script src="js/header.js"></script>
+
+<!-- Footer Component -->
+<script src="js/footer.js"></script>
+
+</body>
+</html>

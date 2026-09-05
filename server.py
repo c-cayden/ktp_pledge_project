@@ -48,8 +48,10 @@ def run_server(port=8000):
         print("   • http://localhost:8000/ (Home)")
         print("   • http://localhost:8000/about")
         print("   • http://localhost:8000/recruitment")
+        print("   • http://localhost:8000/professional-development")
         print("   • http://localhost:8000/brothers")
         print("   • http://localhost:8000/ktp-in-action")
+        print("   • http://localhost:8000/nationals")
         print("   • http://localhost:8000/contact")
         print("\n⏹️  Press Ctrl+C to stop the server")
         try:
