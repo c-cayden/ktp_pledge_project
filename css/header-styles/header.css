@@ -429,3 +429,101 @@ header {
 
 /* (Cleanup) You had this rule duplicated—keep only ONE copy */
 body.menu-locked { position: fixed; width: 100%; }
+
+/* ======== FLOATING TOP BAR (appears after the header scrolls away) ======== */
+.topbar {
+  position: fixed;
+  top: 14px; left: 14px; right: 14px;
+  z-index: 5000;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 28px 0 30px;
+  background: rgba(243, 246, 252, 0.78);
+  -webkit-backdrop-filter: saturate(150%) blur(18px);
+  backdrop-filter: saturate(150%) blur(18px);
+  border: 1px solid rgba(27, 42, 82, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 10px 32px rgba(15, 23, 42, 0.08);
+  transform: translateY(-130%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  font-family: "Roboto", "Arial", sans-serif;
+}
+.topbar--visible { transform: translateY(0); opacity: 1; }
+
+.topbar-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--black);
+  flex: 0 0 auto;
+}
+.topbar-letters { font-size: 1.6rem; line-height: 1; color: var(--primary); font-weight: 400; }
+.topbar-chapter {
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #4a5568;
+}
+
+.topbar-nav { display: flex; align-items: center; gap: 26px; flex: 1 1 auto; justify-content: center; }
+.topbar-nav a {
+  position: relative;
+  text-decoration: none;
+  color: #0f172a;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1;
+  padding: 8px 0;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+.topbar-nav a:hover { color: var(--primary); }
+.topbar-nav a.is-current::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: #c8a951;
+}
+
+.topbar-right { display: flex; align-items: center; gap: 12px; flex: 0 0 auto; }
+.topbar-cta {
+  display: inline-block;
+  padding: 11px 22px;
+  border: 1px solid #1b2a52;
+  background: transparent;
+  color: #1b2a52;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.topbar-cta:hover { background: #1b2a52; color: var(--white); }
+
+.topbar-menu {
+  display: none;
+  width: 44px; height: 44px;
+  border: 1px solid #1b2a52; border-radius: 4px; background: transparent; padding: 0;
+  cursor: pointer;
+  flex-direction: column; justify-content: center; align-items: center; gap: 6px;
+}
+.topbar-menu span { display: block; width: 20px; height: 1.5px; background: #1b2a52; }
+
+@media (max-width: 1100px) {
+  .topbar-nav { gap: 18px; }
+  .topbar-nav a { font-size: 0.84rem; }
+}
+@media (max-width: 900px) {
+  .topbar { top: 10px; left: 10px; right: 10px; padding: 0 14px 0 18px; height: 60px; }
+  .topbar-nav { display: none; }
+  .topbar-cta { display: none; }
+  .topbar-menu { display: flex; width: 40px; height: 40px; }
+}

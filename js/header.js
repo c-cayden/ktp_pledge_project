@@ -26,6 +26,8 @@ function ensureBootstrap() {
     css.id = 'bootstrap-css-link';
     css.rel = 'stylesheet';
     css.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css';
+    css.integrity = 'sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN';
+    css.crossOrigin = 'anonymous';
     document.head.appendChild(css);
   }
   // JS bundle usually not needed for your header; comment if unused
@@ -54,8 +56,10 @@ function createHeader() {
       <nav class="nav-links d-none d-md-flex">
         <a href="/about">About</a>
         <a href="/recruitment">Recruitment</a>
+        <a href="/professional-development">Professional Development</a>
         <a href="/brothers">Brothers</a>
         <a href="/ktp-in-action">KTP in Action</a>
+        <a href="/nationals">Nationals</a>
         <a href="/contact">Contact</a>
       </nav>
 
@@ -96,14 +100,16 @@ function createHeader() {
             <nav class="mobile-menu-nav">
               <a href="/about">About</a>
               <a href="/recruitment">Recruitment</a>
+              <a href="/professional-development">Professional Development</a>
               <a href="/brothers">Brothers</a>
               <a href="/ktp-in-action">KTP in Action</a>
+              <a href="/nationals">Nationals</a>
               <a href="/contact">Contact</a>
             </nav>
             
             <!-- Social media icon at bottom -->
             <div class="mobile-menu-social">
-              <a href="https://www.linkedin.com/company/kappa-theta-pi-vanderbilt" target="_blank">
+              <a href="https://www.linkedin.com/company/kappa-theta-pi-vanderbilt" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-linkedin"></i>
               </a>
             </div>
@@ -112,6 +118,71 @@ function createHeader() {
       </div>
     </header>
   `;
+}
+
+// Compact sticky bar: appears once the big header scrolls away
+const NAV_ITEMS = [
+  ['/about', 'About'],
+  ['/recruitment', 'Recruitment'],
+  ['/professional-development', 'Professional Development'],
+  ['/brothers', 'Brothers'],
+  ['/ktp-in-action', 'KTP in Action'],
+  ['/nationals', 'Nationals'],
+  ['/contact', 'Contact'],
+];
+
+function currentPath() {
+  let p = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/');
+  if (p.length > 1) p = p.replace(/\/$/, '');
+  return p;
+}
+
+function createTopbar() {
+  const here = currentPath();
+  const links = NAV_ITEMS.map(([href, label]) =>
+    `<a href="${href}"${href === here ? ' class="is-current" aria-current="page"' : ''}>${label}</a>`
+  ).join('');
+  return `
+    <div class="topbar" id="siteTopbar" aria-label="Site navigation">
+      <a href="/" class="topbar-logo" aria-label="Kappa Theta Pi home">
+        <span class="topbar-letters">ΚΘΠ</span>
+        <span class="topbar-chapter">Rho Chapter</span>
+      </a>
+      <nav class="topbar-nav">${links}</nav>
+      <div class="topbar-right">
+        <a href="/recruitment" class="topbar-cta">Rush KTP</a>
+        <button type="button" class="topbar-menu" id="topbarMenuToggle" aria-label="Open menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function enableTopbar() {
+  const bar = document.getElementById('siteTopbar');
+  const header = document.querySelector('header');
+  if (!bar || !header) return;
+
+  let threshold = 0;
+  const measure = () => { threshold = Math.max(120, header.offsetHeight - 40); };
+  const update = () => {
+    bar.classList.toggle('topbar--visible', window.scrollY > threshold);
+  };
+  measure();
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', () => { measure(); update(); });
+
+  // Phones: the bar's hamburger opens the existing full-screen menu
+  const toggle = document.getElementById('topbarMenuToggle');
+  const overlay = document.getElementById('mobileMenuOverlay');
+  if (toggle && overlay) {
+    toggle.addEventListener('click', () => {
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
 }
 
 // Mobile menu functionality
@@ -168,9 +239,11 @@ function injectHeader() {
   // Add header HTML at the beginning of body
   const headerHtml = createHeader();
   document.body.insertAdjacentHTML('afterbegin', headerHtml);
+  document.body.insertAdjacentHTML('afterbegin', createTopbar());
 
   // Enable mobile menu functionality
   enableMobileMenu();
+  enableTopbar();
 }
 
 // Auto-inject header when DOM is ready

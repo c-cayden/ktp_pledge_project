@@ -1,111 +1,10 @@
-<!-- Enhanced JavaScript -->
-<script>
-  // Immediately set white background to prevent blue flash
-  document.documentElement.style.backgroundColor = '#ffffff';
-  document.body.style.backgroundColor = '#ffffff';
-  
-  // Temporarily disable service worker to test blue background flash
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then(function(registrations) {
-      for(let registration of registrations) {
-        registration.unregister();
-      }
-    });
-  }
-  
-  document.addEventListener("DOMContentLoaded", function () {
-      // Interactive SVG benefit points - simplified without animations
-      const benefitPoints = document.querySelectorAll('.benefit-point');
-      const benefitDetails = document.querySelectorAll('.benefit-detail');
-      
-      benefitPoints.forEach(point => {
-          const benefitType = point.getAttribute('data-benefit');
-          const detailElement = document.getElementById(`${benefitType}-detail`);
-          
-          if (detailElement) {
-              point.addEventListener('mouseenter', () => {
-                  // Hide all other details
-                  benefitDetails.forEach(detail => {
-                      if (detail !== detailElement) {
-                          detail.classList.remove('active');
-                      }
-                  });
-                  
-                  // Show current detail
-                  detailElement.classList.add('active');
-              });
-              
-              point.addEventListener('mouseleave', () => {
-                  setTimeout(() => {
-                      if (!detailElement.matches(':hover')) {
-                          detailElement.classList.remove('active');
-                      }
-                  }, 100);
-              });
-              
-              // Keep detail visible when hovering over it
-              detailElement.addEventListener('mouseenter', () => {
-                  detailElement.classList.add('active');
-              });
-              
-              detailElement.addEventListener('mouseleave', () => {
-                  detailElement.classList.remove('active');
-              });
-          }
-      });
-
-      // Add click interactions for mobile
-      if (window.innerWidth <= 768) {
-          benefitPoints.forEach(point => {
-              point.addEventListener('click', (e) => {
-                  e.preventDefault();
-                  const benefitType = point.getAttribute('data-benefit');
-                  const detailElement = document.getElementById(`${benefitType}-detail`);
-                  
-                  // Toggle current detail
-                  if (detailElement) {
-                      const isActive = detailElement.classList.contains('active');
-                      
-                      // Hide all details
-                      benefitDetails.forEach(detail => {
-                          detail.classList.remove('active');
-                      });
-                      
-                      // Show current detail if it wasn't active
-                      if (!isActive) {
-                          detailElement.classList.add('active');
-                          
-                          // Auto-hide after 4 seconds on mobile
-                          setTimeout(() => {
-                              detailElement.classList.remove('active');
-                          }, 4000);
-                      }
-                  }
-              });
-          });
-      }
-
-      // Add resize handler for responsive behavior
-      let resizeTimeout;
-      window.addEventListener("resize", () => {
-          clearTimeout(resizeTimeout);
-          resizeTimeout = setTimeout(() => {
-              // Recalculate benefit detail positions if needed
-              const details = document.querySelectorAll(".benefit-detail");
-              details.forEach(detail => {
-                  detail.classList.remove('active');
-              });
-          }, 250);
-      });
-  });
-</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://tile.openstreetmap.org https://cdnjs.cloudflare.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About - Kappa Theta Pi Vanderbilt</title>
-<meta name="description" content="Learn about Kappa Theta Pi at Vanderbilt University - our mission, leadership, and what makes us unique">
+<title>About | Kappa Theta Pi Vanderbilt</title>
 
 <!-- Default favicon (root, ICO format for widest support) -->
 <link rel="icon" href="/faviconktp.ico" sizes="any">
@@ -153,9 +52,7 @@
 <!-- Cache Manager for instant loading -->
 <script src="js/cache-manager.js"></script>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <!-- Header Styles - preload to prevent header shift -->
 <link rel="stylesheet" type="text/css" href="css/header-styles/header.css">
 
@@ -165,757 +62,285 @@
 <style>
   :root {
       --primary: #2F4A8A;
-      --primary-light: #4A68B8;
-      --primary-dark: #1E3B73;
-      --accent: #6366F1;
-      --accent-light: #818CF8;
-      --white: #ffffff;
-      --black: #0F172A;
-      --gray: #f8fafc;
-      --light-gray: #f1f5f9;
-      --text-primary: #1a202c;
-      --text-secondary: #2d3748;
-      --text-muted: #4a5568;
-      --text-light: #718096;
-      --border: #e2e8f0;
-      --border-light: #f7fafc;
-      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-      --gradient-primary: linear-gradient(135deg, #2F4A8A 0%, #4A68B8 100%);
-      --gradient-accent: linear-gradient(135deg, #6366F1 0%, #818CF8 100%);
-      --gradient-hero: linear-gradient(135deg, rgba(47, 74, 138, 0.08) 0%, rgba(99, 102, 241, 0.08) 100%);
-      --success: #10b981;
-      --warning: #f59e0b;
-      --error: #ef4444;
+      --navy: #1b2a52;
+      --navy-2: #243766;
+      --gold: #c8a951;
+      --ink: #0f172a;
+      --muted: #4a5568;
+      --line: #e2e8f0;
+      --page: #ffffff;
   }
 
-  /* Hide scrollbar on all browsers - consistent with other pages */
-  html {
-      scroll-behavior: smooth;
-      overflow-y: scroll;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* Internet Explorer 10+ */
-  }
-
-  html::-webkit-scrollbar {
-      display: none; /* WebKit browsers (Chrome, Safari, etc.) */
-  }
-
-    /* General Reset */
-  * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-
+  html { scroll-behavior: smooth; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none; }
+  html::-webkit-scrollbar { display: none; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html body { background: var(--page); }
 
   body {
       font-family: 'Roboto', 'Arial', sans-serif;
       font-weight: 300;
-      background: #ffffff !important;
-      color: var(--text-primary);
+      color: var(--ink);
       overflow-x: hidden;
       line-height: 1.7;
-      letter-spacing: normal;
-      max-width: 100vw;
       margin: 0;
-      padding: 0;
   }
 
-
-
-  /* Main Content */
-  .main-content {
-      padding-top: 5px;
-      padding-bottom: 0;
-      min-height: auto;
-      position: relative;
-      z-index: 1;
+  .mono {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.76rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
   }
 
-  /* Hero Section */
-  .hero-section {
-      background: var(--gradient-hero);
-      padding: 80px 20px;
-      text-align: center;
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- HERO: full-bleed photo ---------- */
+  .about-hero {
       position: relative;
+      min-height: 82vh;
+      display: flex;
+      align-items: flex-end;
+      color: #ffffff;
       overflow: hidden;
-    }
-
-  .hero-section::before {
-      content: '';
+      isolation: isolate;
+  }
+  .about-hero img {
       position: absolute;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="25" cy="75" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="75" cy="25" r="1" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-      opacity: 0.3;
-      z-index: -1;
-  }
-
-  .page-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 4rem;
-      font-weight: 700;
-      color: #2F4A8A;
-      margin-bottom: 20px;
-      text-shadow: 0 4px 20px rgba(47, 74, 138, 0.2);
-  }
-
-  .page-subtitle {
-      font-size: 1.3rem;
-      color: #2d3748;
-      font-weight: 400;
-      max-width: 600px;
-      margin: 0 auto;
-  }
-
-
-
-  /* Presidential Welcome Section */
-  .presidential-section {
-      display: flex;
-      align-items: center;
-      gap: 60px;
-      padding: 0;
-      max-width: 1400px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-      justify-content: center;
-      position: relative;
-  }
-
-  .presidential-image-container {
-      position: relative;
-      flex-shrink: 0;
-      flex-basis: 500px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-      padding: 0;
-  }
-
-  .presidential-image {
-      width: 600px;
-      height: 600px;
-      border-radius: 0;
       object-fit: cover;
-      box-shadow: none;
-      border: none;
-      position: relative;
-      z-index: 2;
-      margin-top: 20px;
+      object-position: center 30%;
+      z-index: -2;
+  }
+  .about-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.15) 0%, rgba(15, 23, 42, 0.35) 45%, rgba(15, 23, 42, 0.82) 100%);
+  }
+  .about-hero .wrap { width: 100%; padding-bottom: 72px; padding-top: 160px; }
+  .about-hero .mono { color: rgba(255, 255, 255, 0.75); margin-bottom: 18px; display: block; }
+  .about-hero h1 {
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: 1.02;
+      max-width: 14ch;
+  }
+  .about-hero p {
+      margin-top: 22px;
+      max-width: 52ch;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.85);
   }
 
-  .presidential-content {
-      flex: 2;
-      min-width: 600px;
-      max-width: 1200px;
+  /* ---------- NUMBERED STATEMENTS ---------- */
+  .about-block { padding: 110px 0; }
+  .about-block + .about-block { padding-top: 0; }
+  .about-row {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 48px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
   }
-
-  .presidential-content h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
-      font-weight: 600;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 30px;
-      line-height: 1.2;
+  .about-row .mono { color: var(--muted); padding-top: 6px; }
+  .about-row .mono b { color: var(--gold); font-weight: 500; margin-right: 12px; }
+  .about-row h2 {
+      font-size: clamp(1.9rem, 3.4vw, 2.8rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      color: var(--ink);
+      max-width: 22ch;
+      margin-bottom: 22px;
   }
-
-  .presidential-content p {
-      font-size: 1.15rem;
+  .about-row p {
+      font-size: 1.08rem;
       line-height: 1.8;
-      color: #1a202c;
-      text-align: justify;
-      margin-bottom: 1.5rem;
+      color: #2d3748;
+      max-width: 62ch;
+      margin-bottom: 1rem;
   }
+  .about-row p:last-child { margin-bottom: 0; }
 
-  .presidential-content p:last-child {
-      margin-bottom: 0;
-  }
-
-
-
-  /* Why KTP Section */
-  .why-ktp-section {
-      background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 50%, #f0f8ff 100%);
-      padding: 15px 0 0 0;
+  /* ---------- IMAGE BAND ---------- */
+  .about-band {
       position: relative;
+      min-height: 64vh;
+      display: flex;
+      align-items: center;
+      color: #ffffff;
       overflow: hidden;
-      width: 100vw;
-      margin-left: calc(-50vw + 50%);
-      margin-right: calc(-50vw + 50%);
-      margin-bottom: 0;
-      margin-top: 40px;
-      padding-bottom: 0;
+      isolation: isolate;
   }
-
-  .why-ktp-section::before {
-      display: none;
+  .about-band img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center 35%; z-index: -2;
   }
-
-      .why-ktp-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      text-align: center;
+  .about-band::after {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background: linear-gradient(90deg, rgba(27, 42, 82, 0.85) 0%, rgba(27, 42, 82, 0.45) 55%, rgba(27, 42, 82, 0.15) 100%);
   }
-
-  .why-ktp-content h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
-      font-weight: 700;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 25px;
-      position: relative;
+  .about-band .wrap { padding-top: 80px; padding-bottom: 80px; }
+  .about-band .mono { color: rgba(255,255,255,0.75); display: block; margin-bottom: 16px; }
+  .about-band .mono b { color: var(--gold); font-weight: 500; margin-right: 12px; }
+  .about-band h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+      max-width: 16ch;
   }
-
-  .why-ktp-content h2::after {
-      display: none;
-      background: var(--gradient-accent);
-      border-radius: 2px;
+  .about-band p { margin-top: 18px; max-width: 46ch; font-size: 1.05rem; color: rgba(255,255,255,0.88); }
+  .about-band a.more {
+      display: inline-block;
+      margin-top: 26px;
+      color: #ffffff;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      padding-bottom: 2px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
   }
+  .about-band a.more:hover { border-color: #ffffff; }
 
-  /* Creative SVG Drawing Design */
-  .ktp-benefits-illustration {
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      background: var(--white);
-      border-radius: 32px;
-      box-shadow: var(--shadow-xl);
-      padding: 60px 40px;
-      overflow: hidden;
+  /* ---------- WHY KTP (navy) ---------- */
+  .why-section { background: var(--navy); color: #e9edf7; padding: 100px 0; }
+  .why-head {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 48px;
+      align-items: end;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.16);
+      margin-bottom: 8px;
   }
-
-  .ktp-benefits-illustration::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(47, 74, 138, 0.02) 0%, rgba(99, 102, 241, 0.02) 100%);
-      pointer-events: none;
+  .why-head .mono { color: #9fb0da; }
+  .why-head .mono b { color: var(--gold); font-weight: 500; margin-right: 12px; }
+  .why-head h2 {
+      font-size: clamp(1.9rem, 3.4vw, 2.8rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      color: #ffffff;
   }
-
-  .benefits-svg {
-      width: 100%;
-      height: 600px;
-      position: relative;
-      z-index: 2;
+  .why-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0 28px;
   }
+  .why-item { padding: 28px 0 10px; }
+  .why-n { display: block; font-family: "IBM Plex Mono", monospace; font-size: 0.78rem; color: var(--gold); margin-bottom: 16px; }
+  .why-item h3 { font-size: 1.08rem; font-weight: 500; color: #ffffff; margin-bottom: 8px; line-height: 1.3; }
+  .why-item p { font-size: 0.96rem; line-height: 1.6; color: #c3cce4; }
 
-  /* Interactive benefit points */
-  .benefit-point {
-      cursor: pointer;
-  }
-
-  .benefit-detail {
-      position: absolute;
-      background: var(--white);
-      border: 2px solid var(--primary);
-      border-radius: 16px;
-      padding: 20px;
-      max-width: 280px;
-      box-shadow: var(--shadow-lg);
-      opacity: 0;
-      transform: translateY(0);
-      pointer-events: none;
-      z-index: 10;
-  }
-
-  .benefit-detail.active {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: all;
-  }
-
-  .benefit-detail h4 {
-      color: var(--primary);
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-  }
-
-  .benefit-detail p {
-      color: var(--black);
-      font-size: 1rem;
-      line-height: 1.6;
-      margin: 0;
-      font-weight: 500;
-  }
-
-  /* Static connecting lines */
-  .connecting-line {
-      stroke: var(--primary);
-      stroke-width: 3;
-      fill: none;
-      stroke-dasharray: none;
-          stroke-dashoffset: 0;
-  }
-
-  /* Center KTP logo/text */
-  .center-ktp {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      font-weight: 700;
-      fill: var(--primary);
-      text-anchor: middle;
-      dominant-baseline: middle;
-  }
-
-
-
-
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-      .page-title {
-          font-size: 2.8rem;
-          margin-bottom: 15px;
-      }
-
-      .page-subtitle {
-          font-size: 1.1rem;
-      }
-
-      .hero-section {
-          padding: 60px 15px;
-      }
-
-      .presidential-section {
-          flex-direction: column;
-          text-align: center;
-          padding: 5px 15px;
-          gap: 0;
-      }
-
-      .presidential-image {
-          width: 450px;
-          height: 450px;
-      }
-
-      .why-ktp-section {
-          padding: 8px 10px 12px 10px;
-      }
-
-      .why-ktp-content h2 {
-          font-size: 1.8rem;
-          margin-bottom: 12px;
-      }
-
-      .ktp-circle {
-          width: 200px;
-          height: 200px;
-          padding: 20px;
-      }
-
-      .circle-icon {
-          font-size: 2rem;
-      }
-
-      .circle-title {
-          font-size: 0.95rem;
-      }
-
-      .circle-description {
-          font-size: 0.75rem;
-      }
-
-      .presidential-content {
-          min-width: unset;
-          max-width: 100%;
-      }
-
-      .presidential-image {
-          width: 500px;
-          height: 500px;
-      }
-
-      .presidential-content h2 {
-          font-size: 2.2rem;
-          text-align: center;
-          margin-bottom: 10px;
-      }
-
-      .presidential-content p {
-          font-size: 1.05rem;
-          text-align: left;
-          margin-bottom: 0.8rem;
-      }
-
-      .why-ktp-section {
-          padding: 40px 15px;
-      }
-
-      .why-ktp-content h2 {
-          font-size: 2.5rem;
-          margin-bottom: 50px;
-      }
-
-      .ktp-benefits-illustration {
-          padding: 40px 20px;
-      }
-
-      .benefits-svg {
-          height: 400px;
-      }
-
-      .benefit-detail {
-          max-width: 200px;
-          padding: 15px;
-          font-size: 0.85rem;
-      }
-
-      .benefit-detail h4 {
-          font-size: 1rem;
-      }
-  }
-
-  @media (max-width: 480px) {
-      .page-title {
-          font-size: 2.2rem;
-      }
-
-      .presidential-image {
-          width: 350px;
-          height: 350px;
-      }
-
-      .presidential-content h2 {
-          font-size: 1.9rem;
-          margin-bottom: 8px;
-      }
-
-      .presidential-content p {
-          color: #1a202c;
-          font-weight: 400;
-          font-size: 1rem;
-          margin-bottom: 0.6rem;
-      }
-
-      .why-ktp-section {
-          padding: 12px 15px 18px 15px;
-      }
-
-      .why-ktp-content h2 {
-          font-size: 2.2rem;
-          margin-bottom: 18px;
-      }
-
-      .ktp-circle {
-          width: 220px;
-          height: 220px;
-          padding: 22px;
-      }
-
-      .circle-icon {
-          font-size: 2.2rem;
-      }
-
-      .circle-title {
-          font-size: 1rem;
-      }
-
-      .circle-description {
-          font-size: 0.8rem;
-      }
-
-      .why-ktp-section {
-          padding: 30px 10px;
-      }
-
-      .why-ktp-content h2 {
-          font-size: 2rem;
-          margin-bottom: 40px;
-      }
-
-      .ktp-benefits-illustration {
-          padding: 30px 15px;
-          border-radius: 20px;
-      }
-
-      .benefits-svg {
-          height: 350px;
-      }
-
-      .benefit-detail {
-          max-width: 180px;
-          padding: 12px;
-          font-size: 0.8rem;
-      }
-
-      .benefit-detail h4 {
-          font-size: 0.95rem;
-          margin-bottom: 8px;
-      }
-
-      .center-ktp {
-          font-size: 24px;
-      }
-  }
-
-  /* Why KTP Creative Circle Design */
-  .why-ktp-circles {
-      position: relative;
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-      padding: 10px 0 0 0;
+  /* ---------- PHOTO STRIP (horizontal scroll) ---------- */
+  .strip-section { padding: 90px 0 60px; }
+  .strip-head {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 2px;
-      flex-wrap: nowrap;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 24px;
   }
-
-  /* Connection Lines */
-  .why-ktp-circles::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 5%;
-      right: 5%;
-      height: 3px;
-      background: linear-gradient(90deg, transparent 0%, var(--primary) 10%, var(--primary) 90%, transparent 100%);
-      transform: translateY(-50%);
-      z-index: 0;
-      opacity: 0.2;
-      border-radius: 2px;
+  .strip-head .mono { color: var(--muted); }
+  .strip-head .mono b { color: var(--gold); font-weight: 500; margin-right: 12px; }
+  .strip-head a {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--primary);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(47,74,138,0.35);
+      padding-bottom: 2px;
   }
-
-  .ktp-circle {
-      width: calc(20% - 2px);
-      height: 320px;
-      flex: 1;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border: 3px solid var(--primary);
+  .strip {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 25px;
-      box-sizing: border-box;
-      cursor: pointer;
-      box-shadow: 0 8px 25px rgba(47, 74, 138, 0.2);
-      position: relative;
-      overflow: hidden;
-      z-index: 2;
-      min-width: 0;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 14px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--navy) transparent;
+      -webkit-overflow-scrolling: touch;
+      cursor: grab;
   }
-
-  .ktp-circle::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: repeating-conic-gradient(
-          from 0deg at 50% 50%,
-          transparent 0deg,
-          rgba(47, 74, 138, 0.1) 10deg,
-          transparent 20deg,
-          transparent 30deg
-      );
-      animation: rotate 10s linear infinite;
-      z-index: -1;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+  .strip::-webkit-scrollbar { height: 4px; }
+  .strip::-webkit-scrollbar-thumb { background: var(--navy); }
+  .strip img {
+      flex: 0 0 auto;
+      height: 340px;
+      width: auto;
+      object-fit: cover;
+      scroll-snap-align: start;
+      display: block;
+      background: #eef1f7;
   }
+  .strip-hint { margin-top: 10px; font-family: "IBM Plex Mono", monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: #8c96ad; }
 
-  .ktp-circle:hover::after {
-      opacity: 1;
+  /* ---------- FOUNDERS ---------- */
+  .founders-section { padding: 40px 0 110px; }
+  .founders-head {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 48px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      margin-bottom: 44px;
   }
-
-  @keyframes rotate {
-      from {
-          transform: rotate(0deg);
-      }
-      to {
-          transform: rotate(360deg);
-      }
-  }
-
-  .ktp-circle::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--gradient-primary);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: 1;
-  }
-
-  .ktp-circle:hover::before {
-      opacity: 0.1;
-  }
-
-  .ktp-circle:hover {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 20px 40px rgba(47, 74, 138, 0.3);
-      border-color: var(--primary-light);
-  }
-
-  .circle-content {
-      position: relative;
-      z-index: 2;
-  }
-
-  .circle-icon {
-      font-size: 3.5rem;
-      color: var(--primary);
-      margin-bottom: 16px;
-      transition: transform 0.3s ease;
-      position: relative;
-      z-index: 3;
-  }
-
-  .ktp-circle:hover .circle-icon {
-      transform: scale(1.2) rotate(5deg);
-  }
-
-  .circle-title {
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 14px;
-      line-height: 1.2;
-      position: relative;
-      z-index: 3;
-  }
-
-  .circle-description {
-      font-size: 0.95rem;
-      line-height: 1.4;
-      color: #1a202c;
+  .founders-head .mono { color: var(--muted); padding-top: 6px; }
+  .founders-head .mono b { color: var(--gold); font-weight: 500; margin-right: 12px; }
+  .founders-head h2 {
+      font-size: clamp(1.9rem, 3.4vw, 2.8rem);
       font-weight: 400;
-      position: relative;
-      z-index: 3;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      max-width: 22ch;
+      margin-bottom: 14px;
   }
+  .founders-head p { color: #2d3748; font-size: 1.05rem; line-height: 1.7; max-width: 60ch; }
 
-  /* Animation for circles */
-  @keyframes float {
-      0%, 100% {
-          transform: translateY(0px);
-      }
-      50% {
-          transform: translateY(-10px);
-      }
+  .founders-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; }
+  .founder-card { display: block; text-decoration: none; color: inherit; }
+  .founder-photo { aspect-ratio: 4 / 5; position: relative; overflow: hidden; background: #eef1f7; margin-bottom: 14px; }
+  .founder-overlay { position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center; background: rgba(47, 74, 138, 0.9); opacity: 0; transition: opacity 0.3s ease; }
+  .founder-overlay span { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 600; padding: 10px 16px; border-radius: 25px; background: rgba(255, 255, 255, 0.2); }
+  .founder-photo .founder-overlay img { width: 22px; height: 22px; filter: brightness(0) invert(1); transform: none; }
+  @media (hover: hover) and (min-width: 1025px) { .founder-card:hover .founder-overlay { opacity: 1; } }
+  @media (max-width: 1024px) { .founder-overlay { display: none; } }
+  .founder-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .founder-card:hover .founder-photo img { transform: scale(1.03); }
+  .founder-name { font-size: 1.05rem; font-weight: 500; color: var(--ink); }
+  .founder-role { font-family: "IBM Plex Mono", monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin: 4px 0 6px; }
+  .founder-meta { font-size: 0.88rem; color: var(--muted); line-height: 1.4; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+      .about-hero { min-height: 70vh; }
+      .about-hero .wrap { padding-top: 120px; padding-bottom: 48px; }
+      .about-block { padding: 70px 0; }
+      .about-row, .why-head, .founders-head { grid-template-columns: 1fr; gap: 16px; }
+      .about-band { min-height: 56vh; }
+      .about-band::after { background: linear-gradient(180deg, rgba(27,42,82,0.35) 0%, rgba(27,42,82,0.85) 100%); }
+      .why-section { padding: 70px 0; }
+      .why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .why-item { border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 18px; }
+      .strip img { height: 240px; }
+      .founders-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
-
-  .ktp-circle:nth-child(1) {
-      animation: float 3s ease-in-out infinite;
-      animation-delay: 0s;
-  }
-
-  .ktp-circle:nth-child(2) {
-      animation: float 3s ease-in-out infinite;
-      animation-delay: 0.6s;
-  }
-
-  .ktp-circle:nth-child(3) {
-      animation: float 3s ease-in-out infinite;
-      animation-delay: 1.2s;
-  }
-
-  .ktp-circle:nth-child(4) {
-      animation: float 3s ease-in-out infinite;
-      animation-delay: 1.8s;
-  }
-
-  .ktp-circle:nth-child(5) {
-      animation: float 3s ease-in-out infinite;
-      animation-delay: 2.4s;
-  }
-
-  /* Responsive design for circles */
-  @media (max-width: 768px) {
-      .why-ktp-circles {
-          flex-wrap: nowrap;
-          justify-content: space-between;
-          gap: 4px;
-          padding: 15px 10px;
-          max-width: 100%;
-      }
-
-      .why-ktp-circles::before {
-          display: none;
-      }
-
-      .why-ktp-content h2 {
-          font-size: 2.8rem;
-          margin-bottom: 20px;
-      }
-
-      .ktp-circle {
-          width: calc(50% - 2px);
-          height: 250px;
-          padding: 20px;
-          margin: 0;
-          min-width: 220px;
-      }
-
-      .circle-icon {
-          font-size: 3rem;
-      }
-
-      .circle-title {
-          font-size: 1.25rem;
-      }
-
-      .circle-description {
-          font-size: 0.95rem;
-      }
-  }
-
-  /* Small screen responsive design */
   @media (max-width: 480px) {
-      .why-ktp-circles {
-          flex-direction: column;
-          gap: 20px;
-          padding: 20px 10px;
-      }
-
-      .ktp-circle {
-          width: 100%;
-          height: 200px;
-          padding: 20px;
-          margin: 0;
-      }
-  }
-
-  /* Dark mode support */
-  @media (prefers-color-scheme: dark) {
-      :root {
-          --white: #0f172a;
-          --black: #f8fafc;
-          --gray: #1e293b;
-          --light-gray: #334155;
-          --text-secondary: #cbd5e1;
-          --text-muted: #94a3b8;
-          --border: #475569;
-      }
+      .why-grid { grid-template-columns: 1fr; }
+      .founders-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
   }
 </style>
-<title>About Kappa Theta Pi | Vanderbilt’s Technology Fraternity</title>
+
+
 <meta name="description" content="Learn about Kappa Theta Pi at Vanderbilt, a professional technology fraternity supporting students in computer science, engineering, and innovation at the Wond’ry.">
 <link rel="canonical" href="https://ktpvandy.org/about">
 <meta name="keywords" content="Kappa Theta Pi Vanderbilt, Vanderbilt computer science, Vanderbilt School of Engineering, Vanderbilt School of Engineering reviews, Vanderbilt technology, Vanderbilt Wond'ry, the Wond'ry, Vanderbilt engineering majors, Vanderbilt mechanical engineering, Vanderbilt aerospace engineering, Vanderbilt electrical engineering">
@@ -924,220 +349,144 @@
 
 
 <body>
-<!-- Animated background -->
-<div class="bg-decoration">
-                    </div>
 
-<!-- Header will be injected here by header.js -->
-
-<main class="main-content">
-  <!-- Hero Section -->
-  <section class="hero-section">
-      <h1 class="page-title">About Kappa Theta Pi</h1>
-      <p class="page-subtitle">Building the future of technology through brotherhood, innovation, and professional excellence</p>
+<main>
+  <!-- HERO -->
+  <section class="about-hero">
+      <img src="images-compressed/home3.jpeg" alt="KTP brothers on campus" fetchpriority="high">
+      <div class="wrap">
+          <span class="mono">About / ΚΘΠ Rho Chapter</span>
+          <h1>Vanderbilt's Professional Technology Fraternity</h1>
+          <p>A brotherhood for students who build with technology, whatever they study.</p>
+      </div>
   </section>
 
-    <!-- President's Welcome Section -->
-    <section class="presidential-section">
-        <div class="presidential-image-container">
-                            <img src="assets/founders-images/LudvigDenkerHS.jpeg" alt="Ludvig Denker - President" class="presidential-image" loading="lazy">
-        </div>
-        <div class="presidential-content">
-            <h2>A Presidential Welcome</h2>
-            <p>
-                Welcome to Vandy KTP! My name is Ludvig, and I am a co-founder of KTP's Rho Chapter and the current President.
-            </p>
-            <p>
-                KTP holds a special part of my Vanderbilt experience and is a truly unique organization. It is in a class of its own among student organizations at Vanderbilt, and it’s been a privilege to be a co-founder and now President of Vanderbilt’s only pre-professional technology fraternity.
-            </p>
-            <p>
-                KTP comprises of many different aspects centered around 4 pillars: Professional Development, Enrichment, Academic Support, and Social Events. We host numerous events each semester within each category, and our brothers truly enjoy and benefit from everything we do.
-            </p>
-            <p>
-                On behalf of all of us at KTP, I want to thank you for checking out our website and learning more about the organization. We conduct rush at the beginning of each semester and encourage everyone with an interest in tech to apply! We hope to get to know you soon!
-            </p>
-        </div>
-
-    <!-- Founder's Welcome Section -->
-  <section class="presidential-section">
-      <div class="presidential-image-container">
-          <img src="assets/founders-images/HaleyHS.JPG" alt="Haley Kahn - Founder" class="presidential-image" loading="lazy">
-                      </div>
-      <div class="presidential-content">
-          <h2>A Founder's Welcome</h2>
-          <p>
-              Welcome to KTP's official website! My name is Haley Kahn, and I am a founder of KTP's Rho Chapter. I decided to found KTP at Vandy in order to fill a whitespace. I noticed that despite CS being one of the largest and fastest-growing majors at Vandy, there lacked a community for tech-oriented individuals.
-          </p>
-          <p>
-              While there existed organizations that focused specifically on programming or niches in computer science, there was little in the way of professional development combined with a social community. In KTP's short time as an organization on campus, we have welcomed many new members and held official recruitment events, workshops, speaker events, and events with recruiters!
-          </p>
-          <p>
-              Being a pre-professional fraternity, we value having amazing opportunities for our members. This means connecting with faculty, networking with other students, and even getting amazing speakers from Fortune 500 companies to come speak and connect with us. As professional as we are, we also want to build a social organization here on campus!
-          </p>
-          <p>
-              We have hosted really fun events for our members such as Big-Little, bonding activities, study breaks, and a date party! While we wanted to give members opportunities for professional development, building a community of supportive brothers was a big priority when creating this organization.
-          </p>
-          <p>
-              As president, I hope to leave a lasting impression on the Vanderbilt community. With new KTP chapters popping up around the country, I am excited to help grow KTP both nationally and here at Vanderbilt. I hope you'll follow our journey and consider joining us!
-                </p>
-                    </div>
-  </section>
-        
-  <!-- Why KTP Section -->
-  <section class="why-ktp-section">
-            <div class="why-ktp-content">
-          <h2>Why KTP?</h2>
-          
-                        <div class="why-ktp-circles">
-              <!-- Circle 1: Professional Development -->
-              <div class="ktp-circle">
-                  <div class="circle-content">
-                      <div class="circle-icon">💼</div>
-                      <h3 class="circle-title">Professional Development</h3>
-                                              <p class="circle-description">
-                           Exclusive workshops, seminars, and networking events to build essential skills and connect with industry leaders
-                        </p>
-                          </div>
-                      </div>
-
-              <!-- Circle 2: Networking Opportunities -->
-              <div class="ktp-circle">
-                  <div class="circle-content">
-                      <div class="circle-icon">🤝</div>
-                      <h3 class="circle-title">Networking Opportunities</h3>
-                                              <p class="circle-description">
-                          Connect with fellow members, alumni, and recruiters from top companies for internships and job placements
-                        </p>
-                    </div>
-                  </div>
-
-              <!-- Circle 3: Community and Support -->
-              <div class="ktp-circle">
-                  <div class="circle-content">
-                      <div class="circle-icon">🏠</div>
-                      <h3 class="circle-title">Community & Support</h3>
-                                              <p class="circle-description">
-                          Join a supportive brotherhood fostering personal growth, mutual respect, and lifelong friendships
-                        </p>
-                  </div>
-                    </div>
-                      
-              <!-- Circle 4: Leadership Experience -->
-              <div class="ktp-circle">
-                  <div class="circle-content">
-                      <div class="circle-icon">⭐</div>
-                      <h3 class="circle-title">Leadership Experience</h3>
-                                              <p class="circle-description">
-                          Develop organizational and management skills through fraternity leadership roles preparing you for career challenges
-                        </p>
-                    </div>
-                  </div>
-
-              <!-- Circle 5: Service and Giving Back -->
-              <div class="ktp-circle">
-                  <div class="circle-content">
-                      <div class="circle-icon">❤️</div>
-                      <h3 class="circle-title">Service & Giving Back</h3>
-                                              <p class="circle-description">
-                          Engage in meaningful community service projects making a positive impact beyond technology
-                        </p>
-                </div>
+  <!-- 01 / KAPPA THETA PI -->
+  <section class="about-block">
+      <div class="wrap">
+          <div class="about-row">
+              <div class="mono"><b>01</b>Kappa Theta Pi</div>
+              <div>
+                  <h2>The First Professional Technology Fraternity in the Country</h2>
+                  <p>Kappa Theta Pi (ΚΘΠ) was founded on January 10, 2012 at the University of Michigan as a co-ed, pre-professional fraternity for students who are passionate about technology, regardless of major. Chapters across the country share one mission: develop the next generation of technologists through a brotherhood built on professional development, alumni connections, social growth, technical advancement, and academic support.</p>
+                  <p>Members are engineers, computer scientists, data scientists, designers, economists, and entrepreneurs. What unites them is a shared interest in building with technology and a commitment to helping each other succeed.</p>
               </div>
-            </div>
           </div>
-      </section>
-      </main>
-      
-<!-- Footer will be injected here by footer.js -->
+      </div>
+  </section>
 
-<!-- Enhanced JavaScript -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-      // Interactive SVG benefit points - simplified without animations
-      const benefitPoints = document.querySelectorAll('.benefit-point');
-      const benefitDetails = document.querySelectorAll('.benefit-detail');
-      
-      benefitPoints.forEach(point => {
-          const benefitType = point.getAttribute('data-benefit');
-          const detailElement = document.getElementById(`${benefitType}-detail`);
-          
-          if (detailElement) {
-              point.addEventListener('mouseenter', () => {
-                  // Hide all other details
-                  benefitDetails.forEach(detail => {
-                      if (detail !== detailElement) {
-                          detail.classList.remove('active');
-                      }
-                  });
-                  
-                  // Show current detail
-                  detailElement.classList.add('active');
-              });
-              
-              point.addEventListener('mouseleave', () => {
-                  setTimeout(() => {
-                      if (!detailElement.matches(':hover')) {
-                          detailElement.classList.remove('active');
-                      }
-                  }, 100);
-              });
-              
-              // Keep detail visible when hovering over it
-              detailElement.addEventListener('mouseenter', () => {
-                  detailElement.classList.add('active');
-              });
-              
-              detailElement.addEventListener('mouseleave', () => {
-                  detailElement.classList.remove('active');
-              });
-          }
-      });
+  <!-- 02 / THE RHO CHAPTER -->
+  <section class="about-block">
+      <div class="wrap">
+          <div class="about-row">
+              <div class="mono"><b>02</b>The Rho Chapter</div>
+              <div>
+                  <h2>Vanderbilt's Only Professional Technology Fraternity, Founded in 2023</h2>
+                  <p>Our brothers study Computer Science, Electrical and Computer Engineering, Data Science, Mathematics, Human and Organizational Development, Economics, and more, across the School of Engineering, the College of Arts and Science, and Peabody College.</p>
+                  <p>Each semester the chapter runs technical workshops, resume and interview preparation, speaker and recruiter events, project teams, and social programming, alongside a structured new-member education process. We recruit at the start of every fall and spring semester.</p>
+              </div>
+          </div>
+      </div>
+  </section>
 
-      // Add click interactions for mobile
-      if (window.innerWidth <= 768) {
-          benefitPoints.forEach(point => {
-              point.addEventListener('click', (e) => {
-                  e.preventDefault();
-                  const benefitType = point.getAttribute('data-benefit');
-                  const detailElement = document.getElementById(`${benefitType}-detail`);
-                  
-                  // Toggle current detail
-                  if (detailElement) {
-                      const isActive = detailElement.classList.contains('active');
-                      
-                      // Hide all details
-                      benefitDetails.forEach(detail => {
-                          detail.classList.remove('active');
-                      });
-                      
-                      // Show current detail if it wasn't active
-                      if (!isActive) {
-                          detailElement.classList.add('active');
-                          
-                          // Auto-hide after 4 seconds on mobile
-                          setTimeout(() => {
-                              detailElement.classList.remove('active');
-                          }, 4000);
-                      }
-                  }
-              });
-          });
-      }
+  <!-- 03 / BROTHERHOOD image band -->
+  <section class="about-band">
+      <img src="images-compressed/ktp4.jpg" alt="KTP brothers at formal">
+      <div class="wrap">
+          <span class="mono"><b>03</b>Brotherhood</span>
+          <h2>Professional by Design. Close by Default</h2>
+          <p>Formals, retreats, big/little, study groups, and late nights before a hackathon demo. The professional side only works because the people do.</p>
+          <a class="more" href="/ktp-in-action">See KTP in action <span aria-hidden="true">&rarr;</span></a>
+      </div>
+  </section>
 
-      // Add resize handler for responsive behavior
-      let resizeTimeout;
-      window.addEventListener("resize", () => {
-          clearTimeout(resizeTimeout);
-          resizeTimeout = setTimeout(() => {
-              // Recalculate benefit detail positions if needed
-              const details = document.querySelectorAll(".benefit-detail");
-              details.forEach(detail => {
-                  detail.classList.remove('active');
-              });
-          }, 250);
-  });
-});
-</script>
+  <!-- 04 / WHY KTP (navy) -->
+  <section class="why-section">
+      <div class="wrap">
+          <div class="why-head">
+              <div class="mono"><b>04</b>Why KTP</div>
+              <h2>What You Get Out of It</h2>
+          </div>
+          <div class="why-grid">
+              <div class="why-item"><span class="why-n">01</span><h3>Professional Development</h3><p>Workshops, mock interviews, and recruiting prep built for tech.</p></div>
+              <div class="why-item"><span class="why-n">02</span><h3>Network</h3><p>Brothers, alumni, and recruiters at the companies you want to work for.</p></div>
+              <div class="why-item"><span class="why-n">03</span><h3>Community</h3><p>A brotherhood that shows up for each other, in class and out of it.</p></div>
+              <div class="why-item"><span class="why-n">04</span><h3>Leadership</h3><p>Real responsibility running a young chapter, from committees to the Executive Board.</p></div>
+              <div class="why-item"><span class="why-n">05</span><h3>Service</h3><p>Projects that put our skills to work beyond campus.</p></div>
+          </div>
+      </div>
+  </section>
+
+  <!-- 05 / PHOTO STRIP (scrolls horizontally) -->
+  <section class="strip-section">
+      <div class="wrap">
+          <div class="strip-head">
+              <div class="mono"><b>05</b>Life in the chapter</div>
+              <a href="/ktp-in-action">All photos <span aria-hidden="true">&rarr;</span></a>
+          </div>
+      </div>
+      <div class="wrap">
+          <div class="strip" aria-label="Photos of KTP brothers">
+              <img src="images/in_action_imgs/20260329_150041_BC8F52.jpeg" alt="Brothers at a spring social" loading="lazy">
+              <img src="images-compressed/home1.jpeg" alt="Brothers on campus" loading="lazy">
+              <img src="images/in_action_imgs/20260403_192654_B14B1B.jpeg" alt="Brothers at an event" loading="lazy">
+              <img src="images-compressed/ktp6.jpg" alt="KTP event" loading="lazy">
+              <img src="images/in_action_imgs/20260402_000726_B4C8EB.jpeg" alt="Brothers hanging out" loading="lazy">
+              <img src="images/in_action_imgs/20250403_205628_B47813.jpg" alt="KTP event" loading="lazy">
+              <img src="images/in_action_imgs/20260418_210735_B0D1E4.jpeg" alt="Brothers at an event" loading="lazy">
+              <img src="images-compressed/ktp8.jpg" alt="KTP event" loading="lazy">
+              <img src="images/in_action_imgs/20241118_142052_B5668F.jpg" alt="KTP event" loading="lazy">
+              <img src="images-compressed/ktp9.jpg" alt="KTP event" loading="lazy">
+          </div>
+          <div class="strip-hint">Scroll &rarr;</div>
+      </div>
+  </section>
+
+  <!-- 06 / FOUNDERS -->
+  <section class="founders-section">
+      <div class="wrap">
+          <div class="founders-head">
+              <div class="mono"><b>06</b>Founders</div>
+              <div>
+                  <h2>Started by Students Who Wanted a Tech Community on Campus</h2>
+                  <p>The Rho Chapter was chartered in 2023 by a group of Vanderbilt students who saw that one of the fastest-growing majors on campus had no professional community to call its own.</p>
+              </div>
+          </div>
+          <div class="founders-grid">
+              <a class="founder-card" href="https://www.linkedin.com/in/haley-kahn/" target="_blank" rel="noopener noreferrer">
+                  <div class="founder-photo"><img src="assets/founders-images-compressed/HaleyHS.JPG" alt="Haley Kahn" loading="lazy"><div class="founder-overlay"><span><img src="assets/brother-images-compressed/linkedin.png" alt="">View Profile</span></div></div>
+                  <div class="founder-name">Haley Kahn</div>
+                  <div class="founder-role">Founder</div>
+                  <div class="founder-meta">Ocean City, NJ<br>Computer Science &amp; Applied Math</div>
+              </a>
+              <a class="founder-card" href="https://www.linkedin.com/in/ludvig-denker/" target="_blank" rel="noopener noreferrer">
+                  <div class="founder-photo"><img src="assets/founders-images-compressed/LudvigDenkerHS.jpeg" alt="Ludvig Denker" loading="lazy"><div class="founder-overlay"><span><img src="assets/brother-images-compressed/linkedin.png" alt="">View Profile</span></div></div>
+                  <div class="founder-name">Ludvig Denker</div>
+                  <div class="founder-role">Founder</div>
+                  <div class="founder-meta">Stockholm, Sweden &amp; Nashville, TN<br>Math &amp; Computer Science</div>
+              </a>
+              <a class="founder-card" href="https://www.linkedin.com/in/elizabethtuckerr/" target="_blank" rel="noopener noreferrer">
+                  <div class="founder-photo"><img src="assets/founders-images-compressed/LizzieHS.jpg" alt="Lizzie Tucker" loading="lazy"><div class="founder-overlay"><span><img src="assets/brother-images-compressed/linkedin.png" alt="">View Profile</span></div></div>
+                  <div class="founder-name">Lizzie Tucker</div>
+                  <div class="founder-role">Founder</div>
+                  <div class="founder-meta">St. Louis, MO<br>Computer Science &amp; Political Science</div>
+              </a>
+              <a class="founder-card" href="https://www.linkedin.com/in/parker-palermo/" target="_blank" rel="noopener noreferrer">
+                  <div class="founder-photo"><img src="assets/founders-images-compressed/ParkerHS.jpg" alt="Parker Palermo" loading="lazy"><div class="founder-overlay"><span><img src="assets/brother-images-compressed/linkedin.png" alt="">View Profile</span></div></div>
+                  <div class="founder-name">Parker Palermo</div>
+                  <div class="founder-role">Founder</div>
+                  <div class="founder-meta">Boca Raton, FL<br>Computer Science &amp; Applied Math</div>
+              </a>
+              <a class="founder-card" href="https://www.linkedin.com/in/brodyjghaar/" target="_blank" rel="noopener noreferrer">
+                  <div class="founder-photo"><img src="assets/founders-images-compressed/BrodyHaarHS.JPG" alt="Brody Haar" loading="lazy"><div class="founder-overlay"><span><img src="assets/brother-images-compressed/linkedin.png" alt="">View Profile</span></div></div>
+                  <div class="founder-name">Brody Haar</div>
+                  <div class="founder-role">Founder</div>
+                  <div class="founder-meta">Peoria, AZ<br>Computer Science, Applied Math &amp; German Studies</div>
+              </a>
+          </div>
+      </div>
+  </section>
+</main>
 
 <!-- Header Component -->
 <script src="js/header.js"></script>

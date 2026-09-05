@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://tile.openstreetmap.org https://cdnjs.cloudflare.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nationals | Kappa Theta Pi Vanderbilt</title>
+  <meta name="description" content="Kappa Theta Pi is the nation's first professional technology fraternity, with chapters at universities across the United States. Explore the national map of chapters.">
+  <link rel="canonical" href="https://ktpvandy.org/nationals">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Default favicon (root, ICO format for widest support) -->
+<link rel="icon" href="/faviconktp.ico" sizes="any">
+
+<!-- PNG favicons for modern browsers and Google Search -->
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/images/favicon-48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96.png">
+<link rel="icon" type="image/png" sizes="180x180" href="/images/favicon-180.png">
+
+<meta name="msapplication-TileColor" content="#2a2a2a">
+<meta name="theme-color" content="#2a2a2a">
+<link rel="manifest" href="/manifest.json">
+
+  <!-- Cache Manager for instant loading -->
+  <script src="js/cache-manager.js"></script>
+
+  <!-- Header / Footer Styles -->
+  <link rel="stylesheet" type="text/css" href="css/header-styles/header.css">
+  <link rel="stylesheet" type="text/css" href="css/footer-styles/footer.css">
+  <link rel="stylesheet" href="css/editorial.css">
+
+  <!-- Leaflet (map) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha384-c6Rcwz4e4CITMbu/NBmnNS8yN2sC3cUElMEMfP3vqqKFp7GOYaaBBCqmaWBjmkjb" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha384-NElt3Op+9NBMCYaef5HxeJmU4Xeard/Lku8ek6hoPTvYkQPh3zLIrJP7KiRocsxO" crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --primary: #2F4A8A;
+      --white: #ffffff;
+      --black: #000000;
+      --gray: #f4f4f4;
+    }
+
+    html {
+      overflow-y: scroll;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    html::-webkit-scrollbar { display: none; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto', 'Arial', sans-serif;
+      font-weight: 300;
+      background-color: #f3f6fc;
+      color: var(--black);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Beats Bootstrap's body background, which loads after this sheet */
+    html body { background-color: #f3f6fc; }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; }
+
+    section { padding: 60px 20px; }
+
+    /* HERO */
+    .hero {
+      padding: 80px 20px 20px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.7rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+    .hero p {
+      max-width: 800px;
+      margin: auto;
+      color: #444;
+      font-size: 1.1rem;
+    }
+
+    /* STATS */
+    .nat-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin: 32px auto 0;
+    }
+    .nat-stat { text-align: left; }
+    .nat-stat-num {
+      display: block;
+      font-size: 2.4rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+    .nat-stat-label {
+      display: block;
+      font-family: "IBM Plex Mono", monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 4px;
+    }
+
+    /* DARK REGION: map + chapters */
+    .nat-dark {
+      background: #1b2a52;
+      color: #e8eaf0;
+      padding: 70px 20px 80px;
+    }
+    .nat-wrap { max-width: 1180px; margin: 0 auto; }
+
+    .mono {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      color: #9aa6c4;
+    }
+
+    .nat-head {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+      align-items: end;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 36px;
+    }
+    .nat-head .mono { grid-column: 1 / -1; margin-bottom: 14px; }
+    .nat-head h2 {
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: #ffffff;
+    }
+    .nat-head p { color: #b6bdd0; font-size: 1.05rem; line-height: 1.65; max-width: 520px; }
+
+    /* MAP */
+    #chapter-map {
+      height: 560px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: #1a2a52;
+      z-index: 0;
+    }
+    /* Dark basemap: invert the light OSM tiles */
+    .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) grayscale(1) brightness(0.62) contrast(1.05); }
+    .leaflet-container { background: #1a2a52; }
+    .leaflet-control-zoom a { background: #243766 !important; color: #e8eaf0 !important; border-color: rgba(255,255,255,0.18) !important; }
+    .leaflet-control-attribution { background: rgba(27,42,82,0.85) !important; color: #6f7a97 !important; font-family: "IBM Plex Mono", monospace; font-size: 10px !important; }
+    .leaflet-control-attribution a { color: #9aa6c4 !important; }
+    .leaflet-popup-content-wrapper { background: #243766; color: #e8eaf0; border: 1px solid rgba(255,255,255,0.18); border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .leaflet-popup-tip { background: #243766; }
+    .leaflet-popup-content { font-family: "Roboto", "Arial", sans-serif; margin: 12px 14px; line-height: 1.4; }
+    .leaflet-popup-content .pp-school { font-weight: 500; color: #ffffff; font-size: 1rem; }
+    .leaflet-popup-content .pp-meta { font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #9aa6c4; margin-top: 4px; }
+    .leaflet-popup-content .pp-meta b { color: #c8a951; font-weight: 500; }
+
+    .map-legend {
+      display: flex;
+      gap: 28px;
+      margin: 14px 0 0;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6f7a97;
+    }
+    .map-legend span { display: inline-flex; align-items: center; gap: 8px; }
+    .legend-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+    .legend-dot.chapter { background: #7c8fd1; }
+    .legend-dot.rho { background: #c8a951; }
+
+    /* CHAPTER LIST */
+    #chapters { padding-top: 70px; }
+    .chapter-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 64px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+    }
+    .chapter-row {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 18px;
+      padding: 14px 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .chapter-row:hover { background: rgba(255, 255, 255, 0.04); }
+    .chapter-letters {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: #ffffff;
+      letter-spacing: 0.04em;
+    }
+    .chapter-row.is-rho .chapter-letters { color: #c8a951; }
+    .chapter-school { font-size: 0.98rem; font-weight: 400; color: #e8eaf0; line-height: 1.3; }
+    .chapter-meta {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6f7a97;
+      white-space: nowrap;
+      text-align: right;
+    }
+    .chapter-meta b { color: #9aa6c4; font-weight: 400; }
+
+    .nat-footnote {
+      margin-top: 28px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6f7a97;
+    }
+    .nat-footnote a { color: #9aa6c4; border-bottom: 1px solid rgba(255,255,255,0.25); }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      #chapter-map { height: 420px; }
+      .nat-head { grid-template-columns: 1fr; gap: 14px; }
+      .chapter-list { grid-template-columns: 1fr; column-gap: 0; }
+      .chapter-row { grid-template-columns: 52px minmax(0, 1fr); }
+      .chapter-meta { grid-column: 2; text-align: left; white-space: normal; }
+      .nat-stats { gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="ed-head">
+  <div class="ed-wrap">
+    <div class="ed-kicker">Nationals / Kappa Theta Pi</div>
+    <h1 class="ed-h1">One Fraternity. Thirty-One Chapters</h1>
+    <p>Kappa Theta Pi is the nation's first professional technology fraternity. Founded at the University of Michigan in 2012, it now spans the country. Vanderbilt is home to the Rho Chapter.</p>
+  <div class="nat-stats" style="justify-content:flex-start; margin-top: 36px;">
+    <div class="nat-stat"><span class="nat-stat-num" id="stat-chapters">—</span><span class="nat-stat-label">Chapters</span></div>
+    <div class="nat-stat"><span class="nat-stat-num" id="stat-states">—</span><span class="nat-stat-label">States</span></div>
+    <div class="nat-stat"><span class="nat-stat-num">2012</span><span class="nat-stat-label">Founded</span></div>
+  </div>
+  </div>
+</section>
+
+<div class="nat-dark">
+  <div class="nat-wrap">
+    <div class="nat-head">
+      <div class="mono">Chapters / <span id="stat-chapters-2">31</span></div>
+      <h2>Coast to Coast</h2>
+      <p>Every active chapter of Kappa Theta Pi. Select a chapter to locate it on the map.</p>
+    </div>
+
+    <section id="map-section" style="padding:0;">
+      <div id="chapter-map" role="region" aria-label="Map of Kappa Theta Pi chapters"></div>
+      <div class="map-legend">
+        <span><i class="legend-dot chapter"></i> Chapter</span>
+        <span><i class="legend-dot rho"></i> Ρ — Vanderbilt</span>
+      </div>
+    </section>
+
+    <section id="chapters" style="padding-left:0;padding-right:0;padding-bottom:0;">
+      <div class="chapter-list" id="chapter-grid"></div>
+      <p class="nat-footnote">Chapter list via <a href="https://www.kappathetapi.org/chapters" target="_blank" rel="noopener noreferrer">kappathetapi.org</a></p>
+    </section>
+  </div>
+</div>
+
+<!-- Header Component -->
+<script src="js/header.js"></script>
+
+<!-- Footer Component -->
+<script src="js/footer.js"></script>
+
+<script>
+  // Single source of truth for the map and the grid.
+  // To add a chapter: append an entry (greek letters, chapter name, school, city, state, year, lat, lng).
+  const CHAPTERS = [
+    ["Α",  "Alpha",         "University of Michigan",                     "Ann Arbor",       "MI", 2012, 42.2780,  -83.7382],
+    ["Β",  "Beta",          "University of Pittsburgh",                   "Pittsburgh",      "PA", null, 40.4406,  -79.9959],
+    ["Γ",  "Gamma",         "Rose-Hulman Institute of Technology",        "Terre Haute",     "IN", null, 39.4667,  -87.4139],
+    ["Δ",  "Delta",         "Syracuse University",                        "Syracuse",        "NY", 2017, 43.0481,  -76.1474],
+    ["Ε",  "Epsilon",       "University of Maryland",                     "College Park",    "MD", 2017, 38.9897,  -76.9378],
+    ["Ζ",  "Zeta",          "The College of New Jersey",                  "Ewing",           "NJ", 2019, 40.2698,  -74.7999],
+    ["Η",  "Eta",           "University of North Carolina at Chapel Hill","Chapel Hill",     "NC", 2020, 35.9132,  -79.0558],
+    ["Θ",  "Theta",         "University of Chicago",                      "Chicago",         "IL", 2020, 41.7886,  -87.5987],
+    ["Ι",  "Iota",          "University of Texas at Austin",              "Austin",          "TX", 2022, 30.2849,  -97.7341],
+    ["Κ",  "Kappa",         "Northwestern University",                    "Evanston",        "IL", 2022, 42.0565,  -87.6753],
+    ["Λ",  "Lambda",        "Boston University",                          "Boston",          "MA", 2022, 42.3505,  -71.1054],
+    ["Μ",  "Mu",            "University of Texas at Dallas",              "Richardson",      "TX", 2023, 32.9857,  -96.7502],
+    ["Ν",  "Nu",            "University of Colorado Boulder",             "Boulder",         "CO", 2023, 40.0076, -105.2659],
+    ["Ρ",  "Rho",           "Vanderbilt University",                      "Nashville",       "TN", 2023, 36.1447,  -86.8027],
+    ["Σ",  "Sigma",         "University of Miami",                        "Coral Gables",    "FL", 2023, 25.7215,  -80.2684],
+    ["Τ",  "Tau",           "University of Southern California",          "Los Angeles",     "CA", 2023, 34.0224, -118.2851],
+    ["Υ",  "Upsilon",       "Lewis University",                           "Romeoville",      "IL", null, 41.6475,  -88.0895],
+    ["Φ",  "Phi",           "University of Georgia",                      "Athens",          "GA", 2024, 33.9480,  -83.3773],
+    ["Χ",  "Chi",           "Nova Southeastern University",               "Fort Lauderdale", "FL", 2024, 26.0818,  -80.2476],
+    ["Ψ",  "Psi",           "Cameron University",                         "Lawton",          "OK", 2024, 34.6036,  -98.3959],
+    ["Ω",  "Omega",         "Northeastern University",                    "Boston",          "MA", 2024, 42.3398,  -71.0892],
+    ["ΑΑ", "Alpha Alpha",   "University of Central Arkansas",             "Conway",          "AR", 2024, 35.0787,  -92.4586],
+    ["ΑΒ", "Alpha Beta",    "Rutgers University–New Brunswick",           "New Brunswick",   "NJ", 2024, 40.5008,  -74.4474],
+    ["ΑΓ", "Alpha Gamma",   "Virginia Tech",                              "Blacksburg",      "VA", 2024, 37.2284,  -80.4234],
+    ["ΑΔ", "Alpha Delta",   "Ohio State University",                      "Columbus",        "OH", 2024, 40.0067,  -83.0305],
+    ["ΑΕ", "Alpha Epsilon", "Cornell University",                         "Ithaca",          "NY", 2025, 42.4534,  -76.4735],
+    ["ΑΖ", "Alpha Zeta",    "University of Virginia",                     "Charlottesville", "VA", 2025, 38.0336,  -78.5080],
+    ["ΑΗ", "Alpha Eta",     "Indiana University Bloomington",             "Bloomington",     "IN", 2025, 39.1682,  -86.5230],
+    ["ΑΘ", "Alpha Theta",   "University of South Carolina",               "Columbia",        "SC", 2025, 33.9937,  -81.0299],
+    ["ΑΙ", "Alpha Iota",    "University of Washington",                   "Seattle",         "WA", 2025, 47.6553, -122.3035],
+    ["ΑΚ", "Alpha Kappa",   "Purdue University",                          "West Lafayette",  "IN", null, 40.4237,  -86.9212],
+  ];
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Stats
+    document.getElementById("stat-chapters").textContent = CHAPTERS.length;
+    document.getElementById("stat-states").textContent = new Set(CHAPTERS.map(c => c[4])).size;
+
+    // Map
+    const map = L.map("chapter-map", { scrollWheelZoom: false }).setView([37.8, -93.5], 4);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 18
+    }).addTo(map);
+
+    const markerStyle = (isRho) => ({
+      radius: isRho ? 9 : 7,
+      color: "#1b2a52",
+      weight: 2,
+      fillColor: isRho ? "#c8a951" : "#7c8fd1",
+      fillOpacity: 0.95
+    });
+
+    const markers = [];
+    CHAPTERS.forEach((c, i) => {
+      const [letters, name, school, city, state, year, lat, lng] = c;
+      const isRho = name === "Rho";
+      const m = L.circleMarker([lat, lng], markerStyle(isRho)).addTo(map);
+      m.bindPopup(
+        `<div class="pp-school">${school}</div>` +
+        `<div class="pp-meta"><b>${letters}</b> · ${city}, ${state}${year ? " · Est. " + year : ""}</div>`
+      );
+      markers[i] = m;
+    });
+
+    // Chapter list (Greek letters only)
+    const grid = document.getElementById("chapter-grid");
+    CHAPTERS.forEach((c, i) => {
+      const [letters, name, school, city, state, year] = c;
+      const isRho = name === "Rho";
+      const row = document.createElement("div");
+      row.className = "chapter-row" + (isRho ? " is-rho" : "");
+      row.setAttribute("role", "button");
+      row.setAttribute("tabindex", "0");
+      row.innerHTML =
+        `<div class="chapter-letters">${letters}</div>` +
+        `<div class="chapter-school">${school}</div>` +
+        `<div class="chapter-meta">${city}, ${state}${year ? " <b>· " + year + "</b>" : ""}</div>`;
+      const go = () => {
+        document.getElementById("chapter-map").scrollIntoView({ behavior: "smooth", block: "center" });
+        map.flyTo([c[6], c[7]], 7, { duration: 0.8 });
+        setTimeout(() => markers[i].openPopup(), 900);
+      };
+      row.addEventListener("click", go);
+      row.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+      grid.appendChild(row);
+    });
+    const sc2 = document.getElementById("stat-chapters-2"); if (sc2) sc2.textContent = CHAPTERS.length;
+  });
+</script>
+
+</body>
+</html>

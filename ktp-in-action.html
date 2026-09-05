@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://tile.openstreetmap.org https://cdnjs.cloudflare.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KTP in Action - Kappa Theta Pi Vanderbilt</title>
+  <title>KTP in Action | Kappa Theta Pi Vanderbilt</title>
 
 <!-- Default favicon (root, ICO format for widest support) -->
 <link rel="icon" href="/faviconktp.ico" sizes="any">
@@ -20,11 +21,12 @@
 <meta name="theme-color" content="#2a2a2a">
 
 <link rel="manifest" href="/manifest.json">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
 
   <link rel="stylesheet" type="text/css" href="css/header-styles/header.css">
   <link rel="stylesheet" type="text/css" href="css/footer-styles/footer.css">
+  <link rel="stylesheet" href="css/editorial.css">
 
   <meta name="description" content="See how Kappa Theta Pi drives innovation at Vanderbilt through technology projects, computer science, and engineering activities at the Wond’ry.">
   <link rel="canonical" href="https://ktpvandy.org/ktp-in-action">
@@ -33,13 +35,10 @@
 ,Vanderbilt computer science,Vandy AXO, Vandy ADPi, Vandy ChiO, Vandy TriDelt, Vandy Theta, Vandy KD, Vandy KKG, Vandy PiPhi, Vandy ZTA, Vandy AEPi, Vandy ATO, Vandy Beta, Vandy BYX, Vandy KA, Vandy KappaSig, Vandy LambdaChi, Vandy PhiDelt, Vandy PhiPsi, Vandy Pike, Vandy SAE, Vandy SNu, Vandy ZBT, Vandy AKA, Vandy Alpha, Vandy Delta, Vandy Kappas, Vandy Ques, Vandy Sigmas, Vandy SGRho, Vandy Zetas, Vandy APsi, Vandy KDChi, Vandy Lambdas
 ,Vanderbilt Fraternities and Sororities,Vanderbilt Greek life How to join a fraternity at Vanderbilt, best fraternities at Vanderbilt, Vanderbilt ECE,Vanderbilt Technology,Fraternities Vanderbilt, Vanderbilt computer science ranking, Vanderbilt School of Engineering, Vanderbilt Frats, Vanderbilt School of Engineering reviews, Vanderbilt technology, Vanderbilt Wond'ry, Vanderbilt engineering majors, Vanderbilt mechanical engineering, Vanderbilt aerospace engineering, Vanderbilt electrical engineering, VUIT Vanderbilt, Vanderbilt IT Help Desk, Vanderbilt IT email, Vanderbilt IT ticket, Vanderbilt IT help">
  
-  <!-- 🔑 SEO & social tags -->
-  <title>Vanderbilt Greek Life & Engineering | Fraternities, Sororities, and Student Life</title>
-  <meta name="description" content="Explore Vanderbilt University Greek Life, including fraternities and sororities like AXO, ADPi, TriDelt, Pike, and more. Learn about Vanderbilt Computer Science, Engineering programs, and campus life.">
   
   <!-- Social share preview -->
-  <meta property="og:title" content="Vanderbilt Greek Life & Engineering" />
-  <meta property="og:description" content="Discover fraternities, sororities, and top-ranked engineering programs at Vanderbilt University." />
+  <meta property="og:title" content="KTP in Action | Kappa Theta Pi Vanderbilt" />
+  <meta property="og:description" content="See how Kappa Theta Pi drives innovation at Vanderbilt through technology projects, computer science, and engineering activities at the Wond’ry." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ktpvandy.org/" />
   <meta property="og:image" content="https://ktpvandy.org/images/preview.jpg" />
@@ -80,6 +79,25 @@
       transform: translateY(-3px);
       box-shadow: 0 8px 24px rgba(0,0,0,.12);
     }
+
+    /* Masonry flow: mixed portrait/landscape photos pack without gaps */
+    .row.gallery {
+      display: block;
+      column-count: 4;
+      column-gap: 1.5rem;
+      margin: 0;
+    }
+    .row.gallery > .col {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      padding: 0;
+      margin: 0 0 1.5rem;
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+    }
+    @media (max-width: 1199px) { .row.gallery { column-count: 3; } }
+    @media (max-width: 767px)  { .row.gallery { column-count: 2; column-gap: 1rem; } .row.gallery > .col { margin-bottom: 1rem; } }
 
     /* Reveal-on-scroll */
     .reveal { opacity:0; transform:translateY(40px) scale(.98); }
@@ -149,10 +167,18 @@
 
 
 
-  <main class="main-content container" style="padding-top: 10px;">
+  <main class="main-content container" style="padding-top: 0;">
+    <div class="ed-head" style="padding: 130px 0 40px; margin-bottom: 40px;">
+      <div class="ed-kicker" style="margin-bottom:16px;">KTP in Action</div>
+      <h1 class="ed-h1">Life in the Chapter</h1>
+    </div>
 
     <!-- 2 on phones, 3 on smaller laptops (lg ≥992px), 4 on big screens (xl ≥1200px) -->
     <div class="row row-cols-2 row-cols-lg-3 row-cols-xl-4 g-4 gallery">
+      <div class="col reveal"><img src="./images/in_action_imgs/20260329_150041_BC8F52.jpeg" class="img-fluid" alt="KTP brothers, Spring 2026"></div>
+      <div class="col reveal"><img src="./images/in_action_imgs/20260402_000726_B4C8EB.jpeg" class="img-fluid" alt="KTP brothers, Spring 2026"></div>
+      <div class="col reveal"><img src="./images/in_action_imgs/20260403_192654_B14B1B.jpeg" class="img-fluid" alt="KTP brothers, Spring 2026"></div>
+      <div class="col reveal"><img src="./images/in_action_imgs/20260418_210735_B0D1E4.jpeg" class="img-fluid" alt="KTP brothers, Spring 2026"></div>
       <div class="col reveal"><img src="images-compressed/20240317_204023_BC4B2D (1).JPEG" class="img-fluid" alt="Gallery Image 1"></div>
       <div class="col reveal"><img src="images-compressed/IMG_2241.jpg" class="img-fluid" alt="Gallery Image 2"></div>
       <div class="col reveal"><img src="images-compressed/20240421_102232_B3884D.jpg" class="img-fluid" alt="Gallery Image 3"></div>
@@ -183,7 +209,7 @@
   <script src="js/footer.js"></script>
   <footer class="site-footer"></footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
