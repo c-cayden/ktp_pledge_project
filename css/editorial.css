@@ -13,8 +13,13 @@
   --ed-faint: #8c96ad;
   --ed-line: #e2e8f0;
   --ed-page: #f3f6fc;
-  --ed-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --ed-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --ed-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
 }
+
+/* Base type. html+body outranks the Bootstrap body rule that header.js injects later. */
+html body { font-family: var(--ed-sans); font-weight: 400; -webkit-font-smoothing: antialiased; }
+button, input, select, textarea { font-family: inherit; }
 
 /* Layout */
 .ed-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
@@ -33,15 +38,15 @@
 /* Headlines */
 .ed-h1 {
   font-size: clamp(2.6rem, 6vw, 5rem);
-  font-weight: 400;
-  letter-spacing: -0.025em;
+  font-weight: 500;
+  letter-spacing: -0.035em;
   line-height: 1.02;
   color: var(--ed-ink);
 }
 .ed-h2 {
   font-size: clamp(1.9rem, 3.4vw, 2.8rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-weight: 500;
+  letter-spacing: -0.03em;
   line-height: 1.12;
   color: var(--ed-ink);
 }
@@ -127,7 +132,7 @@
 .ed-btn {
   display: inline-block;
   padding: 13px 26px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
   text-decoration: none !important;
