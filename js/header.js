@@ -25,6 +25,7 @@ const NAV = [
   ]},
   { href: '/professional-development', label: 'Professional Development', sub: [
     ['/professional-development#hackathons', 'Hackathons'],
+    ['/professional-development#startups', 'Startups'],
     ['/professional-development#workshops', 'Workshops'],
     ['/professional-development#resources', 'Resources'],
   ]},
