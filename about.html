@@ -105,6 +105,8 @@
       overflow: hidden;
       isolation: isolate;
   }
+  .about-hero img { opacity: 0; transition: opacity 1.2s ease; }
+  .about-hero img.is-active { opacity: 1; }
   .about-hero img {
       position: absolute;
       inset: 0;
@@ -355,7 +357,9 @@
 <main>
   <!-- HERO -->
   <section class="about-hero">
-      <img src="images-compressed/home3.jpeg" alt="KTP brothers on campus" fetchpriority="high">
+      <img class="about-slide is-active" src="images-compressed/home3.jpeg" alt="KTP brothers on campus" fetchpriority="high">
+      <img class="about-slide" data-src="images/campus/cumberland-sunset.jpg" alt="The Cumberland River at sunset" style="object-position: center 55%;">
+      <img class="about-slide" data-src="images/campus/campus-aerial.jpg" alt="Vanderbilt campus and the Nashville skyline from above" style="object-position: center 60%;">
       <div class="wrap">
           <span class="mono">About / ΚΘΠ Rho Chapter</span>
           <h1>Vanderbilt's Professional Technology Fraternity</h1>
@@ -495,5 +499,24 @@
     
 <!-- Footer Component -->
 <script src="js/footer.js"></script>
-  </body>
+    <script>
+    // About hero: crossfade through the slides every 7s, paused when the tab is hidden
+    (function () {
+      var slides = Array.prototype.slice.call(document.querySelectorAll(".about-hero .about-slide"));
+      if (slides.length < 2) return;
+      var i = 0;
+      var load = function (img) { if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; } };
+      load(slides[1]);
+      setInterval(function () {
+        if (document.hidden) return;
+        var n = (i + 1) % slides.length;
+        if (!slides[n].complete || !slides[n].naturalWidth) { load(slides[n]); return; }
+        slides[i].classList.remove("is-active");
+        i = n;
+        slides[i].classList.add("is-active");
+        load(slides[(i + 1) % slides.length]);
+      }, 7000);
+    })();
+  </script>
+</body>
 </html>
