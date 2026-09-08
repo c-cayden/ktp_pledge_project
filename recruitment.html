@@ -221,6 +221,11 @@
     .logo-wall img.logo-square {
       height: 64px;
     }
+    /* Size tiers: the wall reads big-to-small so it stays about the height of the old one */
+    .logo-wall img.tier-2 { height: 34px; max-width: 140px; }
+    .logo-wall img.tier-2.logo-square { height: 48px; }
+    .logo-wall img.tier-3 { height: 28px; max-width: 120px; }
+    .logo-wall img.tier-3.logo-square { height: 40px; }
 
     .logo-wall img:hover {
       transform: scale(1.06);
@@ -245,23 +250,6 @@
       letter-spacing: 0.02em;
     }
 
-    /* FOUNDERS & EARLY-STAGE ledger under the wall */
-    .stx { max-width: 1100px; margin: 72px auto 0; }
-    .stx-head { display: grid; grid-template-columns: 260px 1fr; gap: 48px; padding-top: 28px; border-top: 1px solid var(--ed-line); margin-bottom: 28px; }
-    .stx-title { font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; color: var(--ed-ink); margin: 0 0 10px; }
-    .stx-lede { color: var(--ed-muted); line-height: 1.6; max-width: 56ch; margin: 0; }
-    .stx-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ed-line); }
-    .stx-row { display: grid; grid-template-columns: 200px 1fr 300px; gap: 28px; padding: 18px 0; border-bottom: 1px solid var(--ed-line); align-items: start; }
-    .stx-name { font-weight: 500; color: var(--ed-ink); font-size: 1.02rem; }
-    .stx-name span { display: block; font-family: var(--ed-mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ed-gold); margin-top: 4px; }
-    .stx-desc { color: var(--ed-muted); font-size: 0.95rem; line-height: 1.55; }
-    .stx-who { font-size: 0.86rem; color: var(--ed-ink); line-height: 1.5; }
-    .stx-row--founders .stx-desc { color: var(--ed-ink); }
-    .stx-row--founders .stx-who { color: var(--ed-muted); font-family: var(--ed-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; padding-top: 4px; }
-    @media (max-width: 900px) {
-      .stx-head { grid-template-columns: 1fr; gap: 14px; }
-      .stx-row { grid-template-columns: 1fr; gap: 6px; }
-    }
 
     @media (max-width: 768px) {
       .logo-wall {
@@ -644,148 +632,58 @@
     <img src="images-compressed/companies/paypal.svg" alt="PayPal" loading="lazy">
     <img src="images-compressed/companies/oliver-wyman.svg" alt="Oliver Wyman" loading="lazy">
     <img src="images-compressed/companies/deloitte.svg" alt="Deloitte" loading="lazy">
-    <img src="images-compressed/companies/kearney.svg" alt="Kearney" loading="lazy">
-    <img src="images-compressed/companies/zs.svg" alt="ZS" loading="lazy">
-    <img src="images-compressed/companies/kpmg.svg" alt="KPMG" loading="lazy">
-    <img src="images-compressed/companies/rothschild-co.svg" alt="Rothschild &amp; Co" loading="lazy">
-    <img src="images-compressed/companies/ubs.jpg" alt="UBS" loading="lazy">
-    <img src="images-compressed/companies/bank-of-america.svg" alt="Bank of America" loading="lazy">
-    <img src="images-compressed/companies/wells-fargo.svg" alt="Wells Fargo" class="logo-square" loading="lazy">
-    <img src="images-compressed/companies/state-street.svg" alt="State Street" loading="lazy">
-    <img src="images-compressed/companies/santander.svg" alt="Santander" loading="lazy">
-    <img src="images-compressed/companies/synchrony.svg" alt="Synchrony" loading="lazy">
-    <img src="images-compressed/companies/liberty-mutual.svg" alt="Liberty Mutual" loading="lazy">
-    <img src="images-compressed/companies/bloomberg.svg" alt="Bloomberg" loading="lazy">
-    <img src="images-compressed/companies/tesla.jpg" alt="Tesla" loading="lazy">
-    <img src="images-compressed/companies/salesforce.svg" alt="Salesforce" loading="lazy">
-    <img src="images-compressed/companies/oracle.jpg" alt="Oracle" loading="lazy">
-    <img src="images-compressed/companies/mongodb.svg" alt="MongoDB" loading="lazy">
-    <img src="images-compressed/companies/braze.svg" alt="Braze" loading="lazy">
-    <img src="images-compressed/companies/strategy.svg" alt="Strategy" loading="lazy">
-    <img src="images-compressed/companies/intuit.jpg" alt="Intuit" loading="lazy">
-    <img src="images-compressed/companies/ibm.svg" alt="IBM" loading="lazy">
-    <img src="images-compressed/companies/booz-allen-hamilton.svg" alt="Booz Allen Hamilton" loading="lazy">
-    <img src="images-compressed/companies/fti-consulting.svg" alt="FTI Consulting" loading="lazy">
-    <img src="images-compressed/companies/credera.svg" alt="Credera" loading="lazy">
-    <img src="images-compressed/companies/stifel.jpg" alt="Stifel Financial" loading="lazy">
-    <img src="images-compressed/companies/jhu-apl.svg" alt="Johns Hopkins Applied Physics Laboratory" loading="lazy">
-    <img src="images-compressed/companies/ornl.svg" alt="Oak Ridge National Laboratory" loading="lazy">
-    <img src="images-compressed/companies/nytimes.svg" alt="The New York Times" loading="lazy">
-    <img src="images-compressed/companies/idme.png" alt="ID.me" loading="lazy">
-    <img src="images-compressed/companies/loreal.svg" alt="L'Oréal" loading="lazy">
-    <img src="images-compressed/companies/general-motors.svg" alt="General Motors" loading="lazy">
-    <img src="images-compressed/companies/ge-healthcare.svg" alt="GE HealthCare" loading="lazy">
-    <img src="images-compressed/companies/siemens.svg" alt="Siemens" loading="lazy">
-    <img src="images-compressed/companies/motorola-solutions.svg" alt="Motorola Solutions" loading="lazy">
-    <img src="images-compressed/companies/bridgestone.svg" alt="Bridgestone" loading="lazy">
-    <img src="images-compressed/companies/novelis.png" alt="Novelis" class="logo-square" loading="lazy">
-    <img src="images-compressed/companies/solar-turbines.svg" alt="Solar Turbines" loading="lazy">
-    <img src="images-compressed/companies/quanta-services.png" alt="Quanta Services" loading="lazy">
-    <img src="images-compressed/companies/comcast.svg" alt="Comcast" loading="lazy">
-    <img src="images-compressed/companies/sony-music-publishing.svg" alt="Sony Music Publishing" loading="lazy">
-    <img src="images-compressed/companies/brown-forman.svg" alt="Brown-Forman" loading="lazy">
-    <img src="images-compressed/companies/tractor-supply.svg" alt="Tractor Supply" loading="lazy">
-    <img src="images-compressed/companies/bostonscientific.jpg" alt="Boston Scientific" loading="lazy">
-    <img src="images-compressed/companies/abbott.svg" alt="Abbott" loading="lazy">
-    <img src="images-compressed/companies/abbvie.svg" alt="AbbVie" loading="lazy">
-    <img src="images-compressed/companies/bayer.svg" alt="Bayer" class="logo-square" loading="lazy">
-    <img src="images-compressed/companies/smith-nephew.svg" alt="Smith+Nephew" loading="lazy">
-    <img src="images-compressed/companies/kaiser-permanente.svg" alt="Kaiser Permanente" loading="lazy">
-    <img src="images-compressed/companies/mcmaster-carr.svg" alt="McMaster-Carr" loading="lazy">
-    <img src="images-compressed/companies/kimley-horn.svg" alt="Kimley-Horn" loading="lazy">
-    <img src="images-compressed/companies/statefarm.jpg" alt="State Farm" loading="lazy">
-    <img src="images-compressed/companies/epichire.png" alt="EpicHire" loading="lazy">
-    <div class="logo-school"><img src="images-compressed/companies/upenn.svg" alt="University of Pennsylvania — Graduate School of Education" loading="lazy"><span>Graduate School of Education</span></div>
+    <img src="images-compressed/companies/kearney.svg" alt="Kearney" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/zs.svg" alt="ZS" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/kpmg.svg" alt="KPMG" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/rothschild-co.svg" alt="Rothschild &amp; Co" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/ubs.jpg" alt="UBS" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/bank-of-america.svg" alt="Bank of America" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/wells-fargo.svg" alt="Wells Fargo" class="logo-square tier-2" loading="lazy">
+    <img src="images-compressed/companies/state-street.svg" alt="State Street" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/santander.svg" alt="Santander" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/synchrony.svg" alt="Synchrony" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/bloomberg.svg" alt="Bloomberg" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/tesla.jpg" alt="Tesla" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/salesforce.svg" alt="Salesforce" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/oracle.jpg" alt="Oracle" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/mongodb.svg" alt="MongoDB" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/braze.svg" alt="Braze" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/strategy.svg" alt="Strategy" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/intuit.jpg" alt="Intuit" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/ibm.svg" alt="IBM" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/booz-allen-hamilton.svg" alt="Booz Allen Hamilton" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/fti-consulting.svg" alt="FTI Consulting" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/credera.svg" alt="Credera" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/stifel.jpg" alt="Stifel Financial" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/jhu-apl.svg" alt="Johns Hopkins Applied Physics Laboratory" class="tier-2" loading="lazy">
+    <img src="images-compressed/companies/ornl.svg" alt="Oak Ridge National Laboratory" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/nytimes.svg" alt="The New York Times" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/idme.png" alt="ID.me" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/loreal.svg" alt="L'Oréal" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/general-motors.svg" alt="General Motors" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/ge-healthcare.svg" alt="GE HealthCare" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/siemens.svg" alt="Siemens" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/motorola-solutions.svg" alt="Motorola Solutions" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/bridgestone.svg" alt="Bridgestone" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/solar-turbines.svg" alt="Solar Turbines" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/quanta-services.png" alt="Quanta Services" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/comcast.svg" alt="Comcast" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/sony-music-publishing.svg" alt="Sony Music Publishing" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/tractor-supply.svg" alt="Tractor Supply" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/bostonscientific.jpg" alt="Boston Scientific" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/abbott.svg" alt="Abbott" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/abbvie.svg" alt="AbbVie" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/bayer.svg" alt="Bayer" class="logo-square tier-3" loading="lazy">
+    <img src="images-compressed/companies/smith-nephew.svg" alt="Smith+Nephew" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/kaiser-permanente.svg" alt="Kaiser Permanente" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/mcmaster-carr.svg" alt="McMaster-Carr" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/kimley-horn.svg" alt="Kimley-Horn" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/statefarm.jpg" alt="State Farm" class="tier-3" loading="lazy">
+    <img src="images-compressed/companies/epichire.png" alt="EpicHire" class="tier-3" loading="lazy">
+    <div class="logo-school"><img src="images-compressed/companies/upenn.svg" alt="University of Pennsylvania — Graduate School of Education" class="tier-3" loading="lazy"><span>Graduate School of Education</span></div>
     <div class="logo-school"><img src="images-compressed/companies/vanderbilt.png" alt="Vanderbilt University — M.S. Computer Science" loading="lazy"><span>M.S. Computer Science</span></div>
     <div class="logo-school"><img src="images-compressed/companies/vanderbilt.png" alt="Vanderbilt University — M.S. Computer Engineering" loading="lazy"><span>M.S. Computer Engineering</span></div>
     <div class="logo-school"><img src="images-compressed/companies/vanderbilt.png" alt="Vanderbilt University — M.S. Data Science" loading="lazy"><span>M.S. Data Science</span></div>
-  </div>
-  <!-- FOUNDERS & EARLY-STAGE: one .stx-row per company. Keep descriptions to one line and only what the company says about itself. -->
-  <div class="stx">
-    <div class="stx-head">
-      <div class="ed-kicker">Founders &amp; Early-Stage</div>
-      <div>
-        <h3 class="stx-title">Building It Themselves</h3>
-        <p class="stx-lede">Brothers who chose the earliest stage: founding companies, first engineering hires, and YC-backed teams.</p>
-      </div>
-    </div>
-    <ul class="stx-list">
-      <li class="stx-row">
-        <div class="stx-name">Atlog<span>Y Combinator P25</span></div>
-        <div class="stx-desc">AI for the rent-to-own industry.</div>
-        <div class="stx-who">Kunal Bham · Product</div>
-      </li>
-      <li class="stx-row">
-        <div class="stx-name">d_model<span>San Francisco</span></div>
-        <div class="stx-desc">AI research lab building interpretability and alignment agents with frontier labs.</div>
-        <div class="stx-who">Kunal Bham · Engineer</div>
-      </li>
-      <li class="stx-row">
-        <div class="stx-name">Convexia<span>YC-backed · Biotech</span></div>
-        <div class="stx-desc">AI-native platform that finds and evaluates overlooked drug assets.</div>
-        <div class="stx-who">Aaliya Salzberg · Head of Rare Disease Partnerships</div>
-      </li>
-      <li class="stx-row">
-        <div class="stx-name">Persona<span>Identity</span></div>
-        <div class="stx-desc">Identity verification platform used by companies to verify their users.</div>
-        <div class="stx-who">Mai-Xuan Mantwill · Field Product Engineer</div>
-      </li>
-      <li class="stx-row">
-        <div class="stx-name">Compyl<span>New York · GRC</span></div>
-        <div class="stx-desc">Security, risk, and compliance platform that replaces a stack of point tools.</div>
-        <div class="stx-who">Kiersten Brennan · Software Engineer</div>
-      </li>
-      <li class="stx-row">
-        <div class="stx-name">CityScout<span>Nashville · Proptech</span></div>
-        <div class="stx-desc">Pre-development real estate data for finding deals before they hit the market.</div>
-        <div class="stx-who">Ben Curley · Backend &amp; Data · Vyom Mishra · GTM &amp; Operations</div>
-      </li>
-      <li class="stx-row">
-        <div class="stx-name">SiteVue AI<span>Franklin, TN · Industrial AI</span></div>
-        <div class="stx-desc">AI for frontline workers: continuous improvement, safety, and engagement.</div>
-        <div class="stx-who">Kyuhyun Kim · Hardware &amp; Embedded Systems · Camryn Phillips · Electrical Engineering</div>
-      </li>
-      <li class="stx-row">
-        <div class="stx-name">Rosebrook AI<span>Applied AI</span></div>
-        <div class="stx-desc">Production AI that improves decision making and automates critical work for firms.</div>
-        <div class="stx-who">Nirvaan Nagaldinne · Founding ML Engineer</div>
-      </li>
-      <li class="stx-row">
-        <div class="stx-name">Synquery<span>Nashville · AI</span></div>
-        <div class="stx-desc">AI platform that gets clients answers from human experts in minutes instead of weeks.</div>
-        <div class="stx-who">Sharv Save · Software Engineering</div>
-      </li>
-      <li class="stx-row">
-        <div class="stx-name">Triton Sensors<span>Safety hardware</span></div>
-        <div class="stx-desc">Smart environmental sensors for vape and drug detection in schools and healthcare.</div>
-        <div class="stx-who">Esha Rashid · Software Engineering</div>
-      </li>
-      <li class="stx-row">
-        <div class="stx-name">Acre Robotics<span>Robotics</span></div>
-        <div class="stx-desc">Robotics engineering.</div>
-        <div class="stx-who">Devon Super · Software Engineering</div>
-      </li>
-      <li class="stx-row">
-        <div class="stx-name">Actor<span>Hardware</span></div>
-        <div class="stx-desc">Hardware startup.</div>
-        <div class="stx-who">Charlie Borchers · Hardware Engineering</div>
-      </li>
-      <li class="stx-row">
-        <div class="stx-name">ARQ<span>Software</span></div>
-        <div class="stx-desc">Early-stage software company.</div>
-        <div class="stx-who">Ana&iuml;s Brown · Software Engineer</div>
-      </li>
-      <li class="stx-row">
-        <div class="stx-name">Kaboo<span>Fintech</span></div>
-        <div class="stx-desc">A money-saving app built for students.</div>
-        <div class="stx-who">Yehan Subasinghe · Software Engineering · Ethan Joslin &amp; Mai-Xuan Mantwill · Strategy</div>
-      </li>
-      <li class="stx-row stx-row--founders">
-        <div class="stx-name">Founded by brothers</div>
-        <div class="stx-desc"><b>FitFo</b> &middot; Nirvaan Nagaldinne · Co-Founder &amp; CEO<br><b>Canopy</b> &middot; Bennett Davis · Founder<br><b>Scramble! and FRead</b> &middot; Sam McFarland · Founder</div>
-        <div class="stx-who">Plus three brothers building in stealth</div>
-      </li>
-    </ul>
   </div>
 </section>
 
