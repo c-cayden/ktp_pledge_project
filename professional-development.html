@@ -279,83 +279,6 @@
       .case-media { aspect-ratio: 16 / 10; }
     }
 
-    /* STARTUPS: stat-led dossier cards on a hairline grid */
-    #startups { padding: 100px 0 90px; }
-    #startups .ed-row { margin-bottom: 44px; }
-    .su-group { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-    .su-group + .su-group { margin-top: 56px; }
-    .su-group-label {
-      font-family: var(--ed-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ed-gold);
-      padding-bottom: 14px;
-    }
-    .su-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      border-top: 1px solid var(--ed-line);
-      border-left: 1px solid var(--ed-line);
-    }
-    .su-card {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding: 28px 26px 24px;
-      border-right: 1px solid var(--ed-line);
-      border-bottom: 1px solid var(--ed-line);
-      background: #ffffff;
-    }
-    .su-stat {
-      font-family: var(--ed-display);
-      font-size: 2.4rem;
-      font-weight: 500;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      color: var(--ed-ink);
-    }
-    .su-stat-label {
-      font-family: var(--ed-mono);
-      font-size: 0.66rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--ed-muted);
-      line-height: 1.5;
-    }
-    .su-name {
-      font-size: 1.15rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      color: var(--ed-ink);
-      margin-top: 14px;
-    }
-    .su-desc { color: var(--ed-muted); font-size: 0.92rem; line-height: 1.6; margin: 0; flex: 1; }
-    .su-foot {
-      font-family: var(--ed-mono);
-      font-size: 0.64rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--ed-muted);
-      padding-top: 12px;
-      margin-top: 8px;
-      border-top: 1px solid var(--ed-line);
-      line-height: 1.5;
-    }
-    .su-foot b { color: var(--ed-ink); font-weight: 500; }
-    .su-grid .su-card:last-child:nth-child(3n + 1) { grid-column: 1 / -1; }
-    .su-grid .su-card:last-child:nth-child(3n + 1) .su-desc { max-width: 64ch; }
-    @media (max-width: 900px) {
-      .su-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .su-grid .su-card:last-child:nth-child(3n + 1) { grid-column: auto; }
-      .su-grid .su-card:last-child:nth-child(2n + 1) { grid-column: 1 / -1; }
-    }
-    @media (max-width: 600px) {
-      #startups { padding: 64px 0 60px; }
-      .su-grid { grid-template-columns: 1fr; }
-      .su-stat { font-size: 2rem; }
-    }
-
     /* WORKSHOPS */
     #workshops { background: #ffffff; }
     .ws-grid {
@@ -388,6 +311,153 @@
     .ws-col li:last-child { border-bottom: 0; }
 
     .ws-col--note p { color: #2d3748; line-height: 1.7; padding-top: 4px; }
+
+    /* STARTUPS: dark band, pinned index on the left, panels that light up as they pass the middle of the screen */
+    #startups { background: #1b2a52; color: #e8eaf0; padding: 100px 0 110px; }
+    #startups .ed-row { margin-bottom: 64px; }
+    .su-tag {
+      font-family: var(--ed-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ed-gold);
+      margin-bottom: 14px;
+    }
+    .su-layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 64px;
+      align-items: start;
+    }
+    .su-nav {
+      position: sticky;
+      top: 110px;
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+    }
+    .su-nav-group {
+      font-family: var(--ed-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6f7a97;
+      padding: 18px 0 8px;
+    }
+    .su-nav-item {
+      position: relative;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 7px 0 7px 18px;
+      font-size: 0.95rem;
+      color: #9aa6c4;
+      text-decoration: none !important;
+      transition: color 0.25s ease;
+    }
+    .su-nav-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 6px;
+      height: 1px;
+      background: var(--ed-gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .su-nav-num { font-family: var(--ed-mono); font-size: 0.68rem; letter-spacing: 0.06em; color: #6f7a97; }
+    .su-nav-item:hover { color: #ffffff; }
+    .su-nav-item.is-active { color: #ffffff; }
+    .su-nav-item.is-active::before { transform: scaleX(1); }
+    .su-nav-item.is-active .su-nav-num { color: var(--ed-gold); }
+
+    .su-panels { border-top: 1px solid rgba(255, 255, 255, 0.16); }
+    .su-panel {
+      padding: 44px 0 46px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      opacity: 0.42;
+      transition: opacity 0.45s ease;
+    }
+    .su-panel.is-active { opacity: 1; }
+    .su-panel-head {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+    .su-panel-num { font-family: var(--ed-mono); font-size: 0.78rem; letter-spacing: 0.06em; color: var(--ed-gold); }
+    .su-panel-name {
+      font-family: var(--ed-display);
+      font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #ffffff;
+      margin: 0;
+    }
+    .su-panel-tag { font-family: var(--ed-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: #9fb0da; margin-left: auto; }
+    .su-panel-body {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 40px;
+      align-items: start;
+    }
+    .su-stat-n {
+      font-family: var(--ed-display);
+      font-size: clamp(2.6rem, 4.4vw, 3.8rem);
+      font-weight: 500;
+      letter-spacing: -0.035em;
+      line-height: 0.95;
+      color: #ffffff;
+    }
+    .su-stat-l {
+      font-family: var(--ed-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #9aa6c4;
+      line-height: 1.55;
+      margin-top: 12px;
+      max-width: 22ch;
+    }
+    .su-desc { color: #c3cce4; font-size: 1rem; line-height: 1.7; max-width: 58ch; margin: 0 0 22px; }
+    .su-people { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(255, 255, 255, 0.16); }
+    .su-people li {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 20px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      font-size: 0.94rem;
+    }
+    .su-people b { color: #ffffff; font-weight: 500; }
+    .su-people span { font-family: var(--ed-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: #9fb0da; padding-top: 3px; }
+    .su-foot { font-family: var(--ed-mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: #6f7a97; margin-top: 14px; }
+    @media (prefers-reduced-motion: reduce) {
+      .su-panel, .su-nav-item, .su-nav-item::before { transition: none; }
+      .su-panel { opacity: 1; }
+    }
+    @media (max-width: 900px) {
+      #startups { padding: 64px 0 72px; }
+      #startups .ed-row { margin-bottom: 36px; }
+      .su-layout { grid-template-columns: 1fr; gap: 28px; }
+      .su-nav {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 4px 14px;
+        border-top: 0;
+      }
+      .su-nav-group { width: 100%; padding: 10px 0 4px; }
+      .su-nav-item { padding: 4px 0 4px 14px; font-size: 0.88rem; }
+      .su-panel { opacity: 1; padding: 32px 0; }
+      .su-panel-tag { margin-left: 0; }
+      .su-panel-body { grid-template-columns: 1fr; gap: 22px; }
+      .su-people li { grid-template-columns: 1fr; gap: 2px; }
+    }
 
     /* RESOURCES: hairline ledger; add a <li class="res-item"> per resource */
     #resources { padding: 100px 0 110px; }
@@ -558,146 +628,11 @@
   </div>
 </section>
 
-<!-- STARTUPS: stat-led cards. One .su-card per company; founders get a name in .su-foot, everyone else stays company-only. -->
-<section id="startups">
-  <div class="ed-wrap">
-    <div class="ed-row">
-      <div class="ed-kicker"><b>02</b>Startups</div>
-      <div>
-        <h2 class="ed-h2">Early, By Choice</h2>
-        <p class="ed-lede">Brothers who joined companies before they were sure things, and the ones who started their own. Stage and funding as reported by the companies.</p>
-      </div>
-    </div>
-  </div>
-  <div class="su-group">
-    <div class="su-group-label">Founded by Brothers</div>
-    <div class="su-grid">
-      <div class="su-card">
-        <div class="su-stat">$1.2M</div>
-        <div class="su-stat-label">Raised · Acquired by Movement Labs, 2026</div>
-        <div class="su-name">Canopy</div>
-        <p class="su-desc">A non-custodial DeFi yield platform on the Movement Network that grew to $150M in assets. The seed round was led by Mechanism Capital and CitizenX, with Primitive, GSR, and Side Door Ventures.</p>
-        <div class="su-foot"><b>Bennett Davis</b> · Founder</div>
-      </div>
-      <div class="su-card">
-        <div class="su-stat">35K</div>
-        <div class="su-stat-label">Users in the first 12 weeks</div>
-        <div class="su-name">FitFo</div>
-        <p class="su-desc">Lets creators turn their content into a coaching business, paired with a workout tracker built for how people actually train. Nine hundred paying subscribers at launch with no paid acquisition.</p>
-        <div class="su-foot"><b>Nirvaan Nagaldinne</b> · Co-Founder &amp; CEO</div>
-      </div>
-      <div class="su-card">
-        <div class="su-stat">$25K+</div>
-        <div class="su-stat-label">In books collected by FRead</div>
-        <div class="su-name">Scramble! &amp; FRead</div>
-        <p class="su-desc">Scramble! is an iOS word game built in Swift on Firebase, with in-app purchases and ads live in beta. FRead is a nonprofit that stocks free children's books in doctors' and dentists' offices, partnered with Mass General Brigham.</p>
-        <div class="su-foot"><b>Sam McFarland</b> · Founder</div>
-      </div>
-    </div>
-  </div>
-  <div class="su-group">
-    <div class="su-group-label">Where Brothers Have Built</div>
-    <div class="su-grid">
-      <div class="su-card">
-        <div class="su-stat">$2B</div>
-        <div class="su-stat-label">Valuation · $200M Series D, 2025</div>
-        <div class="su-name">Persona</div>
-        <p class="su-desc">Identity verification used by OpenAI, Lime, and banks to onboard users and fight fraud. Founders Fund and Ribbit Capital co-led the round, on top of a $150M Series C.</p>
-        <div class="su-foot">San Francisco · Founded 2018</div>
-      </div>
-      <div class="su-card">
-        <div class="su-stat">$12M</div>
-        <div class="su-stat-label">Series A · June 2025</div>
-        <div class="su-name">Compyl</div>
-        <p class="su-desc">One governance, risk, and compliance platform in place of a stack of point tools, built by former CISOs. Led by Venture Guides; about $13.7M raised in total.</p>
-        <div class="su-foot">New York · Founded 2020</div>
-      </div>
-      <div class="su-card">
-        <div class="su-stat">$7.5M</div>
-        <div class="su-stat-label">Seed · August 2026</div>
-        <div class="su-name">SiteVue AI</div>
-        <p class="su-desc">Designs its own cameras and trains vision models that watch production lines for bottlenecks, defects, and safety misses in real time. Automotive and food production first, with construction and retail next.</p>
-        <div class="su-foot">Nashville · 37 employees</div>
-      </div>
-      <div class="su-card">
-        <div class="su-stat">YC</div>
-        <div class="su-stat-label">$500K pre-seed · Y Combinator</div>
-        <div class="su-name">Convexia</div>
-        <p class="su-desc">An AI-native pharma company that sources, evaluates, and acquires overlooked drug assets for the clinic. Founded in 2025 by two Stanford dropouts.</p>
-        <div class="su-foot">San Francisco · Founded 2025</div>
-      </div>
-      <div class="su-card">
-        <div class="su-stat">YC S25</div>
-        <div class="su-stat-label">Spring 2025 batch · New York</div>
-        <div class="su-name">Atlog</div>
-        <p class="su-desc">Outbound voice and text AI agents with compliance built in, so companies can automate calls without legal exposure. Named one of Business Insider's most exciting AI agent startups at Demo Day.</p>
-        <div class="su-foot">New York · Founded 2024</div>
-      </div>
-      <div class="su-card">
-        <div class="su-stat">~30</div>
-        <div class="su-stat-label">Researchers and staff</div>
-        <div class="su-name">d_model</div>
-        <p class="su-desc">A fundamental AI research lab on interpretability and alignment. Partners with frontier labs to turn their models into interpretability researchers, then runs its own research with the agents it builds.</p>
-        <div class="su-foot">AI research lab</div>
-      </div>
-      <div class="su-card">
-        <div class="su-stat">5</div>
-        <div class="su-stat-label">Venture backers, incl. Afore Capital and E14 Fund</div>
-        <div class="su-name">Synquery</div>
-        <p class="su-desc">An AI-powered expert network that matches companies with the right professional in minutes instead of weeks, asynchronously.</p>
-        <div class="su-foot">Founded 2024</div>
-      </div>
-      <div class="su-card">
-        <div class="su-stat">3</div>
-        <div class="su-stat-label">Premier League clubs on the platform</div>
-        <div class="su-name">ARQ</div>
-        <p class="su-desc">Combines microbiome and proteomics data with live biometrics from a CGM and wearable to score readiness and inflammation, then turns it into coaching for elite athletes.</p>
-        <div class="su-foot">New York</div>
-      </div>
-      <div class="su-card">
-        <div class="su-stat">700+</div>
-        <div class="su-stat-label">Schools in all 50 states · No outside funding</div>
-        <div class="su-name">Triton Sensors</div>
-        <p class="su-desc">Vape and safety sensors for schools and hospitals, started by three high schoolers in 2020 and bootstrapped to hundreds of districts.</p>
-        <div class="su-foot">Harrisburg, PA · Founded 2020</div>
-      </div>
-      <div class="su-card">
-        <div class="su-stat">18.5</div>
-        <div class="su-stat-label">Average age of the team</div>
-        <div class="su-name">Acre Robotics</div>
-        <p class="su-desc">Autonomous tractors built to be obtainable: no subscriptions, no locked repairs. The team spent summer 2025 converting a Case 75A into its testing platform. Founded by a Vanderbilt student.</p>
-        <div class="su-foot">Mountain View, CA</div>
-      </div>
-      <div class="su-card">
-        <div class="su-stat">2025</div>
-        <div class="su-stat-label">Founded · Robotics</div>
-        <div class="su-name">Actor</div>
-        <p class="su-desc">Distilling human operators into robotic models for autonomous heavy machinery, from mechanical design and electronics through field deployment.</p>
-        <div class="su-foot">Mountain View, CA · 2 to 10 people</div>
-      </div>
-      <div class="su-card">
-        <div class="su-stat">2024</div>
-        <div class="su-stat-label">Launched in Nashville</div>
-        <div class="su-name">Kaboo</div>
-        <p class="su-desc">A savings app that gives verified college students exclusive discounts at local shops, named for the Japanese budgeting method kakeibo. Built by a Vanderbilt and UBC student team.</p>
-        <div class="su-foot">Nashville</div>
-      </div>
-      <div class="su-card">
-        <div class="su-stat">Nashville</div>
-        <div class="su-stat-label">Pre-development data for the whole market</div>
-        <div class="su-name">CityScout</div>
-        <p class="su-desc">Turns zoning agendas, permits, filings, and press into a live pipeline of every development before construction starts, mapped to the firms behind it. Customers include Northmarq and Siemens.</p>
-        <div class="su-foot">Nashville</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- WORKSHOPS: update each semester. -->
 <section id="workshops">
   <div class="ed-wrap" style="margin-bottom: 40px;">
     <div class="ed-row">
-      <div class="ed-kicker"><b>03</b>Workshops</div>
+      <div class="ed-kicker"><b>02</b>Workshops</div>
       <div>
         <h2 class="ed-h2">Every Semester, Run by Brothers Who Have Been Through It</h2>
       </div>
@@ -736,6 +671,394 @@
     </div>
   </div>
 </section>
+
+<!-- STARTUPS: dark scroll-index band. Left list stays pinned and highlights the panel in view; one .su-panel per company. Founders carry a [Founder] tag; every panel lists the brothers by role in .su-people. -->
+<section id="startups" class="ed-on-dark">
+  <div class="ed-wrap">
+    <div class="ed-row">
+      <div class="ed-kicker"><b>03</b>Startups</div>
+      <div>
+        <div class="su-tag">[Early Stage]</div>
+        <h2 class="ed-h2">Early, By Choice</h2>
+        <p class="ed-lede">Brothers who joined companies before they were sure things, and the ones who started their own. Stage and funding as reported by the companies.</p>
+      </div>
+    </div>
+    <div class="su-layout">
+      <nav class="su-nav" aria-label="Companies">
+        <div class="su-nav-group">Founded by Brothers</div>
+        <a class="su-nav-item" href="#su-canopy"><span class="su-nav-num">01</span>Canopy</a>
+        <a class="su-nav-item" href="#su-fitfo"><span class="su-nav-num">02</span>FitFo</a>
+        <a class="su-nav-item" href="#su-scramble"><span class="su-nav-num">03</span>Scramble! &amp; FRead</a>
+        <div class="su-nav-group">Where Brothers Have Built</div>
+        <a class="su-nav-item" href="#su-persona"><span class="su-nav-num">04</span>Persona</a>
+        <a class="su-nav-item" href="#su-compyl"><span class="su-nav-num">05</span>Compyl</a>
+        <a class="su-nav-item" href="#su-sitevue"><span class="su-nav-num">06</span>SiteVue AI</a>
+        <a class="su-nav-item" href="#su-convexia"><span class="su-nav-num">07</span>Convexia</a>
+        <a class="su-nav-item" href="#su-atlog"><span class="su-nav-num">08</span>Atlog</a>
+        <a class="su-nav-item" href="#su-dmodel"><span class="su-nav-num">09</span>d_model</a>
+        <a class="su-nav-item" href="#su-synquery"><span class="su-nav-num">10</span>Synquery</a>
+        <a class="su-nav-item" href="#su-arq"><span class="su-nav-num">11</span>ARQ</a>
+        <a class="su-nav-item" href="#su-triton"><span class="su-nav-num">12</span>Triton Sensors</a>
+        <a class="su-nav-item" href="#su-acre"><span class="su-nav-num">13</span>Acre Robotics</a>
+        <a class="su-nav-item" href="#su-actor"><span class="su-nav-num">14</span>Actor</a>
+        <a class="su-nav-item" href="#su-kaboo"><span class="su-nav-num">15</span>Kaboo</a>
+        <a class="su-nav-item" href="#su-cityscout"><span class="su-nav-num">16</span>CityScout</a>
+      </nav>
+      <div class="su-panels">
+        <article class="su-panel" id="su-canopy">
+          <header class="su-panel-head">
+            <span class="su-panel-num">01 /</span>
+            <h3 class="su-panel-name">Canopy</h3>
+            <span class="su-panel-tag">[Founder · Acquired]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">$1.2M</div>
+              <div class="su-stat-l">Raised · Acquired by Movement Labs, 2026</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">A non-custodial DeFi yield platform on the Movement Network that grew to $150M in assets. The seed round was led by Mechanism Capital and CitizenX, with Primitive, GSR, and Side Door Ventures.</p>
+              <ul class="su-people">
+                <li><b>Bennett Davis</b><span>Founder</span></li>
+              </ul>
+              <div class="su-foot">Founded 2024 · Acquired May 2026</div>
+            </div>
+          </div>
+        </article>
+        <article class="su-panel" id="su-fitfo">
+          <header class="su-panel-head">
+            <span class="su-panel-num">02 /</span>
+            <h3 class="su-panel-name">FitFo</h3>
+            <span class="su-panel-tag">[Founder]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">35K</div>
+              <div class="su-stat-l">Users in the first 12 weeks</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">Lets creators turn their content into a coaching business, paired with a workout tracker built for how people actually train. Nine hundred paying subscribers at launch with no paid acquisition.</p>
+              <ul class="su-people">
+                <li><b>Nirvaan Nagaldinne</b><span>Co-Founder &amp; CEO</span></li>
+              </ul>
+              <div class="su-foot">Launched 2026</div>
+            </div>
+          </div>
+        </article>
+        <article class="su-panel" id="su-scramble">
+          <header class="su-panel-head">
+            <span class="su-panel-num">03 /</span>
+            <h3 class="su-panel-name">Scramble! &amp; FRead</h3>
+            <span class="su-panel-tag">[Founder]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">$25K+</div>
+              <div class="su-stat-l">In books collected by FRead</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">Scramble! is an iOS word game built in Swift on Firebase, with in-app purchases and ads live in beta. FRead is a nonprofit that stocks free children's books in doctors' and dentists' offices, partnered with Mass General Brigham.</p>
+              <ul class="su-people">
+                <li><b>Sam McFarland</b><span>Founder</span></li>
+              </ul>
+              <div class="su-foot">Newton, MA · Founded 2024 and 2025</div>
+            </div>
+          </div>
+        </article>
+        <article class="su-panel" id="su-persona">
+          <header class="su-panel-head">
+            <span class="su-panel-num">04 /</span>
+            <h3 class="su-panel-name">Persona</h3>
+            <span class="su-panel-tag">[Series D]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">$2B</div>
+              <div class="su-stat-l">Valuation · $200M Series D, 2025</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">Identity verification used by OpenAI, Lime, and banks to onboard users and fight fraud. Founders Fund and Ribbit Capital co-led the round, on top of a $150M Series C.</p>
+              <ul class="su-people">
+                <li><b>Mai-Xuan Mantwill</b><span>Field Product Engineer</span></li>
+              </ul>
+              <div class="su-foot">San Francisco · Founded 2018</div>
+            </div>
+          </div>
+        </article>
+        <article class="su-panel" id="su-compyl">
+          <header class="su-panel-head">
+            <span class="su-panel-num">05 /</span>
+            <h3 class="su-panel-name">Compyl</h3>
+            <span class="su-panel-tag">[Series A]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">$12M</div>
+              <div class="su-stat-l">Series A · June 2025</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">One governance, risk, and compliance platform in place of a stack of point tools, built by former CISOs. Led by Venture Guides; about $13.7M raised in total.</p>
+              <ul class="su-people">
+                <li><b>Kiersten Brennan</b><span>Software Engineer</span></li>
+              </ul>
+              <div class="su-foot">New York · Founded 2020</div>
+            </div>
+          </div>
+        </article>
+        <article class="su-panel" id="su-sitevue">
+          <header class="su-panel-head">
+            <span class="su-panel-num">06 /</span>
+            <h3 class="su-panel-name">SiteVue AI</h3>
+            <span class="su-panel-tag">[Seed]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">$7.5M</div>
+              <div class="su-stat-l">Seed · August 2026</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">Designs its own cameras and trains vision models that watch production lines for bottlenecks, defects, and safety misses in real time. Automotive and food production first, with construction and retail next.</p>
+              <ul class="su-people">
+                <li><b>Kyuhyun Kim</b><span>Hardware &amp; Embedded Systems</span></li>
+                <li><b>Camryn Phillips</b><span>Electrical Engineering</span></li>
+              </ul>
+              <div class="su-foot">Nashville · 37 employees</div>
+            </div>
+          </div>
+        </article>
+        <article class="su-panel" id="su-convexia">
+          <header class="su-panel-head">
+            <span class="su-panel-num">07 /</span>
+            <h3 class="su-panel-name">Convexia</h3>
+            <span class="su-panel-tag">[YC · Pre-seed]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">$500K</div>
+              <div class="su-stat-l">Pre-seed · Y Combinator</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">An AI-native pharma company that sources, evaluates, and acquires overlooked drug assets for the clinic. Founded in 2025 by two Stanford dropouts.</p>
+              <ul class="su-people">
+                <li><b>Aaliya Salzberg</b><span>Head of Rare Disease Partnerships</span></li>
+              </ul>
+              <div class="su-foot">San Francisco · Founded 2025</div>
+            </div>
+          </div>
+        </article>
+        <article class="su-panel" id="su-atlog">
+          <header class="su-panel-head">
+            <span class="su-panel-num">08 /</span>
+            <h3 class="su-panel-name">Atlog</h3>
+            <span class="su-panel-tag">[YC S25]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">YC S25</div>
+              <div class="su-stat-l">Spring 2025 batch · New York</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">Outbound voice and text AI agents with compliance built in, so companies can automate calls without legal exposure. Named one of Business Insider's most exciting AI agent startups at Demo Day.</p>
+              <ul class="su-people">
+                <li><b>Kunal Bham</b><span>Product</span></li>
+              </ul>
+              <div class="su-foot">New York · Founded 2024</div>
+            </div>
+          </div>
+        </article>
+        <article class="su-panel" id="su-dmodel">
+          <header class="su-panel-head">
+            <span class="su-panel-num">09 /</span>
+            <h3 class="su-panel-name">d_model</h3>
+            <span class="su-panel-tag">[Research Lab]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">~30</div>
+              <div class="su-stat-l">Researchers and staff</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">A fundamental AI research lab on interpretability and alignment. Partners with frontier labs to turn their models into interpretability researchers, then runs its own research with the agents it builds.</p>
+              <ul class="su-people">
+                <li><b>Kunal Bham</b><span>Engineer</span></li>
+              </ul>
+              <div class="su-foot">AI research lab</div>
+            </div>
+          </div>
+        </article>
+        <article class="su-panel" id="su-synquery">
+          <header class="su-panel-head">
+            <span class="su-panel-num">10 /</span>
+            <h3 class="su-panel-name">Synquery</h3>
+            <span class="su-panel-tag">[Venture-backed]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">5</div>
+              <div class="su-stat-l">Venture backers, incl. Afore Capital and E14 Fund</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">An AI-powered expert network that matches companies with the right professional in minutes instead of weeks, asynchronously.</p>
+              <ul class="su-people">
+                <li><b>Sharv Save</b><span>Software Engineering</span></li>
+              </ul>
+              <div class="su-foot">Founded 2024</div>
+            </div>
+          </div>
+        </article>
+        <article class="su-panel" id="su-arq">
+          <header class="su-panel-head">
+            <span class="su-panel-num">11 /</span>
+            <h3 class="su-panel-name">ARQ</h3>
+            <span class="su-panel-tag">[Early Stage]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">3</div>
+              <div class="su-stat-l">Premier League clubs on the platform</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">Combines microbiome and proteomics data with live biometrics from a CGM and wearable to score readiness and inflammation, then turns it into coaching for elite athletes.</p>
+              <ul class="su-people">
+                <li><b>Ana&iuml;s Brown</b><span>Software Engineer</span></li>
+              </ul>
+              <div class="su-foot">New York</div>
+            </div>
+          </div>
+        </article>
+        <article class="su-panel" id="su-triton">
+          <header class="su-panel-head">
+            <span class="su-panel-num">12 /</span>
+            <h3 class="su-panel-name">Triton Sensors</h3>
+            <span class="su-panel-tag">[Bootstrapped]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">700+</div>
+              <div class="su-stat-l">Schools in all 50 states · No outside funding</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">Vape and safety sensors for schools and hospitals, started by three high schoolers in 2020 and bootstrapped to hundreds of districts.</p>
+              <ul class="su-people">
+                <li><b>Esha Rashid</b><span>Software Engineering</span></li>
+              </ul>
+              <div class="su-foot">Harrisburg, PA · Founded 2020</div>
+            </div>
+          </div>
+        </article>
+        <article class="su-panel" id="su-acre">
+          <header class="su-panel-head">
+            <span class="su-panel-num">13 /</span>
+            <h3 class="su-panel-name">Acre Robotics</h3>
+            <span class="su-panel-tag">[Early Stage]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">18.5</div>
+              <div class="su-stat-l">Average age of the team</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">Autonomous tractors built to be obtainable: no subscriptions, no locked repairs. The team spent summer 2025 converting a Case 75A into its testing platform. Founded by a Vanderbilt student.</p>
+              <ul class="su-people">
+                <li><b>Devon Super</b><span>Software Engineering</span></li>
+              </ul>
+              <div class="su-foot">Mountain View, CA</div>
+            </div>
+          </div>
+        </article>
+        <article class="su-panel" id="su-actor">
+          <header class="su-panel-head">
+            <span class="su-panel-num">14 /</span>
+            <h3 class="su-panel-name">Actor</h3>
+            <span class="su-panel-tag">[Early Stage]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">2025</div>
+              <div class="su-stat-l">Founded · Robotics</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">Distilling human operators into robotic models for autonomous heavy machinery, from mechanical design and electronics through field deployment.</p>
+              <ul class="su-people">
+                <li><b>Charlie Borchers</b><span>Hardware Engineering</span></li>
+              </ul>
+              <div class="su-foot">Mountain View, CA · 2 to 10 people</div>
+            </div>
+          </div>
+        </article>
+        <article class="su-panel" id="su-kaboo">
+          <header class="su-panel-head">
+            <span class="su-panel-num">15 /</span>
+            <h3 class="su-panel-name">Kaboo</h3>
+            <span class="su-panel-tag">[Student-built]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">2024</div>
+              <div class="su-stat-l">Launched in Nashville</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">A savings app that gives verified college students exclusive discounts at local shops, named for the Japanese budgeting method kakeibo. Built by a Vanderbilt and UBC student team.</p>
+              <ul class="su-people">
+                <li><b>Yehan Subasinghe</b><span>Software Engineering</span></li>
+                <li><b>Ethan Joslin</b><span>Strategy</span></li>
+                <li><b>Mai-Xuan Mantwill</b><span>Strategy</span></li>
+              </ul>
+              <div class="su-foot">Nashville</div>
+            </div>
+          </div>
+        </article>
+        <article class="su-panel" id="su-cityscout">
+          <header class="su-panel-head">
+            <span class="su-panel-num">16 /</span>
+            <h3 class="su-panel-name">CityScout</h3>
+            <span class="su-panel-tag">[Early Stage]</span>
+          </header>
+          <div class="su-panel-body">
+            <div class="su-stat">
+              <div class="su-stat-n">Nashville</div>
+              <div class="su-stat-l">Pre-development data for the whole market</div>
+            </div>
+            <div class="su-copy">
+              <p class="su-desc">Turns zoning agendas, permits, filings, and press into a live pipeline of every development before construction starts, mapped to the firms behind it. Customers include Northmarq and Siemens.</p>
+              <ul class="su-people">
+                <li><b>Ben Curley</b><span>Backend &amp; Data</span></li>
+                <li><b>Vyom Mishra</b><span>GTM &amp; Operations</span></li>
+              </ul>
+              <div class="su-foot">Nashville</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  (function () {
+    var nav = document.querySelectorAll("#startups .su-nav-item");
+    var panels = document.querySelectorAll("#startups .su-panel");
+    if (!panels.length || !("IntersectionObserver" in window)) return;
+    var byId = {};
+    nav.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
+    function activate(id) {
+      nav.forEach(function (a) { a.classList.toggle("is-active", a === byId[id]); });
+      panels.forEach(function (p) { p.classList.toggle("is-active", p.id === id); });
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) activate(e.target.id); });
+    }, { rootMargin: "-38% 0px -52% 0px", threshold: 0 });
+    panels.forEach(function (p) { io.observe(p); });
+    activate(panels[0].id);
+    nav.forEach(function (a) {
+      a.addEventListener("click", function (ev) {
+        var t = document.getElementById(a.getAttribute("href").slice(1));
+        if (!t) return;
+        ev.preventDefault();
+        t.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    });
+  })();
+</script>
 
 <!-- RESOURCES: one <li class="res-item"> per resource. Files live in assets/; external links use res-arrow--out. -->
 <section id="resources">
