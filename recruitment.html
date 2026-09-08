@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://tile.openstreetmap.org https://cdnjs.cloudflare.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org https://cdnjs.cloudflare.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Recruitment | Kappa Theta Pi Vanderbilt</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Archivo:wdth,wght@125,700&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
       
 <!-- Default favicon (root, ICO format for widest support) -->
 <link rel="icon" href="/faviconktp.ico" sizes="any">
@@ -53,11 +55,9 @@
     }
     </script>
   
-  <!-- Cache Manager for instant loading -->
-  <script src="js/cache-manager.js"></script>
   
   <!-- Header Styles -->
-  <link rel="stylesheet" type="text/css" href="css/header-styles/header.css">
+  <link id="header-css-link" rel="stylesheet" href="css/header-styles/header.css">
   
   <!-- Footer Styles -->
   <link rel="stylesheet" type="text/css" href="css/footer-styles/footer.css">
@@ -582,6 +582,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="css/base.css">
 </head>
 <body>
 
@@ -788,7 +789,7 @@
     </div>
 
     <aside class="schedule-side">
-      <img src="images-compressed/flyer_rush2026fall.png" alt="Fall 2026 Rush Flyer — Info Sessions Aug 31, Sept 1, Sept 2 at 7 PM" class="flyer-img" />
+      <img src="images-compressed/flyer_rush2026fall.jpg" alt="Fall 2026 Rush Flyer — Info Sessions Aug 31, Sept 1, Sept 2 at 7 PM" class="flyer-img" />
     </aside>
   </div>
 </section>
