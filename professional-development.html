@@ -312,41 +312,12 @@
 
     .ws-col--note p { color: #2d3748; line-height: 1.7; padding-top: 4px; }
 
-    /* STARTUPS: photo strip + pinned index + company panels with stage figures */
+    /* STARTUPS: photo strip, pinned index, Saronic-style showcase cards */
     #startups { background: #1b2a52; color: #e8eaf0; }
-    .su-strip {
-      position: relative;
-      min-height: clamp(460px, 62vh, 680px);
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-    }
-    .su-strip-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 40%;
-      filter: saturate(0.55) brightness(0.5);
-    }
-    .su-strip::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(27, 42, 82, 0.35) 0%, rgba(27, 42, 82, 0.55) 55%, rgba(27, 42, 82, 0.96) 100%);
-    }
-    .su-strip-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mix-blend-mode: screen;
-      z-index: 1;
-    }
+    .su-strip { position: relative; min-height: clamp(460px, 62vh, 680px); display: flex; align-items: flex-end; overflow: hidden; border-bottom: 1px solid rgba(255, 255, 255, 0.16); }
+    .su-strip-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; filter: saturate(0.55) brightness(0.5); }
+    .su-strip::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(27, 42, 82, 0.35) 0%, rgba(27, 42, 82, 0.55) 55%, rgba(27, 42, 82, 0.96) 100%); }
+    .su-strip-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px); background-size: 72px 72px; mix-blend-mode: screen; z-index: 1; }
     .su-strip-inner { position: relative; z-index: 2; width: 100%; padding-top: 120px; padding-bottom: 64px; }
     .su-strip-frame { position: absolute; inset: 88px 24px 40px; pointer-events: none; }
     .su-tick { position: absolute; width: 14px; height: 14px; border-color: rgba(255, 255, 255, 0.55); border-style: solid; border-width: 0; }
@@ -362,137 +333,53 @@
     .su-strip .ed-h2 { font-size: clamp(2.4rem, 5vw, 4rem); max-width: 14ch; }
     .su-strip .ed-lede { margin-top: 18px; }
     .su-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
-    .su-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 13px 20px;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      font-family: var(--ed-display);
-      font-size: 1.02rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      color: #ffffff;
-      text-decoration: none !important;
-      background: rgba(27, 42, 82, 0.35);
-      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    }
+    .su-btn { display: inline-flex; align-items: center; gap: 12px; padding: 13px 20px; border: 1px solid rgba(255, 255, 255, 0.6); font-family: var(--ed-display); font-size: 1.02rem; font-weight: 500; letter-spacing: -0.01em; color: #ffffff; text-decoration: none !important; background: rgba(27, 42, 82, 0.35); transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
     .su-btn span { font-family: var(--ed-mono); font-size: 1rem; transition: transform 0.2s ease; }
     .su-btn:hover { background: #ffffff; color: #1b2a52; border-color: #ffffff; }
     .su-btn:hover span { transform: translateX(2px); }
 
-    .su-body {
-      padding: 96px 0 110px;
-      background-color: #1b2a52;
-      background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1.2px);
-      background-size: 26px 26px;
-    }
-    .su-layout {
-      display: grid;
-      grid-template-columns: 260px minmax(0, 1fr);
-      gap: 64px;
-      align-items: start;
-    }
-    .su-nav {
-      position: sticky;
-      top: 110px;
-      display: flex;
-      flex-direction: column;
-      padding-left: 18px;
-    }
-    .su-rail { position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: rgba(255, 255, 255, 0.16); }
-    .su-rail-marker { position: absolute; left: -1px; width: 3px; height: 28px; background: var(--ed-gold); transition: top 0.35s cubic-bezier(0.4, 0, 0.2, 1), height 0.35s ease; }
-    .su-nav-group {
-      font-family: var(--ed-mono);
-      font-size: 0.66rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #6f7a97;
-      padding: 14px 0 8px;
-    }
-    .su-nav-item {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      padding: 7px 0;
-      font-size: 0.95rem;
-      color: #9aa6c4;
-      text-decoration: none !important;
-      transition: color 0.25s ease, transform 0.25s ease;
-    }
-    .su-nav-num { font-family: var(--ed-mono); font-size: 0.68rem; letter-spacing: 0.06em; color: #6f7a97; }
-    .su-nav-item:hover { color: #ffffff; }
-    .su-nav-item.is-active { color: #ffffff; transform: translateX(4px); }
-    .su-nav-item.is-active .su-nav-num { color: var(--ed-gold); }
-
-    .su-panels { border-top: 1px solid rgba(255, 255, 255, 0.16); }
-    .su-panel {
-      padding: 44px 0 46px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-      opacity: 0.4;
-      transform: translateY(6px);
-      transition: opacity 0.45s ease, transform 0.45s ease;
-    }
-    .su-panel.is-active { opacity: 1; transform: none; }
-    .su-panel-head { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 26px; }
-    .su-panel-num { font-family: var(--ed-mono); font-size: 0.78rem; letter-spacing: 0.06em; color: var(--ed-gold); }
-    .su-panel-name { font-family: var(--ed-display); font-size: clamp(1.5rem, 2.6vw, 2.1rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #ffffff; margin: 0; }
-    .su-panel-tag { font-family: var(--ed-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: #9fb0da; margin-left: auto; }
-    .su-panel-body {
-      display: grid;
-      grid-template-columns: 200px minmax(0, 1fr) 240px;
-      gap: 36px;
-      align-items: start;
-    }
-    .su-stat-n { font-family: var(--ed-display); font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 500; letter-spacing: -0.035em; line-height: 0.95; color: #ffffff; }
-    .su-stat-l { font-family: var(--ed-mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: #9aa6c4; line-height: 1.55; margin-top: 12px; max-width: 22ch; }
-    .su-desc { color: #c3cce4; font-size: 1rem; line-height: 1.7; max-width: 58ch; margin: 0 0 22px; }
-    .su-people { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(255, 255, 255, 0.16); }
-    .su-people li { display: grid; grid-template-columns: 200px 1fr; gap: 20px; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.16); font-size: 0.94rem; }
+    .su-body { padding: 96px 0 110px; background-color: #1b2a52; background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1.2px); background-size: 26px 26px; }
+    /* Showcase cards, full width, media on the left (the Saronic vessel layout) */
+    .su-cards { display: flex; flex-direction: column; gap: 28px; }
+    .su-group-head { display: flex; align-items: center; gap: 14px; font-family: var(--ed-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: #9fb0da; padding: 26px 0 4px; }
+    .su-group-head:first-child { padding-top: 0; }
+    .su-group-dash { display: inline-block; width: 28px; height: 2px; background: var(--ed-gold); }
+    .su-card { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); background: #142038; border: 1px solid rgba(255, 255, 255, 0.14); scroll-margin-top: 100px; }
+    .su-media { display: flex; flex-direction: column; border-right: 1px solid rgba(255, 255, 255, 0.12); }
+    .su-media-head { display: flex; align-items: baseline; gap: 14px; padding: 24px 28px 20px; }
+    .su-media-num { font-family: var(--ed-mono); font-size: 0.74rem; letter-spacing: 0.06em; color: var(--ed-gold); }
+    .su-media-name { font-family: var(--ed-display); font-size: clamp(1.5rem, 2.4vw, 2.1rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #ffffff; margin: 0; }
+    .su-media-name a { color: inherit; text-decoration: none !important; border-bottom: 1px solid rgba(255, 255, 255, 0.35); transition: border-color 0.2s ease, color 0.2s ease; }
+    .su-media-name a span { font-family: var(--ed-mono); font-size: 0.6em; color: #8fb0ff; margin-left: 2px; }
+    .su-media-name a:hover { color: #8fb0ff; border-color: #8fb0ff; }
+    .su-media-img { flex: 1; min-height: 300px; background: #0f172a; }
+    .su-media-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .su-media-img--contain { display: flex; align-items: center; background: #0f172a; }
+    .su-media-img--contain img { object-fit: contain; height: auto; max-height: 100%; }
+    .su-body-col { display: flex; flex-direction: column; }
+    .su-label { font-family: var(--ed-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: #6f7a97; padding: 14px 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+    .su-desc-block { padding: 22px 24px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); flex: 1; }
+    .su-tagline { font-family: var(--ed-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: #8fb0ff; margin-bottom: 12px; }
+    .su-desc { color: #c3cce4; font-size: 0.96rem; line-height: 1.65; margin: 0 0 18px; }
+    .su-people { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+    .su-people li { display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 9px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.92rem; }
     .su-people b { color: #ffffff; font-weight: 500; }
-    .su-people span { font-family: var(--ed-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: #9fb0da; padding-top: 3px; }
-
-    /* Figure tile: framed readout with the stage rail */
-    .su-fig {
-      position: relative;
-      margin: 0;
-      padding: 22px 20px 18px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      background: rgba(15, 23, 42, 0.35);
-      backdrop-filter: blur(2px);
-    }
-    .su-fig .su-tick { border-color: rgba(200, 169, 81, 0.9); width: 10px; height: 10px; }
-    .su-fig .su-tick--tl { top: -1px; left: -1px; }
-    .su-fig .su-tick--tr { top: -1px; right: -1px; }
-    .su-fig .su-tick--bl { bottom: -1px; left: -1px; }
-    .su-fig .su-tick--br { bottom: -1px; right: -1px; }
-    .su-fig-label { font-family: var(--ed-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: #6f7a97; margin-bottom: 10px; }
-    .su-rail6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
-    .su-rail6 i { display: block; height: 6px; background: rgba(255, 255, 255, 0.12); transform-origin: left; }
-    .su-rail6 i.on { background: #8fb0ff; transform: scaleX(0); }
-    .su-panel.is-active .su-rail6 i.on { transform: scaleX(1); }
-    .su-rail6 i:nth-child(1) { transition: transform 0.35s ease 0.00s; }
-    .su-rail6 i:nth-child(2) { transition: transform 0.35s ease 0.07s; }
-    .su-rail6 i:nth-child(3) { transition: transform 0.35s ease 0.14s; }
-    .su-rail6 i:nth-child(4) { transition: transform 0.35s ease 0.21s; }
-    .su-rail6 i:nth-child(5) { transition: transform 0.35s ease 0.28s; }
-    .su-rail6 i:nth-child(6) { transition: transform 0.35s ease 0.35s; }
-    .su-rail6[data-stage="1"] i:nth-child(-n + 1), .su-rail6[data-stage="2"] i:nth-child(-n + 2), .su-rail6[data-stage="3"] i:nth-child(-n + 3), .su-rail6[data-stage="4"] i:nth-child(-n + 4), .su-rail6[data-stage="5"] i:nth-child(-n + 5), .su-rail6[data-stage="6"] i:nth-child(-n + 6) { background: #8fb0ff; transform: scaleX(0); }
-    .su-panel.is-active .su-rail6[data-stage="1"] i:nth-child(-n + 1), .su-panel.is-active .su-rail6[data-stage="2"] i:nth-child(-n + 2), .su-panel.is-active .su-rail6[data-stage="3"] i:nth-child(-n + 3), .su-panel.is-active .su-rail6[data-stage="4"] i:nth-child(-n + 4), .su-panel.is-active .su-rail6[data-stage="5"] i:nth-child(-n + 5), .su-panel.is-active .su-rail6[data-stage="6"] i:nth-child(-n + 6) { transform: scaleX(1); }
-    .su-fig-stage { font-family: var(--ed-display); font-size: 1.1rem; font-weight: 500; letter-spacing: -0.01em; color: #ffffff; margin: 12px 0 16px; }
-    .su-readout { margin: 0; border-top: 1px solid rgba(255, 255, 255, 0.14); }
-    .su-readout > div { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-    .su-readout dt { font-family: var(--ed-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: #6f7a97; }
-    .su-readout dd { margin: 0; font-family: var(--ed-mono); font-size: 0.72rem; letter-spacing: 0.02em; color: #e8eaf0; text-align: right; }
+    .su-people span { font-family: var(--ed-mono); font-size: 0.64rem; letter-spacing: 0.05em; text-transform: uppercase; color: #9fb0da; padding-top: 3px; line-height: 1.5; }
+    .su-specs { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+    .su-specs > div { position: relative; padding: 16px 18px 16px 24px; border-right: 1px solid rgba(255, 255, 255, 0.1); }
+    .su-specs > div:last-child { border-right: 0; }
+    .su-specs > div::before { content: ""; position: absolute; left: 12px; top: 20px; width: 4px; height: 26px; background: #8fb0ff; }
+    .su-specs dt { font-family: var(--ed-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: #6f7a97; margin-bottom: 6px; }
+    .su-specs dd { margin: 0; font-family: var(--ed-display); font-size: 1.05rem; font-weight: 500; letter-spacing: -0.01em; color: #ffffff; line-height: 1.2; }
+    .su-specs { border-bottom: 0; }
 
     @media (prefers-reduced-motion: reduce) {
-      .su-panel, .su-nav-item, .su-rail-marker, .su-rail6 i, .su-btn span { transition: none; }
-      .su-panel { opacity: 1; transform: none; }
-      .su-rail6 i { transform: none !important; }
+      .su-btn span, .su-media-name a { transition: none; }
     }
     @media (max-width: 1100px) {
-      .su-panel-body { grid-template-columns: 180px minmax(0, 1fr); }
-      .su-fig { grid-column: 1 / -1; max-width: 420px; }
+      .su-specs { grid-template-columns: repeat(2, 1fr); }
+      .su-specs > div:nth-child(2) { border-right: 0; }
+      .su-specs > div:nth-child(-n + 2) { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
     }
     @media (max-width: 900px) {
       .su-strip { min-height: 420px; }
@@ -500,18 +387,10 @@
       .su-strip-frame { inset: 84px 14px 24px; }
       .su-credit { position: static; display: block; margin: 26px 24px 0; }
       .su-body { padding: 56px 0 72px; }
-      .su-layout { grid-template-columns: 1fr; gap: 28px; }
-      .su-nav { position: static; flex-direction: row; flex-wrap: wrap; gap: 4px 14px; padding-left: 0; }
-      .su-rail { display: none; }
-      .su-nav-group { width: 100%; padding: 10px 0 4px; }
-      .su-nav-item { padding: 4px 0 4px 14px; font-size: 0.88rem; }
-      .su-nav-item.is-active { transform: none; }
-      .su-panel { opacity: 1; transform: none; padding: 32px 0; }
-      .su-panel-tag { margin-left: 0; }
-      .su-panel-body { grid-template-columns: 1fr; gap: 22px; }
-      .su-fig { max-width: none; }
+      .su-card { grid-template-columns: 1fr; }
+      .su-media { border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+      .su-media-img { min-height: 0; aspect-ratio: 16 / 9; }
       .su-people li { grid-template-columns: 1fr; gap: 2px; }
-      .su-rail6 i { transform: none !important; }
     }
 
     /* RESOURCES: hairline ledger; add a <li class="res-item"> per resource */
@@ -728,7 +607,7 @@
   </div>
 </section>
 
-<!-- STARTUPS: Palantir-style band. Full-bleed photo strip with grid overlay and outlined buttons, then a pinned index (left, with a sliding marker) and one panel per company (right). Each panel: funding stat, story, brothers by role, and a framed figure with the funding-stage rail. Founders carry a [Founder] tag. Data lives in scratchpad/rebuild_startups2.js. -->
+<!-- STARTUPS: Saronic-style showcase. Pinned index on the left; one .su-card per company (media panel + description + specifications + site link). Data and order live in scratchpad/rebuild_startups3.js: founders first, then full-time, internships, stealth last. -->
 <section id="startups" class="ed-on-dark">
   <div class="su-strip">
     <img class="su-strip-img" src="images/campus/nashville-skyline.jpg" alt="" loading="lazy">
@@ -739,589 +618,582 @@
         <div class="su-index"><b>03</b> / Startups</div>
         <div class="su-tag">[Early Stage]</div>
         <h2 class="ed-h2">Early, By Choice</h2>
-        <p class="ed-lede">Brothers who joined companies before they were sure things, and the ones who started their own. Stage and funding as reported by the companies.</p>
-        <div class="su-cta">
-          <a class="su-btn" href="#su-canopy">See the Companies <span>&darr;</span></a>
-        </div>
+        <p class="ed-lede">Brothers and alumni who joined companies before they were sure things, and the ones who started their own. Every role verified on LinkedIn; stage and funding as reported by the companies.</p>
+        <div class="su-cta"><a class="su-btn" href="#su-canopy">See the Companies <span>&darr;</span></a></div>
       </div>
       <span class="su-credit">Nashville skyline · Bsutto04, Wikimedia Commons (CC BY-SA 4.0)</span>
     </div>
   </div>
   <div class="su-body">
     <div class="ed-wrap">
-      <div class="su-layout">
-        <nav class="su-nav" aria-label="Companies">
-          <div class="su-rail" aria-hidden="true"><span class="su-rail-marker"></span></div>
-          <div class="su-nav-group">Founded by Brothers</div>
-          <a class="su-nav-item" href="#su-canopy"><span class="su-nav-num">01</span>Canopy</a>
-          <a class="su-nav-item" href="#su-fitfo"><span class="su-nav-num">02</span>FitFo</a>
-          <a class="su-nav-item" href="#su-scramble"><span class="su-nav-num">03</span>Scramble! &amp; FRead</a>
-          <div class="su-nav-group">Where Brothers Have Built</div>
-          <a class="su-nav-item" href="#su-persona"><span class="su-nav-num">04</span>Persona</a>
-          <a class="su-nav-item" href="#su-compyl"><span class="su-nav-num">05</span>Compyl</a>
-          <a class="su-nav-item" href="#su-sitevue"><span class="su-nav-num">06</span>SiteVue AI</a>
-          <a class="su-nav-item" href="#su-convexia"><span class="su-nav-num">07</span>Convexia</a>
-          <a class="su-nav-item" href="#su-atlog"><span class="su-nav-num">08</span>Atlog</a>
-          <a class="su-nav-item" href="#su-dmodel"><span class="su-nav-num">09</span>d_model</a>
-          <a class="su-nav-item" href="#su-synquery"><span class="su-nav-num">10</span>Synquery</a>
-          <a class="su-nav-item" href="#su-arq"><span class="su-nav-num">11</span>ARQ</a>
-          <a class="su-nav-item" href="#su-triton"><span class="su-nav-num">12</span>Triton Sensors</a>
-          <a class="su-nav-item" href="#su-acre"><span class="su-nav-num">13</span>Acre Robotics</a>
-          <a class="su-nav-item" href="#su-actor"><span class="su-nav-num">14</span>Actor</a>
-          <a class="su-nav-item" href="#su-kaboo"><span class="su-nav-num">15</span>Kaboo</a>
-          <a class="su-nav-item" href="#su-cityscout"><span class="su-nav-num">16</span>CityScout</a>
-        </nav>
-        <div class="su-panels">
-          <article class="su-panel" id="su-canopy">
-            <header class="su-panel-head">
-              <span class="su-panel-num">01 /</span>
-              <h3 class="su-panel-name">Canopy</h3>
-              <span class="su-panel-tag">[Founder · Acquired]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">$1.2M</div>
-                <div class="su-stat-l">Seed round · Led by Mechanism Capital and CitizenX</div>
-              </div>
-              <div class="su-copy">
-                <p class="su-desc">A non-custodial DeFi yield platform on the Movement Network that grew to $150M in assets. Primitive, GSR, and Side Door Ventures joined the round. Acquired by Movement Labs in May 2026.</p>
+      <div class="su-cards">
+          <div class="su-group-head"><span class="su-group-dash" aria-hidden="true"></span>Founders &amp; Leadership</div>
+          <article class="su-card" id="su-canopy">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">01 /</span><h3 class="su-media-name"><a href="https://canopyhub.xyz/" target="_blank" rel="noopener noreferrer" title="canopyhub.xyz">Canopy <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img su-media-img--contain"><img src="images/startups/canopy.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Founder · Acquired]</div>
+                <p class="su-desc">A non-custodial DeFi yield platform on the Movement Network that grew to $150M in assets. The seed round was led by Mechanism Capital and CitizenX, with Primitive, GSR, and Side Door Ventures. Acquired by Movement Labs in May 2026.</p>
                 <ul class="su-people">
                   <li><b>Bennett Davis</b><span>Founder</span></li>
                 </ul>
               </div>
-              <figure class="su-fig" aria-label="Canopy at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="6"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Acquired</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>$1.2M</dd></div>
-                  <div><dt>HQ</dt><dd>Remote</dd></div>
-                  <div><dt>Founded</dt><dd>2024</dd></div>
-                  <div><dt>Brothers</dt><dd>01</dd></div>
-                </dl>
-              </figure>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Acquired</dd></div>
+                <div><dt>Raised</dt><dd>$1.2M seed</dd></div>
+                <div><dt>HQ</dt><dd>Remote</dd></div>
+                <div><dt>Founded</dt><dd>2024</dd></div>
+              </dl>
             </div>
           </article>
-          <article class="su-panel" id="su-fitfo">
-            <header class="su-panel-head">
-              <span class="su-panel-num">02 /</span>
-              <h3 class="su-panel-name">FitFo</h3>
-              <span class="su-panel-tag">[Founder]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">35K</div>
-                <div class="su-stat-l">Users in the first 12 weeks · Bootstrapped</div>
-              </div>
-              <div class="su-copy">
-                <p class="su-desc">Lets creators turn their content into a coaching business, paired with a workout tracker built for how people actually train. Nine hundred paying subscribers at launch with no paid acquisition.</p>
+          <article class="su-card" id="su-fitfo">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">02 /</span><h3 class="su-media-name"><a href="https://www.fitfo.app/" target="_blank" rel="noopener noreferrer" title="fitfo.app">FitFo <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img su-media-img--contain"><img src="images/startups/fitfo.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Founder]</div>
+                <p class="su-desc">Lets creators turn their content into a coaching business, paired with a workout tracker built for how people actually train. 35,000 users and 900 paying subscribers in the first twelve weeks, with no paid acquisition.</p>
                 <ul class="su-people">
                   <li><b>Nirvaan Nagaldinne</b><span>Co-Founder &amp; CEO</span></li>
                 </ul>
               </div>
-              <figure class="su-fig" aria-label="FitFo at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="1"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Bootstrapped</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>None</dd></div>
-                  <div><dt>HQ</dt><dd>Nashville</dd></div>
-                  <div><dt>Founded</dt><dd>2026</dd></div>
-                  <div><dt>Brothers</dt><dd>01</dd></div>
-                </dl>
-              </figure>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Bootstrapped</dd></div>
+                <div><dt>Raised</dt><dd>None</dd></div>
+                <div><dt>HQ</dt><dd>Nashville</dd></div>
+                <div><dt>Founded</dt><dd>2026</dd></div>
+              </dl>
             </div>
           </article>
-          <article class="su-panel" id="su-scramble">
-            <header class="su-panel-head">
-              <span class="su-panel-num">03 /</span>
-              <h3 class="su-panel-name">Scramble! &amp; FRead</h3>
-              <span class="su-panel-tag">[Founder]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">$25K+</div>
-                <div class="su-stat-l">In books collected by FRead · Bootstrapped</div>
-              </div>
-              <div class="su-copy">
-                <p class="su-desc">Scramble! is an iOS word game built in Swift on Firebase, with in-app purchases and ads live in beta. FRead is a nonprofit that stocks free children's books in doctors' and dentists' offices, partnered with Mass General Brigham.</p>
+          <article class="su-card" id="su-scramble">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">03 /</span><h3 class="su-media-name">Scramble! &amp; FRead</h3></div>
+              <div class="su-media-img su-media-img--contain"><img src="images/startups/scramble.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Founder]</div>
+                <p class="su-desc">Scramble! is an iOS word game built in Swift on Firebase, with in-app purchases and ads live in beta. FRead is a nonprofit that stocks free children's books in doctors' and dentists' offices, partnered with Mass General Brigham; $25K+ in books collected.</p>
                 <ul class="su-people">
                   <li><b>Sam McFarland</b><span>Founder</span></li>
                 </ul>
               </div>
-              <figure class="su-fig" aria-label="Scramble! & FRead at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="1"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Bootstrapped</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>None</dd></div>
-                  <div><dt>HQ</dt><dd>Newton, MA</dd></div>
-                  <div><dt>Founded</dt><dd>2024</dd></div>
-                  <div><dt>Brothers</dt><dd>01</dd></div>
-                </dl>
-              </figure>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Bootstrapped</dd></div>
+                <div><dt>Raised</dt><dd>None</dd></div>
+                <div><dt>HQ</dt><dd>Newton, MA</dd></div>
+                <div><dt>Founded</dt><dd>2024</dd></div>
+              </dl>
             </div>
           </article>
-          <article class="su-panel" id="su-persona">
-            <header class="su-panel-head">
-              <span class="su-panel-num">04 /</span>
-              <h3 class="su-panel-name">Persona</h3>
-              <span class="su-panel-tag">[Series D]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">$200M</div>
-                <div class="su-stat-l">Series D · $2B valuation, April 2025</div>
+          <article class="su-card" id="su-arrowz">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">04 /</span><h3 class="su-media-name"><a href="https://arrowznotes.com/" target="_blank" rel="noopener noreferrer" title="arrowznotes.com">Arrowz <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img su-media-img--contain"><img src="images/startups/arrowz.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Founding Team]</div>
+                <p class="su-desc">A guided-journaling app for emotional reasoning, built by thirteen Vanderbilt students and released to the app stores in February 2025. Backed by Vanderbilt faculty advisors and pitched to university officials and investors.</p>
+                <ul class="su-people">
+                  <li><b>Mai-Xuan Mantwill</b><span>Chief Financial Officer</span></li>
+                </ul>
               </div>
-              <div class="su-copy">
-                <p class="su-desc">Identity verification used by OpenAI, Lime, and banks to onboard users and fight fraud. Founders Fund and Ribbit Capital co-led the round, on top of a $150M Series C in 2021.</p>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Undisclosed</dd></div>
+                <div><dt>Raised</dt><dd>Undisclosed</dd></div>
+                <div><dt>HQ</dt><dd>Nashville</dd></div>
+                <div><dt>Founded</dt><dd>2024</dd></div>
+              </dl>
+            </div>
+          </article>
+          <div class="su-group-head"><span class="su-group-dash" aria-hidden="true"></span>Full-Time &amp; Senior Roles</div>
+          <article class="su-card" id="su-persona">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">05 /</span><h3 class="su-media-name"><a href="https://withpersona.com/" target="_blank" rel="noopener noreferrer" title="withpersona.com">Persona <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img"><img src="images/startups/persona.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Series D]</div>
+                <p class="su-desc">Identity verification used by OpenAI, Lime, and banks to onboard users and fight fraud. Founders Fund and Ribbit Capital co-led the $200M Series D at a $2B valuation, on top of a $150M Series C in 2021.</p>
                 <ul class="su-people">
                   <li><b>Mai-Xuan Mantwill</b><span>Field Product Engineer</span></li>
                 </ul>
               </div>
-              <figure class="su-fig" aria-label="Persona at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="5"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Series D</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>$200M (D)</dd></div>
-                  <div><dt>HQ</dt><dd>San Francisco</dd></div>
-                  <div><dt>Founded</dt><dd>2018</dd></div>
-                  <div><dt>Brothers</dt><dd>01</dd></div>
-                </dl>
-              </figure>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Series D</dd></div>
+                <div><dt>Raised</dt><dd>$200M (D)</dd></div>
+                <div><dt>HQ</dt><dd>San Francisco</dd></div>
+                <div><dt>Founded</dt><dd>2018</dd></div>
+              </dl>
             </div>
           </article>
-          <article class="su-panel" id="su-compyl">
-            <header class="su-panel-head">
-              <span class="su-panel-num">05 /</span>
-              <h3 class="su-panel-name">Compyl</h3>
-              <span class="su-panel-tag">[Series A]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">$12M</div>
-                <div class="su-stat-l">Series A · June 2025, led by Venture Guides</div>
+          <article class="su-card" id="su-loop">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">06 /</span><h3 class="su-media-name"><a href="https://loop.com/" target="_blank" rel="noopener noreferrer" title="loop.com">Loop <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img"><img src="images/startups/loop.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Series C]</div>
+                <p class="su-desc">A verticalized AI platform for logistics and supply chains, turning fragmented operational and financial data into visibility and cost control. Its $95M Series C in April 2026 was led by Valor Equity Partners with 8VC, Founders Fund, Index, and J.P. Morgan Growth Equity.</p>
+                <ul class="su-people">
+                  <li><b>Lucas Slater</b><span>Software Engineer</span></li>
+                </ul>
               </div>
-              <div class="su-copy">
-                <p class="su-desc">One governance, risk, and compliance platform in place of a stack of point tools, built by former CISOs. About $13.7M raised in total after a $1.7M seed.</p>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Series C</dd></div>
+                <div><dt>Raised</dt><dd>$95M (C)</dd></div>
+                <div><dt>HQ</dt><dd>San Francisco</dd></div>
+                <div><dt>Founded</dt><dd>2021</dd></div>
+              </dl>
+            </div>
+          </article>
+          <article class="su-card" id="su-convexia">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">07 /</span><h3 class="su-media-name"><a href="https://www.convexia.bio/" target="_blank" rel="noopener noreferrer" title="convexia.bio">Convexia <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img"><img src="images/startups/convexia.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[YC · Pre-seed]</div>
+                <p class="su-desc">An AI-native pharma company that sources, evaluates, and acquires overlooked drug assets for the clinic. Founded in 2025 by two Stanford dropouts and backed by Y Combinator.</p>
+                <ul class="su-people">
+                  <li><b>Aaliya Salzberg</b><span>Head of Rare Disease Partnerships</span></li>
+                </ul>
+              </div>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Pre-seed</dd></div>
+                <div><dt>Raised</dt><dd>$500K</dd></div>
+                <div><dt>HQ</dt><dd>San Francisco</dd></div>
+                <div><dt>Founded</dt><dd>2025</dd></div>
+              </dl>
+            </div>
+          </article>
+          <article class="su-card" id="su-dmodel">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">08 /</span><h3 class="su-media-name"><a href="https://dmodel.ai/" target="_blank" rel="noopener noreferrer" title="dmodel.ai">d_model <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img su-media-img--contain"><img src="images/startups/dmodel.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Research Lab]</div>
+                <p class="su-desc">A fundamental AI research lab on interpretability and alignment. Partners with frontier labs to turn their models into interpretability researchers, then runs its own research with the agents it builds. About thirty researchers and staff.</p>
+                <ul class="su-people">
+                  <li><b>Kunal Bham</b><span>Engineer</span></li>
+                </ul>
+              </div>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Undisclosed</dd></div>
+                <div><dt>Raised</dt><dd>Undisclosed</dd></div>
+                <div><dt>HQ</dt><dd>—</dd></div>
+                <div><dt>Founded</dt><dd>—</dd></div>
+              </dl>
+            </div>
+          </article>
+          <article class="su-card" id="su-atlog">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">09 /</span><h3 class="su-media-name"><a href="https://www.atlog.ai/" target="_blank" rel="noopener noreferrer" title="atlog.ai">Atlog <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img su-media-img--contain"><img src="images/startups/atlog.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[YC S25]</div>
+                <p class="su-desc">Outbound voice and text AI agents with TCPA compliance built in, so collections and customer-service teams can automate calls without legal exposure. Named one of Business Insider's most exciting AI agent startups at YC Demo Day.</p>
+                <ul class="su-people">
+                  <li><b>Kunal Bham</b><span>Product</span></li>
+                </ul>
+              </div>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Pre-seed</dd></div>
+                <div><dt>Raised</dt><dd>$500K (YC)</dd></div>
+                <div><dt>HQ</dt><dd>New York</dd></div>
+                <div><dt>Founded</dt><dd>2024</dd></div>
+              </dl>
+            </div>
+          </article>
+          <article class="su-card" id="su-compyl">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">10 /</span><h3 class="su-media-name"><a href="https://compyl.com/" target="_blank" rel="noopener noreferrer" title="compyl.com">Compyl <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img su-media-img--contain"><img src="images/startups/compyl.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Series A]</div>
+                <p class="su-desc">One governance, risk, and compliance platform in place of a stack of point tools, built by former CISOs. The $12M Series A in June 2025 was led by Venture Guides; about $13.7M raised in total.</p>
                 <ul class="su-people">
                   <li><b>Kiersten Brennan</b><span>Software Engineer</span></li>
                 </ul>
               </div>
-              <figure class="su-fig" aria-label="Compyl at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="4"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Series A</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>$13.7M total</dd></div>
-                  <div><dt>HQ</dt><dd>New York</dd></div>
-                  <div><dt>Founded</dt><dd>2020</dd></div>
-                  <div><dt>Brothers</dt><dd>01</dd></div>
-                </dl>
-              </figure>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Series A</dd></div>
+                <div><dt>Raised</dt><dd>$13.7M total</dd></div>
+                <div><dt>HQ</dt><dd>New York</dd></div>
+                <div><dt>Founded</dt><dd>2020</dd></div>
+              </dl>
             </div>
           </article>
-          <article class="su-panel" id="su-sitevue">
-            <header class="su-panel-head">
-              <span class="su-panel-num">06 /</span>
-              <h3 class="su-panel-name">SiteVue AI</h3>
-              <span class="su-panel-tag">[Seed]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">$7.5M</div>
-                <div class="su-stat-l">Seed · August 2026</div>
+          <div class="su-group-head"><span class="su-group-dash" aria-hidden="true"></span>Internships &amp; Early Roles</div>
+          <article class="su-card" id="su-fiveable">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">11 /</span><h3 class="su-media-name"><a href="https://fiveable.me/" target="_blank" rel="noopener noreferrer" title="fiveable.me">Fiveable <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img su-media-img--contain"><img src="images/startups/fiveable.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Series A]</div>
+                <p class="su-desc">A social learning platform that has helped more than seven million high-schoolers prepare for AP exams. Raised a $2.3M seed led by BBG Ventures and a $10M Series A in 2021.</p>
+                <ul class="su-people">
+                  <li><b>Lizzie Tucker</b><span>Social Media Intern</span></li>
+                </ul>
               </div>
-              <div class="su-copy">
-                <p class="su-desc">Designs its own cameras and trains vision models that watch production lines for bottlenecks, defects, and safety misses in real time. Automotive and food production first, with construction and retail next.</p>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Series A</dd></div>
+                <div><dt>Raised</dt><dd>$10M (A)</dd></div>
+                <div><dt>HQ</dt><dd>Milwaukee</dd></div>
+                <div><dt>Founded</dt><dd>2018</dd></div>
+              </dl>
+            </div>
+          </article>
+          <article class="su-card" id="su-sitevue">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">12 /</span><h3 class="su-media-name"><a href="https://www.sitevue.ai/" target="_blank" rel="noopener noreferrer" title="sitevue.ai">SiteVue AI <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img su-media-img--contain"><img src="images/startups/sitevue.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Seed]</div>
+                <p class="su-desc">Designs its own cameras and trains vision models that watch production lines for bottlenecks, defects, and safety misses in real time. The $7.5M seed in August 2026 was co-led by Penny Jar Capital and Overture.</p>
                 <ul class="su-people">
                   <li><b>Kyuhyun Kim</b><span>Hardware &amp; Embedded Systems</span></li>
                   <li><b>Camryn Phillips</b><span>Electrical Engineering</span></li>
                 </ul>
               </div>
-              <figure class="su-fig" aria-label="SiteVue AI at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="3"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Seed</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>$7.5M</dd></div>
-                  <div><dt>HQ</dt><dd>Nashville</dd></div>
-                  <div><dt>Founded</dt><dd>—</dd></div>
-                  <div><dt>Brothers</dt><dd>02</dd></div>
-                </dl>
-              </figure>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Seed</dd></div>
+                <div><dt>Raised</dt><dd>$7.5M</dd></div>
+                <div><dt>HQ</dt><dd>Nashville</dd></div>
+                <div><dt>Founded</dt><dd>2025</dd></div>
+              </dl>
             </div>
           </article>
-          <article class="su-panel" id="su-convexia">
-            <header class="su-panel-head">
-              <span class="su-panel-num">07 /</span>
-              <h3 class="su-panel-name">Convexia</h3>
-              <span class="su-panel-tag">[YC · Pre-seed]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">$500K</div>
-                <div class="su-stat-l">Pre-seed · Y Combinator, 2025</div>
-              </div>
-              <div class="su-copy">
-                <p class="su-desc">An AI-native pharma company that sources, evaluates, and acquires overlooked drug assets for the clinic. Founded in 2025 by two Stanford dropouts.</p>
+          <article class="su-card" id="su-hextronics">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">13 /</span><h3 class="su-media-name"><a href="https://hextronics.com/" target="_blank" rel="noopener noreferrer" title="hextronics.com">Hextronics <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img"><img src="images/startups/hextronics.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Seed]</div>
+                <p class="su-desc">Autonomous drone-in-a-box systems that handle takeoff, precision landing, and robotic battery swaps, so drone fleets run without a person on site. Founders Fund committed the $2M seed in July 2024.</p>
                 <ul class="su-people">
-                  <li><b>Aaliya Salzberg</b><span>Head of Rare Disease Partnerships</span></li>
+                  <li><b>Sophia Hooley</b><span>Software Developer Intern, Computer Vision</span></li>
                 </ul>
               </div>
-              <figure class="su-fig" aria-label="Convexia at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="2"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Pre-seed</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>$500K</dd></div>
-                  <div><dt>HQ</dt><dd>San Francisco</dd></div>
-                  <div><dt>Founded</dt><dd>2025</dd></div>
-                  <div><dt>Brothers</dt><dd>01</dd></div>
-                </dl>
-              </figure>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Seed</dd></div>
+                <div><dt>Raised</dt><dd>$2M</dd></div>
+                <div><dt>HQ</dt><dd>Miami</dd></div>
+                <div><dt>Founded</dt><dd>2019</dd></div>
+              </dl>
             </div>
           </article>
-          <article class="su-panel" id="su-atlog">
-            <header class="su-panel-head">
-              <span class="su-panel-num">08 /</span>
-              <h3 class="su-panel-name">Atlog</h3>
-              <span class="su-panel-tag">[YC S25]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">$500K</div>
-                <div class="su-stat-l">Y Combinator standard deal · Spring 2025 batch</div>
-              </div>
-              <div class="su-copy">
-                <p class="su-desc">Outbound voice and text AI agents with compliance built in, so companies can automate calls without legal exposure. Named one of Business Insider's most exciting AI agent startups at Demo Day.</p>
+          <article class="su-card" id="su-epichire">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">14 /</span><h3 class="su-media-name"><a href="https://epichire.com/" target="_blank" rel="noopener noreferrer" title="epichire.com">Epic Hire <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img su-media-img--contain"><img src="images/startups/epichire.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Bootstrapped]</div>
+                <p class="su-desc">A hiring platform where students tell their story beyond the resume, with employers engaging directly. Over 12,000 students from 200+ universities, and customers including Insight Global, Ally, and the Texas Rangers. Bootstrapped, with backing from the NC Tweener Fund.</p>
                 <ul class="su-people">
-                  <li><b>Kunal Bham</b><span>Product</span></li>
+                  <li><b>Brody Haar</b><span>Assistant Product Manager; Vision Pro Program Developer</span></li>
+                  <li><b>Lolita Rozenbaum</b><span>Product Manager Intern</span></li>
                 </ul>
               </div>
-              <figure class="su-fig" aria-label="Atlog at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="2"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Pre-seed</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>$500K</dd></div>
-                  <div><dt>HQ</dt><dd>New York</dd></div>
-                  <div><dt>Founded</dt><dd>2024</dd></div>
-                  <div><dt>Brothers</dt><dd>01</dd></div>
-                </dl>
-              </figure>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Bootstrapped</dd></div>
+                <div><dt>Raised</dt><dd>Angel</dd></div>
+                <div><dt>HQ</dt><dd>Raleigh, NC</dd></div>
+                <div><dt>Founded</dt><dd>2020</dd></div>
+              </dl>
             </div>
           </article>
-          <article class="su-panel" id="su-dmodel">
-            <header class="su-panel-head">
-              <span class="su-panel-num">09 /</span>
-              <h3 class="su-panel-name">d_model</h3>
-              <span class="su-panel-tag">[Research Lab]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">~30</div>
-                <div class="su-stat-l">Researchers and staff · Funding undisclosed</div>
-              </div>
-              <div class="su-copy">
-                <p class="su-desc">A fundamental AI research lab on interpretability and alignment. Partners with frontier labs to turn their models into interpretability researchers, then runs its own research with the agents it builds.</p>
-                <ul class="su-people">
-                  <li><b>Kunal Bham</b><span>Engineer</span></li>
-                </ul>
-              </div>
-              <figure class="su-fig" aria-label="d_model at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="0"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Undisclosed</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>Undisclosed</dd></div>
-                  <div><dt>HQ</dt><dd>—</dd></div>
-                  <div><dt>Founded</dt><dd>—</dd></div>
-                  <div><dt>Brothers</dt><dd>01</dd></div>
-                </dl>
-              </figure>
+          <article class="su-card" id="su-synquery">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">15 /</span><h3 class="su-media-name"><a href="https://www.synquery.ai/" target="_blank" rel="noopener noreferrer" title="synquery.ai">Synquery <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img"><img src="images/startups/synquery.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
             </div>
-          </article>
-          <article class="su-panel" id="su-synquery">
-            <header class="su-panel-head">
-              <span class="su-panel-num">10 /</span>
-              <h3 class="su-panel-name">Synquery</h3>
-              <span class="su-panel-tag">[Venture-backed]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">5</div>
-                <div class="su-stat-l">Venture backers, incl. Afore Capital and E14 Fund · Round undisclosed</div>
-              </div>
-              <div class="su-copy">
-                <p class="su-desc">An AI-powered expert network that matches companies with the right professional in minutes instead of weeks, asynchronously.</p>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Venture-backed]</div>
+                <p class="su-desc">An AI-powered expert network that matches companies with the right professional in minutes instead of weeks, asynchronously. Backed by Afore Capital, E14 Fund, Audacious Ventures, Caesar Ventures, and SBXi.</p>
                 <ul class="su-people">
                   <li><b>Sharv Save</b><span>Software Engineering</span></li>
                 </ul>
               </div>
-              <figure class="su-fig" aria-label="Synquery at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="0"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Venture-backed</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>Undisclosed</dd></div>
-                  <div><dt>HQ</dt><dd>—</dd></div>
-                  <div><dt>Founded</dt><dd>2024</dd></div>
-                  <div><dt>Brothers</dt><dd>01</dd></div>
-                </dl>
-              </figure>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Venture-backed</dd></div>
+                <div><dt>Raised</dt><dd>Undisclosed</dd></div>
+                <div><dt>HQ</dt><dd>—</dd></div>
+                <div><dt>Founded</dt><dd>2024</dd></div>
+              </dl>
             </div>
           </article>
-          <article class="su-panel" id="su-arq">
-            <header class="su-panel-head">
-              <span class="su-panel-num">11 /</span>
-              <h3 class="su-panel-name">ARQ</h3>
-              <span class="su-panel-tag">[Early Stage]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">3</div>
-                <div class="su-stat-l">Premier League clubs on the platform · Funding undisclosed</div>
-              </div>
-              <div class="su-copy">
-                <p class="su-desc">Combines microbiome and proteomics data with live biometrics from a CGM and wearable to score readiness and inflammation, then turns it into coaching for elite athletes.</p>
+          <article class="su-card" id="su-arq">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">16 /</span><h3 class="su-media-name"><a href="https://www.onearq.com/" target="_blank" rel="noopener noreferrer" title="onearq.com">ARQ <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img"><img src="images/startups/arq.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Early Stage]</div>
+                <p class="su-desc">Combines microbiome and proteomics data with live biometrics from a CGM and wearable to score readiness and inflammation, then turns it into coaching for elite athletes, including three Premier League clubs.</p>
                 <ul class="su-people">
                   <li><b>Ana&iuml;s Brown</b><span>Software Engineer</span></li>
                 </ul>
               </div>
-              <figure class="su-fig" aria-label="ARQ at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="0"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Undisclosed</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>Undisclosed</dd></div>
-                  <div><dt>HQ</dt><dd>New York</dd></div>
-                  <div><dt>Founded</dt><dd>—</dd></div>
-                  <div><dt>Brothers</dt><dd>01</dd></div>
-                </dl>
-              </figure>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Undisclosed</dd></div>
+                <div><dt>Raised</dt><dd>Undisclosed</dd></div>
+                <div><dt>HQ</dt><dd>New York</dd></div>
+                <div><dt>Founded</dt><dd>—</dd></div>
+              </dl>
             </div>
           </article>
-          <article class="su-panel" id="su-triton">
-            <header class="su-panel-head">
-              <span class="su-panel-num">12 /</span>
-              <h3 class="su-panel-name">Triton Sensors</h3>
-              <span class="su-panel-tag">[Bootstrapped]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">$0</div>
-                <div class="su-stat-l">Outside funding · Bootstrapped to 700+ schools in all 50 states</div>
-              </div>
-              <div class="su-copy">
-                <p class="su-desc">Vape and safety sensors for schools and hospitals, started by three high schoolers in 2020 and bootstrapped to hundreds of districts.</p>
+          <article class="su-card" id="su-triton">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">17 /</span><h3 class="su-media-name"><a href="https://www.tritonsensors.com/" target="_blank" rel="noopener noreferrer" title="tritonsensors.com">Triton Sensors <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img"><img src="images/startups/triton.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Bootstrapped]</div>
+                <p class="su-desc">Vape and safety sensors for schools and hospitals, started by three high schoolers in 2020 and bootstrapped into more than 700 schools across all fifty states.</p>
                 <ul class="su-people">
                   <li><b>Esha Rashid</b><span>Software Engineering</span></li>
                 </ul>
               </div>
-              <figure class="su-fig" aria-label="Triton Sensors at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="1"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Bootstrapped</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>None</dd></div>
-                  <div><dt>HQ</dt><dd>Harrisburg, PA</dd></div>
-                  <div><dt>Founded</dt><dd>2020</dd></div>
-                  <div><dt>Brothers</dt><dd>01</dd></div>
-                </dl>
-              </figure>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Bootstrapped</dd></div>
+                <div><dt>Raised</dt><dd>None</dd></div>
+                <div><dt>HQ</dt><dd>Harrisburg, PA</dd></div>
+                <div><dt>Founded</dt><dd>2020</dd></div>
+              </dl>
             </div>
           </article>
-          <article class="su-panel" id="su-acre">
-            <header class="su-panel-head">
-              <span class="su-panel-num">13 /</span>
-              <h3 class="su-panel-name">Acre Robotics</h3>
-              <span class="su-panel-tag">[Early Stage]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">18.5</div>
-                <div class="su-stat-l">Average age of the team · Funding undisclosed</div>
-              </div>
-              <div class="su-copy">
-                <p class="su-desc">Autonomous tractors built to be obtainable: no subscriptions, no locked repairs. The team spent summer 2025 converting a Case 75A into its testing platform. Founded by a Vanderbilt student.</p>
+          <article class="su-card" id="su-acre">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">18 /</span><h3 class="su-media-name"><a href="https://www.acre-robotics.com/" target="_blank" rel="noopener noreferrer" title="acre-robotics.com">Acre Robotics <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img"><img src="images/startups/acre.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Early Stage]</div>
+                <p class="su-desc">Autonomous tractors built to be obtainable: no subscriptions, no locked repairs. Founded by a Vanderbilt student; the team spent summer 2025 converting a Case 75A into its testing platform.</p>
                 <ul class="su-people">
                   <li><b>Devon Super</b><span>Software Engineering</span></li>
                 </ul>
               </div>
-              <figure class="su-fig" aria-label="Acre Robotics at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="0"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Undisclosed</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>Undisclosed</dd></div>
-                  <div><dt>HQ</dt><dd>Mountain View, CA</dd></div>
-                  <div><dt>Founded</dt><dd>—</dd></div>
-                  <div><dt>Brothers</dt><dd>01</dd></div>
-                </dl>
-              </figure>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Undisclosed</dd></div>
+                <div><dt>Raised</dt><dd>Undisclosed</dd></div>
+                <div><dt>HQ</dt><dd>Mountain View, CA</dd></div>
+                <div><dt>Founded</dt><dd>2025</dd></div>
+              </dl>
             </div>
           </article>
-          <article class="su-panel" id="su-actor">
-            <header class="su-panel-head">
-              <span class="su-panel-num">14 /</span>
-              <h3 class="su-panel-name">Actor</h3>
-              <span class="su-panel-tag">[Early Stage]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">2025</div>
-                <div class="su-stat-l">Founded · Robotics · Funding undisclosed</div>
-              </div>
-              <div class="su-copy">
+          <article class="su-card" id="su-actor">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">19 /</span><h3 class="su-media-name"><a href="https://labs.actor/" target="_blank" rel="noopener noreferrer" title="labs.actor">Actor <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img"><img src="images/startups/actor.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Early Stage]</div>
                 <p class="su-desc">Distilling human operators into robotic models for autonomous heavy machinery, from mechanical design and electronics through field deployment.</p>
                 <ul class="su-people">
                   <li><b>Charlie Borchers</b><span>Hardware Engineering</span></li>
                 </ul>
               </div>
-              <figure class="su-fig" aria-label="Actor at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="0"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Undisclosed</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>Undisclosed</dd></div>
-                  <div><dt>HQ</dt><dd>Mountain View, CA</dd></div>
-                  <div><dt>Founded</dt><dd>2025</dd></div>
-                  <div><dt>Brothers</dt><dd>01</dd></div>
-                </dl>
-              </figure>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Undisclosed</dd></div>
+                <div><dt>Raised</dt><dd>Undisclosed</dd></div>
+                <div><dt>HQ</dt><dd>Mountain View, CA</dd></div>
+                <div><dt>Founded</dt><dd>2025</dd></div>
+              </dl>
             </div>
           </article>
-          <article class="su-panel" id="su-kaboo">
-            <header class="su-panel-head">
-              <span class="su-panel-num">15 /</span>
-              <h3 class="su-panel-name">Kaboo</h3>
-              <span class="su-panel-tag">[Student-built]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">2024</div>
-                <div class="su-stat-l">Launched in Nashville · Funding undisclosed</div>
-              </div>
-              <div class="su-copy">
-                <p class="su-desc">A savings app that gives verified college students exclusive discounts at local shops, named for the Japanese budgeting method kakeibo. Built by a Vanderbilt and UBC student team.</p>
+          <article class="su-card" id="su-trilliad">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">20 /</span><h3 class="su-media-name"><a href="https://trilliad.com/" target="_blank" rel="noopener noreferrer" title="trilliad.com">Trilliad <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img su-media-img--contain"><img src="images/startups/trilliad.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Seed]</div>
+                <p class="su-desc">A growth-services firm for enterprise B2B sales and marketing teams, founded in 2023 by the former global CEO of Merkle. Thirty-three people and seed-stage.</p>
                 <ul class="su-people">
-                  <li><b>Yehan Subasinghe</b><span>Software Engineering</span></li>
-                  <li><b>Ethan Joslin</b><span>Strategy</span></li>
-                  <li><b>Mai-Xuan Mantwill</b><span>Strategy</span></li>
+                  <li><b>Sophie Desmarais</b><span>Solutions Intern</span></li>
                 </ul>
               </div>
-              <figure class="su-fig" aria-label="Kaboo at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="0"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Undisclosed</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>Undisclosed</dd></div>
-                  <div><dt>HQ</dt><dd>Nashville</dd></div>
-                  <div><dt>Founded</dt><dd>2024</dd></div>
-                  <div><dt>Brothers</dt><dd>03</dd></div>
-                </dl>
-              </figure>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Seed</dd></div>
+                <div><dt>Raised</dt><dd>Undisclosed</dd></div>
+                <div><dt>HQ</dt><dd>Ridgefield, CT</dd></div>
+                <div><dt>Founded</dt><dd>2023</dd></div>
+              </dl>
             </div>
           </article>
-          <article class="su-panel" id="su-cityscout">
-            <header class="su-panel-head">
-              <span class="su-panel-num">16 /</span>
-              <h3 class="su-panel-name">CityScout</h3>
-              <span class="su-panel-tag">[Early Stage]</span>
-            </header>
-            <div class="su-panel-body">
-              <div class="su-stat">
-                <div class="su-stat-n">Nashville</div>
-                <div class="su-stat-l">Pre-development data for the whole market · Funding undisclosed</div>
-              </div>
-              <div class="su-copy">
+          <article class="su-card" id="su-cityscout">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">21 /</span><h3 class="su-media-name"><a href="https://www.trycityscout.com/" target="_blank" rel="noopener noreferrer" title="trycityscout.com">CityScout <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img"><img src="images/startups/cityscout.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Early Stage]</div>
                 <p class="su-desc">Turns zoning agendas, permits, filings, and press into a live pipeline of every development before construction starts, mapped to the firms behind it. Customers include Northmarq and Siemens.</p>
                 <ul class="su-people">
                   <li><b>Ben Curley</b><span>Backend &amp; Data</span></li>
                   <li><b>Vyom Mishra</b><span>GTM &amp; Operations</span></li>
                 </ul>
               </div>
-              <figure class="su-fig" aria-label="CityScout at a glance">
-                <span class="su-tick su-tick--tl"></span><span class="su-tick su-tick--tr"></span><span class="su-tick su-tick--bl"></span><span class="su-tick su-tick--br"></span>
-                <div class="su-fig-label">Stage</div>
-                <div class="su-rail6" data-stage="0"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="su-fig-stage">Undisclosed</div>
-                <dl class="su-readout">
-                  <div><dt>Raised</dt><dd>Undisclosed</dd></div>
-                  <div><dt>HQ</dt><dd>Nashville</dd></div>
-                  <div><dt>Founded</dt><dd>—</dd></div>
-                  <div><dt>Brothers</dt><dd>02</dd></div>
-                </dl>
-              </figure>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Undisclosed</dd></div>
+                <div><dt>Raised</dt><dd>Undisclosed</dd></div>
+                <div><dt>HQ</dt><dd>Nashville</dd></div>
+                <div><dt>Founded</dt><dd>—</dd></div>
+              </dl>
             </div>
           </article>
-        </div>
+          <article class="su-card" id="su-kaboo">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">22 /</span><h3 class="su-media-name">Kaboo</h3></div>
+              <div class="su-media-img su-media-img--contain"><img src="images/startups/kaboo.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Student-built]</div>
+                <p class="su-desc">A savings app that gave verified college students exclusive discounts at local shops, named for the Japanese budgeting method kakeibo. Built by a Vanderbilt and UBC student team and piloted in Nashville in 2024.</p>
+                <ul class="su-people">
+                  <li><b>Yehan Subasinghe</b><span>Software Engineering</span></li>
+                  <li><b>Ethan Joslin</b><span>Strategy Consultant</span></li>
+                  <li><b>Mai-Xuan Mantwill</b><span>Product &amp; Strategy Consultant</span></li>
+                </ul>
+              </div>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Undisclosed</dd></div>
+                <div><dt>Raised</dt><dd>Undisclosed</dd></div>
+                <div><dt>HQ</dt><dd>Nashville</dd></div>
+                <div><dt>Founded</dt><dd>2024</dd></div>
+              </dl>
+            </div>
+          </article>
+          <article class="su-card" id="su-hydrodore">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">23 /</span><h3 class="su-media-name"><a href="https://hydrodore.org/" target="_blank" rel="noopener noreferrer" title="hydrodore.org">Hydrodore <span aria-hidden="true">&nearr;</span></a></h3></div>
+              <div class="su-media-img su-media-img--contain"><img src="images/startups/hydrodore.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Student-built]</div>
+                <p class="su-desc">A student-run company at Vanderbilt that rents water coolers and delivers jugs to dorms, cutting single-use plastic on campus.</p>
+                <ul class="su-people">
+                  <li><b>Ethan Paik</b><span>Operations Assistant</span></li>
+                </ul>
+              </div>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Bootstrapped</dd></div>
+                <div><dt>Raised</dt><dd>None</dd></div>
+                <div><dt>HQ</dt><dd>Nashville</dd></div>
+                <div><dt>Founded</dt><dd>—</dd></div>
+              </dl>
+            </div>
+          </article>
+          <div class="su-group-head"><span class="su-group-dash" aria-hidden="true"></span>In Stealth</div>
+          <article class="su-card" id="su-stealth">
+            <div class="su-media">
+              <div class="su-media-head"><span class="su-media-num">24 /</span><h3 class="su-media-name">Stealth Startups</h3></div>
+              <div class="su-media-img su-media-img--contain"><img src="images/startups/stealth.jpg" alt="" loading="lazy" decoding="async" width="1200" height="675"></div>
+            </div>
+            <div class="su-body-col">
+              <div class="su-label">Description</div>
+              <div class="su-desc-block">
+                <div class="su-tagline">[Not Yet Public]</div>
+                <p class="su-desc">Brothers building at companies that have not announced themselves yet. Details as they become public.</p>
+                <ul class="su-people">
+                  <li><b>Moses Banda</b><span>Founder · Since February 2026</span></li>
+                  <li><b>Sam McFarland</b><span>Founding Software Engineer · Wireless spectrum trading platform</span></li>
+                  <li><b>Cayden Bird</b><span>Engineer · Defense tech, autonomous systems · Washington, DC</span></li>
+                </ul>
+              </div>
+              <div class="su-label">Specifications</div>
+              <dl class="su-specs">
+                <div><dt>Stage</dt><dd>Stealth</dd></div>
+                <div><dt>Raised</dt><dd>Undisclosed</dd></div>
+                <div><dt>HQ</dt><dd>Various</dd></div>
+                <div><dt>Founded</dt><dd>2026</dd></div>
+              </dl>
+            </div>
+          </article>
       </div>
     </div>
   </div>
 </section>
-<script>
-  (function () {
-    var root = document.getElementById("startups");
-    if (!root) return;
-    var nav = root.querySelectorAll(".su-nav-item");
-    var panels = root.querySelectorAll(".su-panel");
-    var marker = root.querySelector(".su-rail-marker");
-    var navBox = root.querySelector(".su-nav");
-    if (!panels.length) return;
-    var byId = {};
-    nav.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
-    function activate(id) {
-      var link = byId[id];
-      nav.forEach(function (a) { a.classList.toggle("is-active", a === link); });
-      panels.forEach(function (p) { p.classList.toggle("is-active", p.id === id); });
-      if (marker && link) {
-        var top = link.offsetTop;
-        if (link.offsetParent !== navBox) top -= navBox.offsetTop;
-        marker.style.top = top + "px";
-        marker.style.height = link.offsetHeight + "px";
-      }
-    }
-    var current = panels[0].id;
-    function activateAndRemember(id) { current = id; activate(id); }
-    function refresh() { activate(current); }
-    activate(current);
-    window.addEventListener("load", refresh);
-    window.addEventListener("resize", refresh);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
-    if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) { if (e.isIntersecting) activateAndRemember(e.target.id); });
-      }, { rootMargin: "-38% 0px -52% 0px", threshold: 0 });
-      panels.forEach(function (p) { io.observe(p); });
-    }
-    nav.forEach(function (a) {
-      a.addEventListener("click", function (ev) {
-        var t = document.getElementById(a.getAttribute("href").slice(1));
-        if (!t) return;
-        ev.preventDefault();
-        t.scrollIntoView({ behavior: "smooth", block: "center" });
-      });
-    });
-  })();
-</script>
 
 <!-- RESOURCES: one <li class="res-item"> per resource. Files live in assets/; external links use res-arrow--out. -->
 <section id="resources">
