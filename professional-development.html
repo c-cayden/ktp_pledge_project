@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://tile.openstreetmap.org https://cdnjs.cloudflare.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org https://cdnjs.cloudflare.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Professional Development | Kappa Theta Pi Vanderbilt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Archivo:wdth,wght@125,700&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
   <meta name="description" content="Professional development at Kappa Theta Pi Vanderbilt: hackathons, resume resources, and career preparation for students in technology.">
   <link rel="canonical" href="https://ktpvandy.org/professional-development">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <!-- Default favicon (root, ICO format for widest support) -->
 <link rel="icon" href="/faviconktp.ico" sizes="any">
@@ -23,11 +25,9 @@
 <meta name="theme-color" content="#2a2a2a">
 <link rel="manifest" href="/manifest.json">
 
-  <!-- Cache Manager for instant loading -->
-  <script src="js/cache-manager.js"></script>
 
   <!-- Header / Footer Styles -->
-  <link rel="stylesheet" type="text/css" href="css/header-styles/header.css">
+  <link id="header-css-link" rel="stylesheet" href="css/header-styles/header.css">
   <link rel="stylesheet" type="text/css" href="css/footer-styles/footer.css">
   <link rel="stylesheet" href="css/editorial.css">
 
@@ -568,6 +568,7 @@
     }
 
   </style>
+  <link rel="stylesheet" href="css/base.css">
 </head>
 <body>
 

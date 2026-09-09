@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://tile.openstreetmap.org https://cdnjs.cloudflare.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org https://cdnjs.cloudflare.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About | Kappa Theta Pi Vanderbilt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Archivo:wdth,wght@125,700&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
 
 <!-- Default favicon (root, ICO format for widest support) -->
 <link rel="icon" href="/faviconktp.ico" sizes="any">
@@ -49,12 +52,9 @@
 }
 </script>
 
-<!-- Cache Manager for instant loading -->
-<script src="js/cache-manager.js"></script>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
 <!-- Header Styles - preload to prevent header shift -->
-<link rel="stylesheet" type="text/css" href="css/header-styles/header.css">
+<link id="header-css-link" rel="stylesheet" href="css/header-styles/header.css">
 <link rel="stylesheet" href="css/editorial.css">
 
 <!-- Footer Styles -->
@@ -105,6 +105,8 @@
       overflow: hidden;
       isolation: isolate;
   }
+  .about-hero img { opacity: 0; transition: opacity 1.2s ease; }
+  .about-hero img.is-active { opacity: 1; }
   .about-hero img {
       position: absolute;
       inset: 0;
@@ -346,6 +348,7 @@
 <link rel="canonical" href="https://ktpvandy.org/about">
 <meta name="keywords" content="Kappa Theta Pi Vanderbilt, Vanderbilt computer science, Vanderbilt School of Engineering, Vanderbilt School of Engineering reviews, Vanderbilt technology, Vanderbilt Wond'ry, the Wond'ry, Vanderbilt engineering majors, Vanderbilt mechanical engineering, Vanderbilt aerospace engineering, Vanderbilt electrical engineering">
 
+  <link rel="stylesheet" href="css/base.css">
 </head>
 
 
@@ -354,7 +357,9 @@
 <main>
   <!-- HERO -->
   <section class="about-hero">
-      <img src="images-compressed/home3.jpeg" alt="KTP brothers on campus" fetchpriority="high">
+      <img class="about-slide is-active" src="images-compressed/home3.jpeg" alt="KTP brothers on campus" fetchpriority="high">
+      <img class="about-slide" data-src="images/campus/cumberland-sunset.jpg" alt="The Cumberland River at sunset" style="object-position: center 55%;">
+      <img class="about-slide" data-src="images/campus/campus-aerial.jpg" alt="Vanderbilt campus and the Nashville skyline from above" style="object-position: center 60%;">
       <div class="wrap">
           <span class="mono">About / ΚΘΠ Rho Chapter</span>
           <h1>Vanderbilt's Professional Technology Fraternity</h1>
@@ -494,5 +499,24 @@
     
 <!-- Footer Component -->
 <script src="js/footer.js"></script>
-  </body>
+    <script>
+    // About hero: crossfade through the slides every 7s, paused when the tab is hidden
+    (function () {
+      var slides = Array.prototype.slice.call(document.querySelectorAll(".about-hero .about-slide"));
+      if (slides.length < 2) return;
+      var i = 0;
+      var load = function (img) { if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; } };
+      load(slides[1]);
+      setInterval(function () {
+        if (document.hidden) return;
+        var n = (i + 1) % slides.length;
+        if (!slides[n].complete || !slides[n].naturalWidth) { load(slides[n]); return; }
+        slides[i].classList.remove("is-active");
+        i = n;
+        slides[i].classList.add("is-active");
+        load(slides[(i + 1) % slides.length]);
+      }, 7000);
+    })();
+  </script>
+</body>
 </html>

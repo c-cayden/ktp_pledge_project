@@ -2,19 +2,6 @@
 // Bar: logo left, "Rush KTP" + menu button right. Menu: three columns
 // (navigation with sub-links, KTP in Action photos, recruitment), like palantir.com.
 
-// Bootstrap CSS is still used for a few grid/utility classes on inner pages.
-function ensureBootstrap() {
-  if (!document.querySelector('#bootstrap-css-link')) {
-    const css = document.createElement('link');
-    css.id = 'bootstrap-css-link';
-    css.rel = 'stylesheet';
-    css.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css';
-    css.integrity = 'sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN';
-    css.crossOrigin = 'anonymous';
-    document.head.appendChild(css);
-  }
-}
-
 // Navigation tree. Sub-links point at section ids on each page.
 const NAV = [
   { href: '/about', label: 'About' },
@@ -167,7 +154,6 @@ function injectHeader() {
     linkTag.href = 'css/header-styles/header.css';
     document.head.appendChild(linkTag);
   }
-  ensureBootstrap();
   document.body.insertAdjacentHTML('afterbegin', createChrome());
   enableMenu();
 }
