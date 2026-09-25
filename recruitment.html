@@ -230,21 +230,24 @@
     .tier-2 img { max-height: 24px; max-width: min(100%, 112px); opacity: 0.92; }
     .tier-2 img.logo-square { max-height: 36px; }
 
-    .tier-3 { margin: 0 auto; width: 100%; max-width: 1280px; }
+    /* both small rows share the same cell width (a 9-logo row is 9/10 as wide), so their columns line up */
+    .tier-3 { margin: 0 auto; width: 100%; max-width: calc(1280px * var(--n) / 10); }
     .tier-3 .logo-cell { height: 30px; }
     .tier-3 img { max-height: 19px; max-width: min(100%, 100px); opacity: 0.85; }
     .tier-3 img.logo-square { max-height: 28px; }
 
     /* Graduate programs: last row of the wall, school lockup with the degree underneath */
-    .tier-grad { margin: 8px auto 0; width: 100%; max-width: 860px; column-gap: 28px; align-items: start; }
-    .logo-school { flex-direction: column; gap: 5px; }
-    .logo-school img { max-height: 40px; max-width: min(100%, 230px); }
+    /* cells size to their lockup and sit close together in the middle */
+    .tier-grad { margin: 6px auto 0; width: auto; max-width: 100%; grid-template-columns: repeat(var(--n), auto); justify-content: center; column-gap: 56px; align-items: start; }
+    .logo-school { flex-direction: column; gap: 6px; width: auto; }
+    .logo-school img { max-height: 40px; max-width: 240px; }
     .logo-school img:hover { transform: scale(1.04); }
     .logo-school span {
       font-size: 0.7rem;
       font-weight: 500;
       color: #666;
       letter-spacing: 0.02em;
+      white-space: nowrap;
     }
 
     @media (max-width: 1100px) {
@@ -266,7 +269,9 @@
       .tier-3 .logo-cell { height: 28px; }
       .tier-3 img { max-height: 15px; max-width: 100%; }
       .tier-3 img.logo-square { max-height: 24px; }
+      .tier-3 { max-width: 100%; }
       .tier-grad { grid-template-columns: 1fr; row-gap: 14px; margin-top: 10px; }
+      .logo-school span { white-space: normal; }
       .logo-school img { max-height: 40px; max-width: 220px; }
     }
 
