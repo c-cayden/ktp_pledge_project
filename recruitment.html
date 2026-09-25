@@ -213,42 +213,18 @@
     .logo-wall img.tier-3 { height: 21px; max-width: 104px; opacity: 0.85; }
     .logo-wall img.tier-3.logo-square { height: 30px; }
 
-    /* Graduate programs: a compact row under the wall with the school lockups and degrees */
-    .grad-wall {
-      max-width: 1180px;
-      margin: 20px auto 0;
-      padding: 16px 20px 0;
-      border-top: 1px solid var(--ed-line, #e6e6e6);
-    }
-    .grad-wall-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--ed-mono, "Space Mono", monospace);
-      font-size: 0.68rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--ed-muted, #6b7280);
-      margin-bottom: 14px;
-    }
-    .grad-wall-dash { width: 20px; height: 2px; background: var(--ed-gold, #c8a951); }
-    .grad-wall-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 18px 64px;
-    }
+    /* Graduate programs sit in the wall itself, after the companies: school lockup with the degree underneath */
     .logo-school {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 5px;
+      margin: 0 8px;
     }
     .logo-school img {
-      height: 48px;
+      height: 40px;
       width: auto;
-      max-width: 260px;
+      max-width: 220px;
       object-fit: contain;
       transition: transform 0.2s ease;
     }
@@ -269,9 +245,7 @@
       .logo-wall img.tier-2.logo-square { height: 32px; }
       .logo-wall img.tier-3 { height: 18px; max-width: 84px; }
       .logo-wall img.tier-3.logo-square { height: 26px; }
-      .grad-wall { margin-top: 24px; padding-top: 20px; }
-      .grad-wall-row { gap: 18px 32px; }
-      .logo-school img { height: 44px; max-width: 230px; }
+      .logo-school img { height: 34px; max-width: 180px; }
     }
 
     /* RUSH SCHEDULE (timeline) */
@@ -690,14 +664,9 @@
     <img src="images-compressed/companies/mcmaster-carr.svg" alt="McMaster-Carr" class="tier-3" loading="lazy">
     <img src="images-compressed/companies/kimley-horn.svg" alt="Kimley-Horn" class="tier-3" loading="lazy">
     <img src="images-compressed/companies/epichire.png" alt="EpicHire" class="tier-3" loading="lazy">
-  </div>
-  <div class="grad-wall">
-    <div class="grad-wall-label"><span class="grad-wall-dash" aria-hidden="true"></span>Graduate programs</div>
-    <div class="grad-wall-row">
-      <div class="logo-school"><img src="images-compressed/companies/vanderbilt-engineering.png" alt="Vanderbilt University School of Engineering" loading="lazy"><span>M.S. Computer Science &middot; M.S. Computer Engineering</span></div>
-      <div class="logo-school"><img src="images-compressed/companies/vanderbilt-dsi.png" alt="Vanderbilt University Data Science Institute" loading="lazy"><span>M.S. Data Science</span></div>
-      <div class="logo-school"><img src="images-compressed/companies/penn-gse.svg" alt="Penn GSE — University of Pennsylvania Graduate School of Education" loading="lazy"><span>Master&rsquo;s &middot; Education</span></div>
-    </div>
+    <div class="logo-school"><img src="images-compressed/companies/vanderbilt-engineering.png" alt="Vanderbilt University School of Engineering" loading="lazy"><span>M.S. Computer Science &middot; M.S. Computer Engineering</span></div>
+    <div class="logo-school"><img src="images-compressed/companies/vanderbilt-dsi.png" alt="Vanderbilt University Data Science Institute" loading="lazy"><span>M.S. Data Science</span></div>
+    <div class="logo-school"><img src="images-compressed/companies/penn-gse.svg" alt="Penn GSE — University of Pennsylvania Graduate School of Education" loading="lazy"><span>Master&rsquo;s &middot; Education</span></div>
   </div>
 </section>
 <!-- /WALL -->
