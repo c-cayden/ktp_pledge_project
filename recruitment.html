@@ -236,7 +236,7 @@
     .tier-3 img.logo-square { max-height: 28px; }
 
     /* Graduate programs: last row of the wall, school lockup with the degree underneath */
-    .tier-grad { margin: 8px auto 0; width: 100%; max-width: 980px; align-items: start; }
+    .tier-grad { margin: 8px auto 0; width: 100%; max-width: 860px; column-gap: 28px; align-items: start; }
     .logo-school { flex-direction: column; gap: 5px; }
     .logo-school img { max-height: 40px; max-width: min(100%, 230px); }
     .logo-school img:hover { transform: scale(1.04); }
@@ -613,7 +613,7 @@
     </div>
   </div>
   <div class="logo-wall">
-    <!-- Tech -->
+    <!-- Big tech -->
     <div class="logo-row tier-1" style="--n:8">
       <div class="logo-cell"><img src="images-compressed/companies/openai-full.svg" alt="OpenAI" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/google.svg" alt="Google" loading="lazy"></div>
@@ -622,18 +622,29 @@
       <div class="logo-cell"><img src="images-compressed/companies/amazon.jpg" alt="Amazon" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/nvidia.svg" alt="NVIDIA" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/netflix.svg" alt="Netflix" loading="lazy"></div>
-      <div class="logo-cell"><img src="images-compressed/companies/tesla.png" alt="Tesla" loading="lazy"></div>
+      <div class="logo-cell"><img src="images-compressed/companies/palantir.svg" alt="Palantir" loading="lazy"></div>
     </div>
-    <!-- Finance, consulting, later-stage tech -->
+    <!-- Quant and hedge funds, bulge-bracket and elite boutique banks -->
     <div class="logo-row tier-1" style="--n:8">
+      <div class="logo-cell"><img src="images-compressed/companies/point72.png" alt="Point72" loading="lazy"></div>
+      <div class="logo-cell"><img src="images-compressed/companies/drw.png" alt="DRW" loading="lazy"></div>
+      <div class="logo-cell"><img src="images-compressed/companies/schonfeld.svg" alt="Schonfeld" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/goldman-sachs-blue.svg" alt="Goldman Sachs" class="logo-square" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/jpmorgan-chase.svg" alt="JPMorgan Chase" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/morgan-stanley.svg" alt="Morgan Stanley" loading="lazy"></div>
-      <div class="logo-cell"><img src="images-compressed/companies/blackrock-box.svg" alt="BlackRock" class="logo-square" loading="lazy"></div>
+      <div class="logo-cell"><img src="images-compressed/companies/ubs.jpg" alt="UBS" loading="lazy"></div>
+      <div class="logo-cell"><img src="images-compressed/companies/rothschild-co.svg" alt="Rothschild &amp; Co" loading="lazy"></div>
+    </div>
+    <!-- Competitive consulting, asset management, top later-stage tech -->
+    <div class="logo-row tier-1" style="--n:8">
       <div class="logo-cell"><img src="images-compressed/companies/mckinsey.svg" alt="McKinsey & Company" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/bcg-full.jpg" alt="Boston Consulting Group" loading="lazy"></div>
-      <div class="logo-cell"><img src="images-compressed/companies/palantir.svg" alt="Palantir" loading="lazy"></div>
+      <div class="logo-cell"><img src="images-compressed/companies/oliver-wyman.svg" alt="Oliver Wyman" loading="lazy"></div>
+      <div class="logo-cell"><img src="images-compressed/companies/kearney.svg" alt="Kearney" loading="lazy"></div>
+      <div class="logo-cell"><img src="images-compressed/companies/blackrock-box.svg" alt="BlackRock" class="logo-square" loading="lazy"></div>
+      <div class="logo-cell"><img src="images-compressed/companies/bloomberg.svg" alt="Bloomberg" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/stripe.svg" alt="Stripe" loading="lazy"></div>
+      <div class="logo-cell"><img src="images-compressed/companies/tesla.png" alt="Tesla" loading="lazy"></div>
     </div>
     <!-- Tech and consumer -->
     <div class="logo-row tier-2" style="--n:10">
@@ -648,46 +659,35 @@
       <div class="logo-cell"><img src="images-compressed/companies/mongodb.svg" alt="MongoDB" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/disney.svg" alt="The Walt Disney Company" loading="lazy"></div>
     </div>
-    <!-- Finance -->
+    <!-- Banking and consulting -->
     <div class="logo-row tier-2" style="--n:10">
-      <div class="logo-cell"><img src="images-compressed/companies/bloomberg.svg" alt="Bloomberg" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/bank-of-america.svg" alt="Bank of America" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/wells-fargo.svg" alt="Wells Fargo" class="logo-square" loading="lazy"></div>
-      <div class="logo-cell"><img src="images-compressed/companies/ubs.jpg" alt="UBS" loading="lazy"></div>
-      <div class="logo-cell"><img src="images-compressed/companies/point72.png" alt="Point72" loading="lazy"></div>
-      <div class="logo-cell"><img src="images-compressed/companies/drw.png" alt="DRW" loading="lazy"></div>
-      <div class="logo-cell"><img src="images-compressed/companies/schonfeld.svg" alt="Schonfeld" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/state-street.svg" alt="State Street" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/santander.svg" alt="Santander" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/synchrony.svg" alt="Synchrony" loading="lazy"></div>
-    </div>
-    <!-- Consulting and industry -->
-    <div class="logo-row tier-2" style="--n:10">
       <div class="logo-cell"><img src="images-compressed/companies/deloitte.svg" alt="Deloitte" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/kpmg.svg" alt="KPMG" loading="lazy"></div>
-      <div class="logo-cell"><img src="images-compressed/companies/oliver-wyman.svg" alt="Oliver Wyman" loading="lazy"></div>
-      <div class="logo-cell"><img src="images-compressed/companies/kearney.svg" alt="Kearney" loading="lazy"></div>
-      <div class="logo-cell"><img src="images-compressed/companies/rothschild-co.svg" alt="Rothschild &amp; Co" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/booz-allen-hamilton.svg" alt="Booz Allen Hamilton" loading="lazy"></div>
+      <div class="logo-cell"><img src="images-compressed/companies/stifel.jpg" alt="Stifel Financial" loading="lazy"></div>
+      <div class="logo-cell"><img src="images-compressed/companies/zs.svg" alt="ZS" loading="lazy"></div>
+    </div>
+    <!-- Industry, media, research -->
+    <div class="logo-row tier-2" style="--n:10">
       <div class="logo-cell"><img src="images-compressed/companies/general-motors.svg" alt="General Motors" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/siemens.svg" alt="Siemens" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/loreal.svg" alt="L'Oréal" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/comcast.svg" alt="Comcast" loading="lazy"></div>
-    </div>
-    <!-- Media, services, research -->
-    <div class="logo-row tier-3" style="--n:9">
       <div class="logo-cell"><img src="images-compressed/companies/nytimes.svg" alt="The New York Times" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/sony-music-publishing.svg" alt="Sony Music Publishing" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/statefarm.jpg" alt="State Farm" loading="lazy"></div>
-      <div class="logo-cell"><img src="images-compressed/companies/stifel.jpg" alt="Stifel Financial" loading="lazy"></div>
-      <div class="logo-cell"><img src="images-compressed/companies/zs.svg" alt="ZS" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/fti-consulting.svg" alt="FTI Consulting" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/credera.svg" alt="Credera" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/jhu-apl.svg" alt="Johns Hopkins Applied Physics Laboratory" loading="lazy"></div>
-      <div class="logo-cell"><img src="images-compressed/companies/ornl.svg" alt="Oak Ridge National Laboratory" loading="lazy"></div>
     </div>
     <!-- Software and engineering -->
-    <div class="logo-row tier-3" style="--n:9">
+    <div class="logo-row tier-3" style="--n:10">
+      <div class="logo-cell"><img src="images-compressed/companies/ornl.svg" alt="Oak Ridge National Laboratory" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/braze.svg" alt="Braze" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/strategy.svg" alt="Strategy" loading="lazy"></div>
       <div class="logo-cell"><img src="images-compressed/companies/idme.png" alt="ID.me" loading="lazy"></div>
