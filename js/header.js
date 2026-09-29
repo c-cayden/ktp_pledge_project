@@ -133,9 +133,16 @@ function enableMenu() {
     a.addEventListener('click', () => {
       const url = new URL(a.getAttribute('href'), location.href);
       if (url.pathname === location.pathname && url.hash) {
+        const sameHash = url.hash === location.hash;
         close();
         // let the hash navigation happen after the scroll lock is released
-        setTimeout(() => { location.hash = url.hash; }, 0);
+        setTimeout(() => {
+          if (!sameHash) { location.hash = url.hash; return; }
+          // Same hash as the address bar: the browser will not jump or fire hashchange, so do both
+          const target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+          if (target) target.scrollIntoView({ block: 'start' });
+          window.dispatchEvent(new HashChangeEvent('hashchange', { oldURL: location.href, newURL: location.href }));
+        }, 0);
       }
     });
   });

@@ -339,7 +339,7 @@
     .su-btn:hover span { transform: translateX(2px); }
 
     /* Viewer */
-    .sx { --sx-notch: polygon(0 0, 100% 0, 100% 100%, 30% 100%, calc(30% - 40px) calc(100% - 40px), 0 calc(100% - 40px)); padding: 64px 0 120px; background-color: #1b2a52; background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1.2px); background-size: 26px 26px; scroll-margin-top: 80px; }
+    .sx { --sx-notch: polygon(0 0, 100% 0, 100% 100%, 30% 100%, calc(30% - 40px) calc(100% - 40px), 0 calc(100% - 40px)); padding: 64px 0 120px; background-color: #1b2a52; background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1.2px); background-size: 26px 26px; }
     .sx-bar { display: flex; align-items: center; gap: 18px; }
     .sx-count { flex: none; min-width: 68px; font-family: var(--ed-mono); font-size: 0.78rem; letter-spacing: 0.1em; color: #9fb0da; }
     .sx-count b { color: var(--ed-gold); font-weight: 500; }
@@ -366,6 +366,8 @@
 
     .sx-panel { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); grid-template-areas: "copy media" "copy meta"; grid-template-rows: auto 1fr; column-gap: 56px; row-gap: 28px; padding: 56px 56px 96px; color: #101828; }
     .sx-panel[hidden] { display: none; }
+    /* keep the sliding keyword inside the panel sideways; the image may still rise above the top edge */
+    .sx-panel { overflow-x: clip; }
     .sx-panel::before { content: ""; position: absolute; inset: 0; background: #ffffff; clip-path: var(--sx-notch); }
     .sx-copy { grid-area: copy; position: relative; z-index: 1; }
     .sx-media { grid-area: media; position: relative; z-index: 1; margin: -104px 0 0; }

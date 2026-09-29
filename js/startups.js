@@ -54,6 +54,7 @@
   function indexFromHash() {
     var id = (location.hash || "").slice(1);
     if (!id) return -1;
+    if (id === "su-acre") id = "su-actor"; // Acre Robotics is now Actor; keep old links working
     for (var k = 0; k < panels.length; k++) if (panels[k].id === id) return k;
     return -1;
   }
@@ -64,12 +65,12 @@
     t.addEventListener("click", function () { show(k); });
   });
   strip.addEventListener("keydown", function (e) {
-    var k = -1;
+    var k = null; // not -1: "one before the first" is a real target that wraps to the last
     if (e.key === "ArrowRight") k = current + 1;
     else if (e.key === "ArrowLeft") k = current - 1;
     else if (e.key === "Home") k = 0;
     else if (e.key === "End") k = panels.length - 1;
-    if (k === -1) return;
+    if (k === null) return;
     e.preventDefault();
     show(k, true);
   });
