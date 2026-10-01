@@ -90,6 +90,7 @@ function createChrome() {
             <div class="menu-social">
               <a href="https://www.instagram.com/ktpvandy" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">&#8599;</span></a>
               <a href="https://www.linkedin.com/company/kappa-theta-pi-rho/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">&#8599;</span></a>
+              <a href="https://anchorlink.vanderbilt.edu/organization/kappathetapi" target="_blank" rel="noopener noreferrer">AnchorLink <span aria-hidden="true">&#8599;</span></a>
               <a href="mailto:ktp@vanderbilt.edu">ktp@vanderbilt.edu</a>
             </div>
           </div>
