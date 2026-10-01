@@ -8,7 +8,7 @@ Sitemap: https://ktpvandy.org/sitemap.xml
 Allow: /about
 Allow: /brothers
 Allow: /recruitment
-Allow: /ktp-in-action
+Allow: /brotherhood
 Allow: /contact
 
 # Disallow any admin or private areas (if any)
