@@ -1,6 +1,6 @@
 // Site chrome: floating top bar + full-screen menu (injected on every page).
 // Bar: logo left, "Rush KTP" + menu button right. Menu: three columns
-// (navigation with sub-links, KTP in Action photos, recruitment), like palantir.com.
+// (navigation with sub-links, Brotherhood photos, recruitment), like palantir.com.
 
 // Navigation tree. Sub-links point at section ids on each page.
 const NAV = [
@@ -21,7 +21,7 @@ const NAV = [
     ['/brothers#eboard', 'Executive Board'],
     ['/brothers#alumni', 'Alumni'],
   ]},
-  { href: '/ktp-in-action', label: 'KTP in Action' },
+  { href: '/brotherhood', label: 'Brotherhood' },
   { href: '/nationals', label: 'Nationals' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -63,9 +63,9 @@ function createChrome() {
         </div>
 
         <div class="menu-col menu-col--photos">
-          <div class="menu-head"><span>KTP in Action</span><a href="/ktp-in-action">View gallery <span aria-hidden="true">&#8599;</span></a></div>
+          <div class="menu-head"><span>Brotherhood</span><a href="/brotherhood">View gallery <span aria-hidden="true">&#8599;</span></a></div>
           <div class="menu-photos">
-            <a class="menu-photo" href="/ktp-in-action">
+            <a class="menu-photo" href="/brotherhood">
               <span class="menu-photo-label">Spring Formal &middot; April 2026</span>
               <img src="images/menu/formal.jpg" alt="Brothers at spring formal" loading="lazy">
               <span class="menu-photo-title">The chapter, off the clock.</span>

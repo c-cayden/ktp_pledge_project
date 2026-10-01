@@ -146,7 +146,7 @@ function createFooter() {
               <li><a href="recruitment.html">Recruitment</a></li>
               <li><a href="professional-development.html">Professional Development</a></li>
               <li><a href="brothers.html">Brothers</a></li>
-              <li><a href="ktp-in-action.html">KTP in Action</a></li>
+              <li><a href="brotherhood.html">Brotherhood</a></li>
               <li><a href="nationals.html">Nationals</a></li>
               <li><a href="contact.html">Contact</a></li>
             </ul>
