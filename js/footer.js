@@ -199,6 +199,21 @@ function createFooter() {
   <span class="social-title">LinkedIn</span>
 </a>
 
+<!-- AnchorLink (Vanderbilt student-org directory) -->
+<a class="social-linkRow"
+   href="https://anchorlink.vanderbilt.edu/organization/kappathetapi"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="AnchorLink">
+  <svg viewBox="0 0 24 24" class="social-icon social-icon--outline" aria-hidden="true">
+    <circle cx="12" cy="5" r="2.5"/>
+    <line x1="12" y1="7.5" x2="12" y2="21"/>
+    <line x1="7" y1="10" x2="17" y2="10"/>
+    <path d="M4 14c0 4 3.6 7 8 7s8-3 8-7"/>
+    <path d="M2.5 13.5L4 15.5l1.5-2M18.5 13.5l1.5 2 1.5-2"/>
+  </svg>
+  <span class="social-title">AnchorLink</span>
+</a>
 
 </div>
 
